@@ -1,28 +1,28 @@
 module.exports = function (sequelize, DataTypes) {
-    var Trips = sequelize.define('Trips', {
-      locationOne: {
-        type: DataTypes.STRING,
+    var Bookmarks = sequelize.define('Bookmarks', {
+      bookmarkOne: {
+        type: DataTypes.TEXT,
         allowNull: false,
         validate: {
           len: [1],
         },
       },
-      locationTwo: {
-        type: DataTypes.STRING,
+      bookmarkTwo: {
+        type: DataTypes.TEXT,
         allowNull: false,
         validate: {
           len: [1],
         },
       },
-      locationThree: {
-        type: DataTypes.STRING,
+      bookmarkThree: {
+        type: DataTypes.TEXT,
         allowNull: false,
         validate: {
           len: [1],
         },
       },
-      locationFour: {
-        type: DataTypes.STRING,
+      bookmarkFour: {
+        type: DataTypes.TEXT,
         allowNull: false,
         validate: {
           len: [1],
@@ -30,11 +30,11 @@ module.exports = function (sequelize, DataTypes) {
       },
     });
   
-    Trips.associate = function (models) {
-      Trips.hasMany(models.User, {
+    Bookmarks.associate = function (models) {
+      Bookmarks.hasMany(models.User, {
         onDelete: 'cascade',
       });
     };
   
-    return Trips;
+    return Bookmarks;
   };
