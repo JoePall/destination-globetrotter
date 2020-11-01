@@ -1,134 +1,141 @@
-
-/* Menu Hamburger */
+body {
+    margin: 0;
+    font-family: Helvetica, sans-serif;
+    background-color: #f4f4f4;
+  }
   
-#nav {
+  a {
+    color: #000;
+  }
+  
+  /* header */
+  
+  .header {
+    background-color: #fff;
+    box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1);
+    position: fixed;
+    width: 100%;
+    z-index: 3;
+  }
+  
+  .header ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+    background-color: #fff;
+  }
+  
+  .header li a {
+    display: block;
+    padding: 20px 20px;
+    border-right: 1px solid #f4f4f4;
+    text-decoration: none;
+  }
+  
+  .header li a:hover,
+  .header .menu-btn:hover {
+    background-color: #f4f4f4;
+  }
+  
+  .header .logo {
+    display: block;
+    float: left;
+    font-size: 2em;
+    padding: 10px 20px;
+    text-decoration: none;
+  }
+  
+  /* menu */
+  
+  .header .menu {
+    clear: both;
+    max-height: 0;
+    transition: max-height .2s ease-out;
+  }
+  
+  /* menu icon */
+  
+  .header .menu-icon {
+    cursor: pointer;
+    display: inline-block;
+    float: right;
+    padding: 28px 20px;
+    position: relative;
+    user-select: none;
+  }
+  
+  .header .menu-icon .navicon {
+    background: #333;
+    display: block;
+    height: 2px;
+    position: relative;
+    transition: background .2s ease-out;
+    width: 18px;
+  }
+  
+  .header .menu-icon .navicon:before,
+  .header .menu-icon .navicon:after {
+    background: #333;
+    content: '';
+    display: block;
+    height: 100%;
     position: absolute;
-    margin: 0 0 0 0;
-    z-index: 100;
-}
-
-  #menuToggle
-  {
-  display: block;
-  position: relative;
-  top: 50px;
-  left: 50px;
-  
-  z-index: 1;
-  
-  -webkit-user-select: none;
-  user-select: none;
+    transition: all .2s ease-out;
+    width: 100%;
   }
   
-  #menuToggle a
-  {
-  text-decoration: none;
-  color: #ffffff;;
-  
-  transition: color 0.3s ease;
+  .header .menu-icon .navicon:before {
+    top: 5px;
   }
   
-  #menuToggle a:hover
-  {
-  color: red;
+  .header .menu-icon .navicon:after {
+    top: -5px;
   }
   
+  /* menu btn */
   
-  #menuToggle input
-  {
-  display: block;
-  width: 40px;
-  height: 32px;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  
-  cursor: pointer;
-  
-  opacity: 0;
-  z-index: 2;
-  
-  -webkit-touch-callout: none;
+  .header .menu-btn {
+    display: none;
   }
   
-  
-  #menuToggle span
-  {
-  display: block;
-  width: 33px;
-  height: 4px;
-  margin-bottom: 5px;
-  position: relative;
-  
-  background: red;
-  border-radius: 3px;
-  
-  z-index: 1;
-  
-  transform-origin: 4px 0px;
-  
-  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-  
-            opacity 0.55s ease;
+  .header .menu-btn:checked ~ .menu {
+    max-height: 240px;
   }
   
-  #menuToggle span:first-child
-  {
-  transform-origin: 0% 0%;
+  .header .menu-btn:checked ~ .menu-icon .navicon {
+    background: transparent;
   }
   
-  #menuToggle span:nth-last-child(2)
-  {
-  transform-origin: 0% 100%;
+  .header .menu-btn:checked ~ .menu-icon .navicon:before {
+    transform: rotate(-45deg);
   }
   
-  /* Transforms the hamburger into a crossmark */
-    #menuToggle input:checked ~ span
-    {
-    opacity: 1;
-    transform: rotate(45deg) translate(-2px, -1px);
+  .header .menu-btn:checked ~ .menu-icon .navicon:after {
+    transform: rotate(45deg);
+  }
+  
+  .header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+  .header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+    top: 0;
+  }
+  
+  /* 48em = 768px */
+  
+  @media (min-width: 48em) {
+    .header li {
+      float: left;
     }
-  
-  
-    #menuToggle input:checked ~ span:nth-last-child(3)
-    {
-    opacity: 0;
-    transform: rotate(0deg) scale(0.2, 0.2);
+    .header li a {
+      padding: 25px 30px;
     }
-  
-  
-    #menuToggle input:checked ~ span:nth-last-child(2)
-    {
-    transform: rotate(-45deg) translate(0, -1px);
+    .header .menu {
+      clear: none;
+      float: right;
+      max-height: none;
     }
-  
-  /* position for hamburger menu */
-  #menu
-  {
-  position: relative;
-  width: 300px;
-  margin: -100px 0 0 -50px;
-  padding: 50px;
-  padding-top: 125px;
-  
-  background-color:  #8282bd43;
-  list-style-type: none;
-  -webkit-font-smoothing: antialiased;
-  
-  transform-origin: 0% 0%;
-  transform: translate(-100%, 0);
-  
-  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+    .header .menu-icon {
+      display: none;
+    }
   }
   
-  #menu li
-  {
-  padding: 10px 0;
-  font-size: 22px;
-  font-family: 'Lato', sans-serif;
-  }
-  
-  #menuToggle input:checked ~ ul
-  {
-  transform: none;
-  }
