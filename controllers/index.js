@@ -1,19 +1,16 @@
-"use strict";
-
-const fs = require("fs");
-const path = require("path");
-const basename = path.basename(module.filename);
+const db = require("../models");
+const isAuthenticated = require("../config/middleware");
 
 module.exports = function (app) {
-  fs.readdirSync(__dirname)
-  .filter((file) => {
-    return (
-      file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
-    );
-  })
-  .forEach((file) => {
-    require("./" + file)(app);
+  Object.keys(db).forEach(modelName => {
+    const path = "/api/" + modelName; 
+    console.log(path);
+    app.get(path, isAuthenticated, (req, res) => {
+      db[modelName].findAll().then(data => {
+        res.json(data);
+      });
+    });
   });
-    
+
   module.exports = app;
 };
