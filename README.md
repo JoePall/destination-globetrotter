@@ -12,7 +12,6 @@
 * [Description](#description)
 * [Installation](#installation)
 * [Contributing](#contributing)
-* [Questions](#questions)
 * [License](#license)
 <!--te-->
 
@@ -25,20 +24,10 @@
 <p>To install...
 
 1. Clone this repo 
-
 2. Open the project in Visual Studio Code
-
 3. Open a terminal and run "npm i"
 
-
-
 Happy Coding!</p>
-
-
-
-## Questions
-
-<p>Contact me at <a href="mailto:"></a> or checkout my GitHub Profile at <a href="https://github.com/JoePall">JoePall</a>.</p>
 
 ## Contributing
 
@@ -46,7 +35,7 @@ Happy Coding!</p>
 
 ## License
 
-<p>MIT License</p>
+![License](https://img.shields.io/badge/License-MIT%20License-blue?style=flat-square.svg)
 
 <!-- MOVE TO MONDAY? -->
 <!-- ![Deliverables 1](https://user-images.githubusercontent.com/64329660/97382628-c343de80-1899-11eb-853a-d33e5bf89ef2.PNG)
