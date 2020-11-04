@@ -1,28 +1,28 @@
 module.exports = function (sequelize, DataTypes) {
-    var Trips = sequelize.define('Trips', {
-      locationOne: {
-        type: DataTypes.STRING,
+    var Messages = sequelize.define('Messages', {
+      messageOne: {
+        type: DataTypes.TEXT,
         allowNull: false,
         validate: {
           len: [1],
         },
       },
-      locationTwo: {
-        type: DataTypes.STRING,
+      messageTwo: {
+        type: DataTypes.TEXT,
         allowNull: false,
         validate: {
           len: [1],
         },
       },
-      locationThree: {
-        type: DataTypes.STRING,
+      messageThree: {
+        type: DataTypes.TEXT,
         allowNull: false,
         validate: {
           len: [1],
         },
       },
-      locationFour: {
-        type: DataTypes.STRING,
+      messageFour: {
+        type: DataTypes.TEXT,
         allowNull: false,
         validate: {
           len: [1],
@@ -30,11 +30,11 @@ module.exports = function (sequelize, DataTypes) {
       },
     });
   
-    Trips.associate = function (models) {
-      Trips.hasMany(models.User, {
+    Messages.associate = function (models) {
+      Messages.hasMany(models.User, {
         onDelete: 'cascade',
       });
     };
   
-    return Trips;
+    return Messages;
   };
