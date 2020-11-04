@@ -1,5 +1,6 @@
 var express = require("express");
 var session = require("express-session");
+const favicon = require('express-favicon');
 
 var app = express();
 var passport = require("./config/passport");
@@ -20,6 +21,7 @@ app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true}
 app.use(passport.initialize());
 app.use(passport.session());
 
+// TODO: Add app.use(favicon(__dirname + '/favicon.ico'));
 // Routes
 // =============================================================
 require("./controllers")(app);
