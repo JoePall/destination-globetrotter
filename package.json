@@ -24,6 +24,7 @@
     "bcryptjs": "^2.4.3",
     "bootstrap": "^4.5.3",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
     "fs": "0.0.1-security",
     "if-env": "^1.0.4",
     "install": "^0.13.0",
