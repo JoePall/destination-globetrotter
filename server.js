@@ -34,5 +34,5 @@ db.sequelize.sync().then(function() {
 });
 
 const seed = () => {
-  db.user
+  // db.User.create();
 }
