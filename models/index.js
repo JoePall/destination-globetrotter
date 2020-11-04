@@ -22,12 +22,13 @@ fs
   })
   .forEach(file => {
     const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
+    generateModelsAndBaseAPIComponents(model.name);
     db[model.name] = model;
   });
-
-Object.keys(db).forEach(modelName => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
+  
+  Object.keys(db).forEach(modelName => {
+    if (db[modelName].associate) {
+      db[modelName].associate(db);
   }
 });
 
@@ -35,3 +36,25 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 module.exports = db;
+
+
+const generateModelsAndBaseAPIComponents = (model) => {
+  console.log(__dirname + model);
+  let path = __dirname.slice(0, __dirname.lastIndexOf("\\")) + "\\controllers\\api\\create\\" + model;
+
+  let content = `module.exports = function(app) {
+  const isAuthenticated = require("../config/middleware/isAuthenticated");
+  const db = require("../models");
+
+  app.post("/api/${model}", isAuthenticated, (req, res) => {
+    db.${model}.create({
+      object to save...
+    }).then(() => {
+      completed view... 
+    });
+  });  
+};
+  `;
+
+  fs.writeFileSync(path + ".js", content, { encoding: 'utf8', flag: 'w' });
+}
