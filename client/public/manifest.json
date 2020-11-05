@@ -1,6 +1,11 @@
 {
-  "short_name": "Destination Globetrotter",
-  "name": "Destination Globetrotter - Collaborate on travel for reunions and group travel",
+  "short_name": "React App",
+  "name": "Create React App Sample",
+  "icons": [{
+      "src": "/images/logo-small.png",
+      "type": "image/png"
+    }
+  ],
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
