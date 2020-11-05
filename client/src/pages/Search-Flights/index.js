@@ -29,42 +29,38 @@ const Search = () => {
   // if ({searchresults} !== 'null') console.log({searchresults})
 
   return (
-    <div className="ui segment searchbar">
-      <form className="ui form">
-        <div className="field">
-          <label>From Airport </label>
+
+    <div class="ui segment searchbar" id="searchbar">
+      <div class="form">
+        <form class="field">
           <input
+            placeholder="From Airport"
             value={fromairport}
             onChange={(e) => setfromairport(e.target.value)}
             className="input"
           />
-          <br />
-          <br />
-          <label>To Airport </label>
           <input
+            placeholder="To Airport"
             value={toairport}
             onChange={(e) => settoairport(e.target.value)}
             className="input"
           />
-          <br />
-          <br />
-          <label>Departure Date </label>
           <input
+            placeholder="Departure Date"
             value={dateto}
             onChange={(e) => setdateto(e.target.value)}
             className="input"
           />
-          <br />
-          <br />
-          <label>Return Date </label>
           <input
+            placeholder="Return Date"
             value={returnto}
             onChange={(e) => setreturnto(e.target.value)}
             className="input"
           />
-        </div>
-      </form>
-      <ul>
+          <button>Search</button>
+        </form>
+  </div>
+
         {searchresults &&
           searchresults.map((result) => {
             // console.log("result.airline[0] = ", result.airlines[0]);
@@ -95,7 +91,6 @@ const Search = () => {
               );
             }
           })}
-      </ul>
     </div>
   );
 };
