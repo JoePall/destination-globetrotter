@@ -8,7 +8,8 @@ export const Navbar = () => (
     <input className="menu-btn" type="checkbox" id="menu-btn" />
     <label className="menu-icon"><span className="navicon"></span></label>
     <ul className="menu">
-      <li><a href="/my-flights">Search Flights</a> </li>
+      <li><a href="/my-flights">My Flights</a></li>
+      <li><a href="/search-flights">Search Flights</a></li>
       <li><a href="/trips">Trips</a></li>
       <li><a href="/messages">Messages</a></li>
       <li><a href="/profile">Profile</a></li>
