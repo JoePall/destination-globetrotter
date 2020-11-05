@@ -1,10 +1,11 @@
 var express = require("express");
+var app = express();
+
 var session = require("express-session");
 const favicon = require('express-favicon');
-
-var app = express();
+const routes = require("./controllers"); 
+app.use(routes);
 var passport = require("./config/passport");
-
 var PORT = process.env.PORT || 8080;
 
 // Requiring our models for syncing
@@ -21,13 +22,8 @@ app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true}
 app.use(passport.initialize());
 app.use(passport.session());
 
-// TODO: Add app.use(favicon(__dirname + '/favicon.ico'));
-// Routes
-// =============================================================
 require("./controllers")(app);
 
-// Syncing our sequelize models and then starting our Express app
-// =============================================================
 db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
     seed();
