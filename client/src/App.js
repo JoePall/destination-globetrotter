@@ -1,7 +1,7 @@
 import React from "react";
 import Home from "./pages/Home";
 import Flights from "./pages/My-Flights";
-import Search from "./pages/Search";
+import Search from "./pages/Search-Flights";
 import Trips from "./pages/Trips";
 import Profile from "./pages/Profile";
 import Messages from "./pages/Messages";
@@ -17,7 +17,7 @@ function App() {
       <Switch>
         <Route exact path={["/", "/dashboard"]} component={Home} />
         <Route exact path="/my-flights" component={Flights} />
-        <Route exact path="/search" component={Search} />
+        <Route exact path="/search-flights" component={Search} />
         <Route exact path="/messages" component={Messages} />
         <Route exact path="/trips" component={Trips} />
         <Route exact path="/profile" component={Profile} />
