@@ -2,13 +2,13 @@ import React from "react";
 import { Jumbotron } from "react-bootstrap";
 import "./style.css";
 
-function myFlights() {
+function Trips() {
   return (
     <Jumbotron>
-      <h1>MY FLIGHTS</h1>
-      <h5>TRAVEL THE <b>WORLD</b></h5>
+      <h1><b>TRIPS</b></h1>
+      <h1>🙄</h1>
     </Jumbotron>
   );
 }
 
-export default myFlights;
+export default Trips;
