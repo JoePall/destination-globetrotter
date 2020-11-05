@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Destination Globetrotter",
+  "name": "Destination Globetrotter - The collaborative travel planner",
   "icons": [{
       "src": "/images/logo-small.png",
       "type": "image/png"
