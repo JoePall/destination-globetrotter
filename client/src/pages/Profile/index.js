@@ -4,9 +4,9 @@ import "./style.css";
 
 function Profile() {
   return (
-    <Container fluid="lg">
+    <Container fluid="lg" className="p-4">
       <Row>
-        <Col xl="2">
+        <Col sm="6">
           <h1>PROFILE</h1>
         </Col>
       </Row>

@@ -4,7 +4,7 @@ import "./style.css";
 
 function Messages() {
   return (
-    <Container fluid="lg">
+    <Container fluid="lg" className="p-4">
       <Row>
         <Col xl="2">
           <h1>MESSAGES</h1>

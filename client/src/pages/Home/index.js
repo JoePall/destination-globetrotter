@@ -8,7 +8,7 @@ function Home() {
 
   useEffect(() => {
     loadBookmarks()
-  }, bookmarks)
+  }, [bookmarks])
 
   function loadBookmarks() {
     API.Bookmarks.get()
@@ -19,10 +19,12 @@ function Home() {
   };
 
   return (
-    <Container fluid="lg">
+    <Container fluid="lg" className="p-4">
       <Row>
-        <Col xl="2">
+        <Col sm="6">
           <h1>HOME </h1>
+        </Col>
+        <Col sm="6">
           <h4><span>HELLO</span><b>WORLD</b></h4>
         </Col>
       </Row>
