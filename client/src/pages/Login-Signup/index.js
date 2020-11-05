@@ -4,7 +4,7 @@ import Logo from "../../images/logo-small.png";
 
 <div class="wrapper fadeInDown">
   <div id="formContent">
-    <h2 class="active"> Sign In </h2>
+    <h2 class="active">Sign In </h2>
     <h2 class="inactive underlineHover">Sign Up </h2>
 
     <div class="fadeIn first">
