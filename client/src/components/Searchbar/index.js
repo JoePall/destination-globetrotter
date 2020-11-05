@@ -2,7 +2,7 @@
 // import ResultsList from "./ResultsList"
 const axios = require("axios");
 
-const Search = async(returnfrom, dateto, fromairport, toairport, callback) => {
+const Searchbar = async(returnfrom, dateto, fromairport, toairport, callback) => {
 
     let searchurl = "https://tequila-api.kiwi.com/v2/search?&curr=USD&select_airlines=DL,B6,WN,AS,HA,UA,NK,AA,F9&flight_type=round"
     let apikey = "dRfNfRXhvDHSsgF7Got2L96r1cNGF9gl"
@@ -34,4 +34,4 @@ const Search = async(returnfrom, dateto, fromairport, toairport, callback) => {
         })
 }
 
-export default Search
+export default Searchbar
