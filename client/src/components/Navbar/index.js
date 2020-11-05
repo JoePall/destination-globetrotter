@@ -1,5 +1,4 @@
 import React from 'react';
-import { Jumbotron, Col, Row, Container } from "react-bootstrap";
 import './style.css';
 import Logo from '../../images/logo-small.png';
 
