@@ -24,7 +24,7 @@ app.use(passport.session());
 
 require("./controllers")(app);
 
-db.sequelize.sync().then(function() {
+db.sequelize.sync({ force: true }).then(function() {
   app.listen(PORT, function() {
     seed();
     console.log("http://localhost:" + PORT);
