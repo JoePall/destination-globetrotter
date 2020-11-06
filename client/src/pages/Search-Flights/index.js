@@ -5,7 +5,6 @@ import CalculateDuration from "./CalculateDuration";
 // const axios = require("axios");
 import "./style.css"
 
-
 const Search = () => {
 
     const [fromairport, setfromairport] = useState('');
@@ -32,43 +31,37 @@ const Search = () => {
         // if ({searchresults} !== 'null') console.log({searchresults})
 
         return (
-            <div className="ui segment searchbar">
-                <form className="ui form">
-                    <div className="field">
-                        <label>From Airport </label>
-                        <input 
-                            value={fromairport} 
-                            onChange={(e) => setfromairport(e.target.value)} 
-                            className="input"
-                        />
-                        <br />
-                        <br />
-                        <label>To Airport </label>
-                        <input 
-                            value={toairport} 
-                            onChange={(e) => settoairport(e.target.value)} 
-                            className="input"
-                        />
-                        <br />
-                        <br />
-                        <label>Departure Date </label>
-                        <input 
-                            value={dateto} 
-                            onChange={(e) => setdateto(e.target.value)} 
-                            className="input"
-                        />
-                        <br />
-                        <br />
-                        <label>Return Date </label>
-                        <input 
-                            value={returnto} 
-                            onChange={(e) => setreturnto(e.target.value)} 
-                            className="input"
-                        />
+          <div class="ui segment searchbar" id="searchbar">
+          <div class="form">
+            <form class="field">
+              <input
+                placeholder="From Airport"
+                value={fromairport}
+                onChange={(e) => setfromairport(e.target.value)}
+                className="input"
+              />
+              <input
+                placeholder="To Airport"
+                value={toairport}
+                onChange={(e) => settoairport(e.target.value)}
+                className="input"
+              />
+              <input
+                placeholder="Departure Date"
+                value={dateto}
+                onChange={(e) => setdateto(e.target.value)}
+                className="input"
+              />
+              <input
+                placeholder="Return Date"
+                value={returnto}
+                onChange={(e) => setreturnto(e.target.value)}
+                className="input"
+              />
+                <button>Search</button>
+        </form>
+  </div>
 
-                    </div>
-                </form>
-                <ul>
                     {
                         searchresults &&
                         searchresults.map( result => {
@@ -103,7 +96,6 @@ const Search = () => {
                             }
                         })
                     }
-                </ul>
             </div>  
         );
     };
