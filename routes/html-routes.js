@@ -10,7 +10,7 @@ router.get('/register', function (req, res) {
     res.render('register');
 });
 
-router.get('/search-flights', function (req, res) {
+router.get('/search-flights', isAuthenticated, function (req, res) {
     res.render('search-flights');
 });
 
@@ -19,8 +19,8 @@ router.get('/login', function (req, res) {
 });
 
 // add isAuthentictaed, before async to protect this route
-router.get('/profile/:id', async function (req, res, cb) {
-    const user = await db.User.findOne({
+router.get('/profile/:id', function (req, res, cb) {
+    const user = db.User.findOne({
         where: {
             id: req.params.id,
         }
