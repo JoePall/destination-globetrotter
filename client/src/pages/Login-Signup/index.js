@@ -1,38 +1,76 @@
 import React from "react";
-import "./style.css";
+import 'spectre.css/dist/spectre.min.css';
+import 'spectre.css/dist/spectre-icons.css';
+import './style.css';
+import axios from 'axios'
 import Logo from "../../images/logo-small.png";
 
-<div className="wrapper fadeInDown">
-  <div id="formContent">
-    <h2 className="active">Sign In </h2>
-    <h2 className="inactive underlineHover">Sign Up </h2>
 
-    <div className="fadeIn first">
-      <img src={Logo} id="icon" alt="User Icon" />
-    </div>
 
-    <form method="post">
-      <input
-        type="text"
-        id="login"
-        className="fadeIn second"
-        name="email"
-        placeholder="email"
-      ></input>
-      <input
-        type="password"
-        id="password"
-        className="fadeIn third"
-        name="password"
-        placeholder="password"
-      ></input>
-      <input type="submit" className="fadeIn fourth" value="Log In"></input>
-    </form>
+class SignUp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
 
-    <div id="formFooter">
-      <a className="underlineHover" href="#forgot-password">
-        Forgot Password?
-      </a>
-    </div>
-  </div>
-</div>;
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    event.preventDefault()
+    console.log('sign-up-form, username');
+    console.log(this.state.username);
+    // request server here
+    axios.post('/', {
+      username: this.state.username,
+      password: this.state.password
+  })
+
+      .then(response => {
+        console.log(response)
+        if (response.data) {
+          console.log('successful signup')
+          this.setState({
+            redirectTo: '/login'
+          })
+        } else {
+          console.log('Sign-up error');
+
+        }
+      }).catch(error => {
+        console.log('Sign up server error: ')
+        console.log(error);
+        })
+      }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label htmlFor="username">
+          Username:
+          <input
+            name="username"
+            type="text"
+            value={this.state.username}
+            onChange={this.handleChange} />
+        </label>
+        <br />
+        <label htmlFor="username">
+          Password
+          <input
+            name="password"
+            type="text"
+            value={this.state.password}
+            onChange={this.handleChange} />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
+}
+
+export default SignUp;

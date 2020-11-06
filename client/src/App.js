@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Flights from "./pages/My-Flights";
 import Search from "./pages/Search-Flights";
 import Trips from "./pages/Trips";
+import SignUp from "../src/pages/Login-Signup/index"
 import Profile from "./pages/Profile";
 import Messages from "./pages/Messages";
 import NoMatches from "./pages/NoMatches";
@@ -14,6 +15,7 @@ function App() {
   return (
     <Router>
       <Navbar />
+      <SignUp />
       <Switch>
         <Route exact path={["/", "/dashboard"]} component={Home} />
         <Route exact path="/my-flights" component={Flights} />
