@@ -2,6 +2,7 @@ const router = require("express").Router();
 const db = require("../models");
 
 const setupGet = (basePath, model) => {
+  const path = basePath;
   console.log("Constructing GET: " + basePath);
   router.route(path).get(() => {
     db[model].findAll().then(data => {
@@ -9,7 +10,7 @@ const setupGet = (basePath, model) => {
     });
   });
   
-  return { "get": basePath };
+  return { "get": path };
 } 
 
 const setupGetOne = (basePath, model) => {
@@ -33,7 +34,7 @@ const setupCreate = (basePath, model) => {
     });
   });
   
-  return { "create": basePath };
+  return { "create": path };
 } 
 
 const setupUpdate = (basePath, model) => {
@@ -74,7 +75,9 @@ const setupUpdate = (basePath, model) => {
       });
     });
     
-    router.route("/api/").get(res.json(API));
+    router.route("/api/").get(() => {
+      res.json(API);
+    });
   }
   
   let routes = [];
