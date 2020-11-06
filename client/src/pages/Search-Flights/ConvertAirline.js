@@ -14,11 +14,7 @@ const airlines = [
 ];
 
 function ConvertAirline(airlinecode) {
-  // console.log("airlinecode inside ConvertAirline = ", airlinecode);
-  // console.log(typeof(airlinecode));
-  let index = airlines.findIndex((airline) => airline.mnemonic == airlinecode);
-  // console.log("index = ", index);
-  // console.log("Airline = ", airlines[index].name);
+  let index = airlines.findIndex((airline) => airline.mnemonic === airlinecode);
   let airlinename = airlines[index].name;
   return airlinename;
 }

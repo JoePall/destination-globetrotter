@@ -41,3 +41,8 @@
   background: #c68b0c;
 }
 
+.searchresults {
+  min-width: 200px; 
+  padding-left: 0px;  
+}
+
