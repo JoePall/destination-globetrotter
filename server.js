@@ -12,6 +12,7 @@ var PORT = process.env.PORT || 8080;
 var db = require("./models");
 
 // Sets up the Express app to handle data parsing
+var app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -22,6 +23,12 @@ app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true}
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+// Routes
+// =============================================================
+
+app.use('/', require('./routes/api-routes'));
+app.use('/', require('./routes/html-routes'));
 require("./controllers")(app);
 
 db.sequelize.sync({ force: true }).then(function() {
