@@ -1,3 +1,17 @@
 .searchbar {
     padding: 100px;
 }
+
+.searchlabels {
+    width: 150px; 
+    padding-left: 0px;
+}
+
+.input {
+    line-height: normal;
+}
+
+.searchresults {
+    min-width: 200px; 
+    padding-left: 0px;  
+}
