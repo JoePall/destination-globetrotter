@@ -8,11 +8,16 @@ const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
 
-let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
+if (fs.existsSync(__dirname + '/../config/config.json',)) {
+  const config    = require(__dirname + '/../config/config.json')[env];
+  if (config.use_env_variable) {
+    var sequelize = new Sequelize(process.env[config.use_env_variable]);
+  } else {
+    var sequelize = new Sequelize(config.database, config.username, config.password, config);
+  }
+}
+else if (process.env.JAWSDB_URL) {
+  var sequelize = new Sequelize(process.env.JAWSDB_URL);
 }
 
 fs
