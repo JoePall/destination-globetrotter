@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    font-family: Helvetica, sans-serif;
+    font-family: 'Poppins', sans-serif;
     background-color: #f4f4f4;
   }
   
@@ -29,6 +29,7 @@ body {
     display: block;
     padding: 20px 20px;
     border-right: 1px solid #f4f4f4;
+    font-family: 'Poppins', sans-serif;
     text-decoration: none;
   }
   
