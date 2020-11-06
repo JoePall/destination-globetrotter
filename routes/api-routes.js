@@ -7,8 +7,8 @@ const router = express.Router();
 // const util = require('util');
 
 // Create User
-router.post('/api/signup', async function (req, res, cb) {
-    let user = await db.User.findOrCreate({
+router.post('/api/signup', function (req, res, cb) {
+    let user =  db.User.findOrCreate({
         where: {email: req.body.email},
         defaults: req.body,
     })
@@ -24,8 +24,8 @@ router.post('/api/signup', async function (req, res, cb) {
 });
 
 // Log the User in with passport -- creates req.user
-router.post('/api/login', passport.authenticate('local'), async function(req,res,cb) {
-    const dbUser = await db.User.findOne({
+router.post('/api/login', passport.authenticate('local'), function(req,res,cb) {
+    const dbUser = db.User.findOne({
         where: {
             email: req.body.email,
         }
