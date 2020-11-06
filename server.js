@@ -1,10 +1,11 @@
 var express = require("express");
+var app = express();
+
 var session = require("express-session");
 const favicon = require('express-favicon');
-
-
+const routes = require("./controllers"); 
+app.use(routes);
 var passport = require("./config/passport");
-
 var PORT = process.env.PORT || 8080;
 
 // Requiring our models for syncing
@@ -30,9 +31,7 @@ app.use('/', require('./routes/api-routes'));
 app.use('/', require('./routes/html-routes'));
 require("./controllers")(app);
 
-// Syncing our sequelize models and then starting our Express app
-// =============================================================
-db.sequelize.sync().then(function() {
+db.sequelize.sync({ force: true }).then(function() {
   app.listen(PORT, function() {
     seed();
     console.log("http://localhost:" + PORT);
