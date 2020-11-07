@@ -3,10 +3,9 @@ import Home from "./pages/Home";
 import Flights from "./pages/My-Flights";
 import Search from "./pages/Search-Flights";
 import Trips from "./pages/Trips";
-import SignUp from "../src/pages/Login-Signup/index"
 import Profile from "./pages/Profile";
 import Messages from "./pages/Messages";
-import Login from "./pages/Login-Signup";
+import Login from "./pages/Login-Signup/login";
 import NoMatches from "./pages/NoMatches";
 import Navbar from "./components/Navbar";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
@@ -16,7 +15,7 @@ function App() {
   return (
     <Router>
       <Navbar />
-      <SignUp />
+      <Login />
       <Switch>
         <Route exact path={["/", "/dashboard"]} component={Home} />
         <Route exact path="/my-flights" component={Flights} />
