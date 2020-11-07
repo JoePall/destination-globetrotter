@@ -1,21 +1,20 @@
 const express = require('express');
 const db = require('../models');
 const router = express.Router();
-// const path = require('path');
 
 // Middleware to see if user is logged in
 const isAuthenticated = require('../config/middleware/isAuthenticated');
 
-router.get('/register', function (req, res) {
-    res.render('register');
+router.get('/signup', function (req, res) {
+    res.redirect('signup');
 });
 
 router.get('/search-flights', isAuthenticated, function (req, res) {
-    res.render('search-flights');
+    res.redirect('search-flights');
 });
 
 router.get('/login', function (req, res) {
-    res.render('login');
+    res.redirect('login');
 });
 
 // add isAuthentictaed, before async to protect this route
