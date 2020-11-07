@@ -9,7 +9,7 @@ const router = express.Router();
 // Create User
 router.post('/api/signup', function (req, res, cb) {
     let user =  db.User.findOrCreate({
-        where: {email: req.body.email},
+        where: {username: req.body.username},
         defaults: req.body,
     })
 
@@ -27,7 +27,7 @@ router.post('/api/signup', function (req, res, cb) {
 router.post('/api/login', passport.authenticate('local'), function(req,res,cb) {
     const dbUser = db.User.findOne({
         where: {
-            email: req.body.email,
+            username: req.body.username,
         }
     });
     cb();
