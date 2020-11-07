@@ -21,7 +21,9 @@ app.use(passport.session());
 
 app.use('/', require('./routes/api-routes'));
 app.use('/', require('./routes/html-routes'));
-require("./controllers")(app);
+
+const routes = require("./controllers");
+app.use(routes);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
