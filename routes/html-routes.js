@@ -1,7 +1,6 @@
 const express = require('express');
 const db = require('../models');
 const router = express.Router();
-// const path = require('path');
 
 // Middleware to see if user is logged in
 const isAuthenticated = require('../config/middleware/isAuthenticated');
