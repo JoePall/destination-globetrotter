@@ -7,7 +7,7 @@ body {
 }
 
 a {
-  color: #92badd;
+  color: #0D60A3;
   display:inline-block;
   text-decoration: none;
   font-weight: 400;
@@ -15,7 +15,7 @@ a {
 
 h2 {
   text-align: center;
-  font-size: 16px;
+  font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
   display:inline-block;
