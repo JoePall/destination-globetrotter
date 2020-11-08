@@ -4,7 +4,7 @@ import Logo from "../../images/logo-small.png";
 
 
 
-export const SignUp = () => (
+export const login = () => (
 
 <div class="wrapper fadeInDown">
   <div id="formContent">
@@ -25,4 +25,4 @@ export const SignUp = () => (
 </div>
 );
 
-export default SignUp;
+export default login;

@@ -2,9 +2,6 @@ const passport = require('../config/passport');
 const db = require('../models');
 const express = require('express');
 const router = express.Router();
-// const path = require('path');
-// const fs = require('fs');
-// const util = require('util');
 
 // Create User
 router.post('/api/signup', function (req, res, cb) {
