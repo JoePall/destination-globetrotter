@@ -2,9 +2,8 @@ var express = require("express");
 var app = express();
 
 var session = require("express-session");
-const favicon = require('express-favicon');
 var passport = require("./config/passport");
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 8080;
 
 var db = require("./models");
 
@@ -20,21 +19,31 @@ app.use(passport.session());
 app.use('/', require('./routes/api-routes'));
 app.use('/', require('./routes/html-routes'));
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
-
 db.sequelize.sync({ force: true }).then(seq => {
-  let { getRoutes } = require("./controllers");
-  let x = getRoutes((seq.models));
-  console.table(x)
-  app.use("/api", x);
-  setTimeout(() => {
-    app.listen(PORT, function() {
-      seed();
-      console.log("http://localhost:" + PORT);
-    });
-  }, 1000);
+  try {
+    let routes = require("./controllers")(seq.models);
+    app.use("/", routes);
+    //
+    if (process.env.NODE_ENV === "production") {
+      app.use(express.static("client/build"));
+    }
+    else {
+      app.use(express.static("client/public"));
+      
+      const path = require("path")
+
+      app.use(express.static(path.join(__dirname, "client", "public")))
+      app.get("*", (req, res) => res.sendFile(path.join(__dirname, "client", "public", "index.html")));
+
+    }
+  } catch (error) {
+    console.log(error);
+  }
+
+  app.listen(PORT, function() {
+    seed();
+    console.log("http://localhost:" + PORT);
+  });
 });
 
 const seed = () => {
