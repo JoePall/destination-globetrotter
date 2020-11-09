@@ -1,20 +1,32 @@
 import React from 'react';
+import { slide as Menu } from 'react-burger-menu'
 import './style.css';
 import Logo from '../../images/logo-small.png';
+ 
+class Navbar extends React.Component {
+  showSettings (event) {
+    event.preventDefault();
+  }
+ 
+  render () {
+    return (
 
-export const Navbar = () => (
-  <header className="header clearfix">
-    <a href="/"><img src={Logo} className='logo' alt="Logo" /></a>
-    <input className="menu-btn" type="checkbox" id="menu-btn" />
-    <label className="menu-icon"><span className="navicon"></span></label>
-    <ul className="menu">
-      <li><a href="/my-flights">My Flights</a></li>
-      <li><a href="/search-flights">Search Flights</a></li>
-      <li><a href="/trips">Trips</a></li>
-      <li><a href="/messages">Messages</a></li>
-      <li><a href="/profile">Profile</a></li>
-    </ul>
-  </header>
-)
+    <div>
+      <header>
+        <img alt="logo" src={Logo} id='logo'></img>
+
+        <Menu>
+          <a className="menu-item" href="/my-flights">My-Flights</a>
+          <a  className="menu-item" href="/search-flights">Search Flights</a>
+          <a  className="menu-item" href="/trips">Trips</a>
+          <a className="menu-item" href="/messages">Messages</a>
+          <a className="menu-item" href="/profile">Profile</a>
+        </Menu>
+
+        </header>
+    </div>
+    );
+  }
+}
   
 export default Navbar;

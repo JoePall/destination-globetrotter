@@ -6,6 +6,7 @@ import Trips from "./pages/Trips";
 import Profile from "./pages/Profile";
 import Messages from "./pages/Messages";
 import Login from "./pages/Login-Signup/login";
+import signUp from "./pages/Login-Signup/signUp";
 import NoMatches from "./pages/NoMatches";
 import Navbar from "./components/Navbar";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
@@ -15,7 +16,6 @@ function App() {
   return (
     <Router>
       <Navbar />
-      <Login />
       <Switch>
         <Route exact path={["/", "/dashboard"]} component={Home} />
         <Route exact path="/my-flights" component={Flights} />
@@ -24,6 +24,7 @@ function App() {
         <Route exact path="/trips" component={Trips} />
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/signUp" component={signUp} />
         <Route component={NoMatches} />
       </Switch>
     </Router>
