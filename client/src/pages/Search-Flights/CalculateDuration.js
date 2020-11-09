@@ -1,12 +1,14 @@
-function CalculateDuration(duration) {
+function CalculateDuration(props) {
   let returnduration = "";
 
-  let calcduration = duration / 60 / 60;
-  let fixedcalcduration = calcduration.toFixed(2);
-  if (fixedcalcduration > 8) {
+  let hours = Math.floor(props / 60 / 60);
+  let minutes = Math.floor(props / 60)  - (hours * 60);
+  if (minutes < 10 ) minutes = "0" + minutes;
+
+  if (hours > 8) {
     returnduration = -1;
   } else {
-    returnduration = fixedcalcduration;
+    returnduration = "Duration -- " + hours + ":" + minutes
   }
 
   return returnduration;
