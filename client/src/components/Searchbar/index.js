@@ -10,8 +10,8 @@ const Searchbar = async(returnfrom, dateto, fromairport, toairport, callback) =>
     let return_to = "&return_to=" + returnfrom
     let date_to = "&date_to=" + dateto
     let date_from = "&date_from=" + dateto
-    let fly_from = "&fly_from=airport:" + fromairport
-    let fly_to = "&fly_to=airport:" + toairport
+    let fly_from = "&fly_from=airport:" + fromairport.toUpperCase()
+    let fly_to = "&fly_to=airport:" + toairport.toUpperCase()
     let surl = searchurl+date_to+date_from+return_to+return_from+fly_from+fly_to
 
     axios({

@@ -3,8 +3,9 @@ import Searchbar from "../../components/Searchbar/index.js"
 import ConvertAirline from "./ConvertAirline";
 import CalculateDuration from "./CalculateDuration";
 import Table from 'react-bootstrap/Table'
-// const axios = require("axios");
+import Button from 'react-bootstrap/Button'
 import "./style.css"
+import DisplayFlight from "./DisplayFlight.js";
 
 const Search = () => {
 
@@ -12,7 +13,8 @@ const Search = () => {
     const [toairport, settoairport] = useState('');
     const [returnto, setreturnto] = useState('');
     const [dateto, setdateto] = useState('');
-    const [searchresults, setsearchresults] = useState(null)
+    const [searchresults, setsearchresults] = useState(null);
+    const [displayflights, setdisplayflights] = useState(null);
 
     useEffect(() => {
         const timeoutID = setTimeout(() => {
@@ -60,34 +62,34 @@ const Search = () => {
                 <button>Search</button>
         </form>
   </div>
-
                     {
                         searchresults &&
                         searchresults.map( result => {
+                            let departureduration = 0;
+                            let returnduration = 0;
                             let airlinename = ConvertAirline(result.airlines[0]);
-                            let ddh = CalculateDuration(result.duration.departure);
-                            let rdh = CalculateDuration(result.duration.return);
+                            let ddh = CalculateDuration(departureduration = result.duration.departure);
+                            let rdh = CalculateDuration(returnduration = result.duration.return);
                             let flightnumbers = "";
-                            for (let i = 0; i < result.route.length; i++) {
-                                flightnumbers = flightnumbers + result.route[i].operating_flight_no + "/" ;
-                            }
-                            
                             if (ddh === -1 || rdh === -1) {
-                                return (null)
+                                    return (null)
                             } else {
-                                return <Table striped bordered hover>
-                                <tbody>
-                                    <tr key={result.id}>
-                                    <td className="searchresults">{flightnumbers}</td>
-                                    <td className="searchresults">{airlinename}</td>
-                                    <td>{result.flyFrom}</td>
-                                    <td>{result.flyTo}</td>
-                                    <td>${result.price}</td>
-                                    <td>{ddh}</td>
-                                    <td>{rdh}</td>
-                                    </tr>
-                                </tbody>
+                                return (
+                                <div>
+                                <Table striped bordered hover key={result.id}>
+                                    <tbody>
+                                        <tr>
+                                        <td className="searchresults">{airlinename}</td>
+                                        <td>{result.flyFrom}</td>
+                                        <td>{result.flyTo}</td>
+                                        <td>${result.price}</td>
+                                        <Button variant="primary" onClick={() => setdisplayflights(result.id)}>View Details</Button>
+                                        </tr>
+                                    </tbody>
                                 </Table>
+                                {(displayflights === result.id) ? DisplayFlight(result={result}) : ""}
+                                </div>
+                                )
                             }
                         })
                     }
