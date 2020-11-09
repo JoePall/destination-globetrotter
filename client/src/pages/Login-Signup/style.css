@@ -6,21 +6,26 @@ body {
   height: 100vh;
 }
 
-a {
-  color: #0D60A3;
-  display:inline-block;
-  text-decoration: none;
-  font-weight: 400;
+#button1 {
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background:#1476bb;
+    border: 0;
+    border: 0;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px!important;
+    padding: 10px;
+    margin: 20px!important;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
 }
 
-h2 {
-  text-align: center;
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  display:inline-block;
-  margin: 40px 8px 10px 8px; 
-  color: #cccccc;
+#button1:hover, #button1:focus {
+  background: #0f4d79;
 }
 
 
@@ -62,16 +67,28 @@ h2 {
 
 
 
-/* TABS */
-
-h2.inactive {
-  color: #cccccc;
+/* TOP BUTTONS */
+.button {
+  font-family: 'Poppins', sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background:#2c78b6;
+  border: 0;
+  margin: 15px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+  padding: 10px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.button:hover,.form button:active,.form button:focus {
+  background: #215682;
 }
 
-h2.active {
-  color: #0d0d0d;
-  border-bottom: 2px solid #5fbae9;
-}
+
 
 
 
