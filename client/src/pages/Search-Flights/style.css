@@ -46,3 +46,15 @@
   padding-left: 0px;  
 }
 
+.flightdetaildivider {
+  padding-top: 20px;
+  font-size: 4.5vw;
+}
+
+.cardtitle {
+  font-size:3vw !important;
+}
+
+.cardtext {
+  font-size:1.75vw;
+}
