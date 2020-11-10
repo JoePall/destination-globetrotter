@@ -9,11 +9,11 @@ module.exports = function (sequelize, DataTypes) {
       }
     });
   
-    Groups.associate = function (models) {
-      Groups.hasMany(models.User, {
-        onDelete: 'cascade',
-      });
-    };
+    // Groups.associate = function (models) {
+    //   Groups.hasMany(models.User, {
+    //     onDelete: 'cascade',
+    //   });
+    // };
   
     return Groups;
   };
