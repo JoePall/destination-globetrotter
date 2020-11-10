@@ -4,7 +4,7 @@ const favicon = require('express-favicon');
  
 const app = express();
  
-app.use(favicon(__dirname + '/public/images/logo-small.png'));
+app.use(favicon(__dirname + '/client/public/images/logo-small.png'));
 
 const session = require("express-session");
 const passport = require("./config/passport");
