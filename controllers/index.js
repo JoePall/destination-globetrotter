@@ -76,8 +76,8 @@ module.exports = (models) => {
       const basePath = "/api/" + model.toLowerCase() + "/"; 
 
       routes = addToAPIObject(routes, model, setupGet(basePath, model));
-      routes = addToAPIObject(routes, model, setupGetOne(basePath, model));
       routes = addToAPIObject(routes, model, setupCreate(basePath, model));
+      routes = addToAPIObject(routes, model, setupGetOne(basePath, model));
       routes = addToAPIObject(routes, model, setupUpdate(basePath, model));
       routes = addToAPIObject(routes, model, setupDelete(basePath, model));
     }
@@ -87,9 +87,10 @@ module.exports = (models) => {
   
   return router;
 }
+
 function addToAPIObject(routes, model, o) {
   if (!routes[model]) routes[model] = {};
-  routes[model][o[0]] = o[1];
+  routes[model][o[0]] = "() => axios.get(" + o[1] + ")";
 
   return routes;
 }

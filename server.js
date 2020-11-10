@@ -1,11 +1,16 @@
-var express = require("express");
-var app = express();
+const express = require("express");
 
-var session = require("express-session");
-var passport = require("./config/passport");
-var PORT = process.env.PORT || 8080;
+const favicon = require('express-favicon');
+ 
+const app = express();
+ 
+app.use(favicon(__dirname + '/public/images/logo-small.png'));
 
-var db = require("./models");
+const session = require("express-session");
+const passport = require("./config/passport");
+const PORT = process.env.PORT || 8080;
+
+const db = require("./models");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
