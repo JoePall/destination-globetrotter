@@ -1,7 +1,7 @@
 module.exports = function (sequelize, DataTypes) {
-    var Group = sequelize.define('Group', {
+    var Groups = sequelize.define('Groups', {
       name: {
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           len: [1],
@@ -9,11 +9,11 @@ module.exports = function (sequelize, DataTypes) {
       }
     });
   
-    Group.associate = function (models) {
-      Group.hasMany(models.User, {
+    Groups.associate = function (models) {
+      Groups.hasMany(models.User, {
         onDelete: 'cascade',
       });
     };
   
-    return Group;
+    return Groups;
   };
