@@ -5,8 +5,8 @@ const router = express.Router();
 // Middleware to see if user is logged in
 const isAuthenticated = require('../config/middleware/isAuthenticated');
 
-router.get('/signup', function (req, res) {
-    res.redirect('signup');
+router.get('/signUp', function (req, res) {
+    res.redirect('signUp');
 });
 
 router.get('/search-flights', isAuthenticated, function (req, res) {
