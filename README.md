@@ -1,5 +1,3 @@
-[![Enhancements](https://img.shields.io/github/issues/JoePall/destination-globetrotter/enhancement.svg)](https://github.com/JoePall/destination-globetrotter/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement+sort%3Areactions-%2B1-desc)
-[![Bugs](https://img.shields.io/github/issues/JoePall/destination-globetrotter/bug.svg)](https://github.com/JoePall/destination-globetrotter/issues?utf8=✓&q=is%3Aissue+is%3Aopen+label%3Abug)
 ![License](https://img.shields.io/badge/License-MIT%20License-green?style=flat-square.svg)
 
 # Destination Globetrotter
@@ -36,8 +34,3 @@ Happy Coding!</p>
 ## License
 
 ![License](https://img.shields.io/badge/License-MIT%20License-blue?style=flat-square.svg)
-
-<!-- MOVE TO MONDAY? -->
-<!-- ![Deliverables 1](https://user-images.githubusercontent.com/64329660/97382628-c343de80-1899-11eb-853a-d33e5bf89ef2.PNG)
-![Project 3 Requirements](https://user-images.githubusercontent.com/64329660/97382634-c63ecf00-1899-11eb-803b-cb95f979a4d6.PNG)
-![More Project Requirements](https://user-images.githubusercontent.com/64329660/97382652-cd65dd00-1899-11eb-9a21-b966eb1fdbbd.PNG) -->
