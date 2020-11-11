@@ -10,9 +10,9 @@ function Navbar() {
  
   return (
 
-  <div>
-    <header>
-      <img alt="logo" src={Logo} id='logo'></img>
+    <div>
+      <header>
+        <img alt="logo" src={Logo} id='logo' href="/"></img>
 
       <Menu>
         <a className="menu-item" href="/my-flights">My-Flights</a>
