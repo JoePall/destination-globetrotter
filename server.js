@@ -3,7 +3,6 @@ const app = express();
 
 const favicon = require("express-favicon");
 const session = require("express-session");
-const isAuthenticated = require("./config/middleware/isAuthenticated");
 const passport = require("./config/passport");
 const PORT = process.env.PORT || 8080;
 const db = require("./models");

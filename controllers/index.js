@@ -4,60 +4,52 @@ const db = require("../models");
 
 const setupGet = (basePath, model) => {
   const path = basePath;
-  console.log("Constructing GET: " + basePath);
   router
     .route(path)
     .get((req, res) => {
-    console.log(path);
     db[model].findAll().then(data => {
       res.json(data);
     });
   });
 
-  return [ "get", path ];
+  return [ "get", path, "get", "" ];
 }
   
 const setupGetOne = (basePath, model) => {
   const path = basePath + ":id";
-  console.log("Constructing GET: " + path);
   router.route(path).get((req, res) => {
-    console.log(path);
     db[model].findAll({ where: { id: req.params.id } }).then(data => {
       res.json(data);
     });
   });
   
-  return [ "getOne", path ];
+  return [ "getOne", path, "get", "id" ];
 } 
 
 const setupCreate = (basePath, model) => {
   const path = basePath;
-  console.log("Constructing PUT: " + path);
-  router.route(path).put((req, res) => {
-    console.log(path);
+  router.route(path).post((req, res) => {
     db[model].create(req.body).then(data => {
       res.json(data);
     });
   });
   
-  return [ "create", path ];
+  return [ "create", path, "post", "o" ];
 }
 
 const setupUpdate = (basePath, model) => {
   const path = basePath + ":id";
-  console.log("Constructing PUT: " + path);
 
-  return [ "update", path ];
+  return [ "update", path, "put" ];
 } 
   
 const setupDelete = (basePath, model) => {
   const path = basePath + ":id";
-  console.log("Constructing DELETE: " + path);
   router.route(path).delete((req, res) => {
     db[model].destroy({ where: { id: req.params.id } });
   });
   
-  return [ "delete", path ];
+  return [ "delete", path, "delete", "id" ];
 }
 
 const setupAPIRoutes = (routes) => {
@@ -90,7 +82,7 @@ module.exports = (models) => {
 
 function addToAPIObject(routes, model, o) {
   if (!routes[model]) routes[model] = {};
-  routes[model][o[0]] = "() => axios.get(" + o[1] + ")";
+  routes[model][o[0]] = "(" + o[3] + ") => axios." + o[2] + "(" + o[1] + ")";
 
   return routes;
 }
