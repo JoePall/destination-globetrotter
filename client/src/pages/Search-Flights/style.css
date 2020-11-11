@@ -11,6 +11,7 @@
   padding: 45px;
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  background-color: lightgrey;
 }
 .form input {
   font-family: 'Poppins', sans-serif;
@@ -23,7 +24,7 @@
   box-sizing: border-box;
   font-size: 14px;
 }
-.form button {
+/* .form button {
   font-family: 'Poppins', sans-serif;
   text-transform: uppercase;
   outline: 0;
@@ -39,10 +40,10 @@
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
-}
-.form button:hover,.form button:active,.form button:focus {
+} */
+/* .form button:hover,.form button:active,.form button:focus {
   background: #c68b0c;
-}
+} */
 
 .searchresults {
   min-width: 200px; 
@@ -61,3 +62,8 @@
 .cardtext {
   font-size:1.75vw;
 }
+
+label {
+  padding-top: 12px
+}
+
