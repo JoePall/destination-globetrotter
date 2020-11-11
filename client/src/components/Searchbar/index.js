@@ -1,15 +1,18 @@
 // import React, { useState } from "react";
 // import ResultsList from "./ResultsList"
+import moment from "moment";
+
 const axios = require("axios");
 
 const Searchbar = async(returnfrom, dateto, fromairport, toairport, callback) => {
 
     let searchurl = "https://tequila-api.kiwi.com/v2/search?&curr=USD&select_airlines=DL,B6,WN,AS,HA,UA,NK,AA,F9&flight_type=round"
     let apikey = "dRfNfRXhvDHSsgF7Got2L96r1cNGF9gl"
-    let return_from = "&return_from=" + returnfrom
-    let return_to = "&return_to=" + returnfrom
-    let date_to = "&date_to=" + dateto
-    let date_from = "&date_from=" + dateto
+    let return_from = "&return_from=" + moment(returnfrom).format("DD/MM/YYYY");
+    console.log("return_from = " + return_from);
+    let return_to = "&return_to=" + moment(returnfrom).format("DD/MM/YYYY");
+    let date_to = "&date_to=" + moment(dateto).format("DD/MM/YYYY");
+    let date_from = "&date_from=" + moment(dateto).format("DD/MM/YYYY");
     let fly_from = "&fly_from=airport:" + fromairport.toUpperCase()
     let fly_to = "&fly_to=airport:" + toairport.toUpperCase()
     let surl = searchurl+date_to+date_from+return_to+return_from+fly_from+fly_to

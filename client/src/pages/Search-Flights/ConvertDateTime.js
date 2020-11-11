@@ -1,3 +1,6 @@
+import moment from "moment";
+
+
 function ConvertDateTime(props) {
     let returndatetime = "";
     let splitdatetime = [];
@@ -8,8 +11,9 @@ function ConvertDateTime(props) {
 
     splitdatetime = removezerosandz.split("T");
     console.log("striptime = ", splitdatetime);
+    let formatdate = moment(splitdatetime[0]).format("MM/DD/YYYY")
 
-    returndatetime = splitdatetime[1] + " " + splitdatetime[0];
+    returndatetime = formatdate + " @ " + splitdatetime[1];
   
     return returndatetime;
   }

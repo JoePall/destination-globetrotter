@@ -4,15 +4,22 @@ import ConvertAirline from "./ConvertAirline";
 import CalculateDuration from "./CalculateDuration";
 import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import Col from 'react-bootstrap/Col'
 import "./style.css"
 import DisplayFlight from "./DisplayFlight.js";
+
+import DatePicker from "react-datepicker"
+import "../../../node_modules/react-datepicker/dist/react-datepicker.css";
+import moment from "moment";
+// import subDays from "date-fns/subDays";
 
 const Search = () => {
 
     const [fromairport, setfromairport] = useState('');
     const [toairport, settoairport] = useState('');
-    const [returnto, setreturnto] = useState('');
-    const [dateto, setdateto] = useState('');
+    const [returnto, setreturnto] = useState(new Date());
+    const [dateto, setdateto] = useState(new Date());
     const [searchresults, setsearchresults] = useState(null);
     const [displayflights, setdisplayflights] = useState(null);
 
@@ -35,31 +42,52 @@ const Search = () => {
           <div className="ui segment searchbar" id="searchbar">
           <div className="form">
             <form className="field">
+              <Form.Row> 
+              <Col>            
+              <label>Departure Airport</label>
+              </Col>
+              <Col> 
               <input
-                placeholder="From Airport"
+                placeholder="Airport Code - i.e. MCI"
                 value={fromairport}
                 onChange={(e) => setfromairport(e.target.value)}
                 className="input"
               />
+              </Col>
+              </Form.Row>
+              <Form.Row> 
+              <Col>            
+              <label>Return Airport</label>
+              </Col>
+              <Col> 
               <input
-                placeholder="To Airport"
+                placeholder="Airport Code - i.e. LAS"
                 value={toairport}
                 onChange={(e) => settoairport(e.target.value)}
                 className="input"
               />
-              <input
+              </Col>
+              </Form.Row>
+              <DatePicker
                 placeholder="Departure Date"
                 value={dateto}
-                onChange={(e) => setdateto(e.target.value)}
+                dateFormat="dd/MM/yyyy"
+                selected={dateto}
+                minDate={new Date()}
+                onChange={date => setdateto(date)}
                 className="input"
               />
-              <input
+              <br />
+              <DatePicker
                 placeholder="Return Date"
                 value={returnto}
-                onChange={(e) => setreturnto(e.target.value)}
+                dateFormat="dd/MM/yyyy"
+                selected={returnto}
+                minDate={new Date()}
+                onChange={date => setreturnto(date)}
                 className="input"
               />
-                <button>Search</button>
+                {/* <button>Search</button> */}
         </form>
   </div>
                     {
