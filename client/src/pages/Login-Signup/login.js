@@ -19,7 +19,7 @@ export const login = () => (
     <form action="/api/login" method="post">
       <input type="text" id="login" className="fadeIn second" name="email" placeholder="email"></input>
       <input type="text" id="password" className="fadeIn third" name="login" placeholder="password"></input>
-      <input type="submit" class="fadeIn fourth" value="Log In"></input>
+      <input type="submit" className="fadeIn fourth" value="Log In"></input>
     </form>
 
   </div>

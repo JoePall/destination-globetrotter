@@ -13,7 +13,7 @@ class Navbar extends React.Component {
 
     <div>
       <header>
-        <img alt="logo" src={Logo} id='logo'></img>
+        <img alt="logo" src={Logo} id='logo' href="/"></img>
 
         <Menu>
           <a className="menu-item" href="/my-flights">My-Flights</a>
