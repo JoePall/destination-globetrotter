@@ -4,52 +4,116 @@ import Logo from "../../images/logo-small.png";
 import { Link } from "react-router-dom";
 import api from "../../utils/API";
 
-function Login() {
-  const [user, setUser] = useState([]);
-
-  useEffect(() => {
-    login();
-  }, [user]);
-
-  function login() {
-    api.users.login()
+class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      password: ""
+    };
+    
+    this.loaded = false; 
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.loaded = true;
   }
 
-  return (
+  handleSubmit(event) {
+    event.preventDefault();
+    if (!this.loaded) return;
+    console.log('Form submitted: ' + JSON.stringify(this.state));
+    
+    // api.users.login(this.state)
+    // .then(() => window.location.assign("/"))
+    // .catch(err => console.log("ERROR: " + err.responseJSON));
+  }
 
-    <div className="wrapper fadeInDown">
-      <div id="formContent">
-        <Link id="link" to="/login">
-          <button id="button1">Login </button>
-        </Link>
-        <Link id="link" to="/signUp">
-          <button id="button1">Sign Up </button>
-        </Link>
+  handleInputChange({ target }) {
+    this.setState({
+      [target.name]: target.type === 'checkbox' ? target.checked : target.value
+    });
+  }
 
-        <div className="fadeIn first">
-          <img src={Logo} id="icon" alt="User Icon"></img>
-        </div>
-
-        <form action="/api/login" method="post">
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit} className="m-5 p-5 card mx-auto w-75">
+        <label className="rounded-pill mx-auto btn btn-light px-2">
+          email:
           <input
-            type="text"
-            id="login"
-            className="fadeIn second"
             name="email"
-            placeholder="email"
-          ></input>
+            type="email"
+            className="rounded-pill px-3 ml-3"
+            value={this.state.email}
+            onChange={this.handleInputChange} />
+        </label>
+        <label className="rounded-pill mx-auto btn btn-light px-2">
+          password:
           <input
-            type="text"
-            id="password"
-            className="fadeIn third"
-            name="login"
-            placeholder="password"
-          ></input>
-          <input type="submit" class="fadeIn fourth" value="Log In"></input>
-        </form>
-      </div>
-    </div>
-  );
+            name="password"
+            type="password"
+            className="rounded-pill px-3 ml-3"
+            value={this.state.password}
+            onChange={this.handleInputChange} />
+        </label>
+        <button onClick={this.handleSubmit} className="rounded-pill mx-auto btn btn-primary px-4">SUBMIT</button>
+      </form>
+    );
+  }
 }
+
+
+
+// function Login() {
+//   const [user, setUser] = useState([]);
+
+//   useEffect(() => {
+//     login();
+//   }, [user]);
+
+//   function login() {
+//     api.users.login({
+//       email: "johndoe@web.site",
+//       password: "hello",
+//     }).then(data => {
+//       console.log(data);
+//     });
+//   }
+
+//   return (
+
+//     <div className="wrapper fadeInDown">
+//       <div id="formContent">
+//         <Link id="link" to="/login">
+//           <button id="button1">Login </button>
+//         </Link>
+//         <Link id="link" to="/signup">
+//           <button id="button1">Sign Up </button>
+//         </Link>
+
+//         <div className="fadeIn first">
+//           <img src={Logo} id="icon" alt="User Icon"></img>
+//         </div>
+
+//         <form action="/api/login" method="post">
+//           <input
+//             type="text"
+//             id="login"
+//             className="fadeIn second"
+//             name="email"
+//             placeholder="email"
+//           ></input>
+//           <input
+//             type="text"
+//             id="password"
+//             className="fadeIn third"
+//             name="login"
+//             placeholder="password"
+//           ></input>
+//           <input type="submit" class="fadeIn fourth" value="Log In"></input>
+//         </form>
+//       </div>
+//     </div>
+//   );
+// }
 
 export default Login;
