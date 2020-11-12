@@ -58,4 +58,4 @@ function Login() {
       <input type="submit" className="fadeIn fourth" value="Log In"></input>
     </form>
 
-export default login;
+export default Login;
