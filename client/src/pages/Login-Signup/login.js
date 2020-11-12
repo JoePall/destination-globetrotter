@@ -25,7 +25,7 @@ class Login extends React.Component {
     
     api.users.login(this.state)
     .then(() => window.location.assign("/"))
-    .catch(err => console.log("ERROR: " + err.responseJSON));
+    .catch(console.log);
   }
 
   handleInputChange({ target }) {
