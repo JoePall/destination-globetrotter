@@ -23,9 +23,9 @@ class Login extends React.Component {
     if (!this.loaded) return;
     console.log('Form submitted: ' + JSON.stringify(this.state));
     
-    // api.users.login(this.state)
-    // .then(() => window.location.assign("/"))
-    // .catch(err => console.log("ERROR: " + err.responseJSON));
+    api.users.login(this.state)
+    .then(() => window.location.assign("/"))
+    .catch(err => console.log("ERROR: " + err.responseJSON));
   }
 
   handleInputChange({ target }) {
@@ -61,59 +61,10 @@ class Login extends React.Component {
   }
 }
 
-
-
-// function Login() {
-//   const [user, setUser] = useState([]);
-
-//   useEffect(() => {
-//     login();
-//   }, [user]);
-
-//   function login() {
-//     api.users.login({
-//       email: "johndoe@web.site",
-//       password: "hello",
-//     }).then(data => {
-//       console.log(data);
-//     });
-//   }
-
-//   return (
-
-//     <div className="wrapper fadeInDown">
-//       <div id="formContent">
-//         <Link id="link" to="/login">
-//           <button id="button1">Login </button>
-//         </Link>
-//         <Link id="link" to="/signup">
-//           <button id="button1">Sign Up </button>
-//         </Link>
-
-//         <div className="fadeIn first">
-//           <img src={Logo} id="icon" alt="User Icon"></img>
-//         </div>
-
-//         <form action="/api/login" method="post">
-//           <input
-//             type="text"
-//             id="login"
-//             className="fadeIn second"
-//             name="email"
-//             placeholder="email"
-//           ></input>
-//           <input
-//             type="text"
-//             id="password"
-//             className="fadeIn third"
-//             name="login"
-//             placeholder="password"
-//           ></input>
-//           <input type="submit" class="fadeIn fourth" value="Log In"></input>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// }
+{/* <form action="/api/login" method="post">
+<input type="text" id="login" className="fadeIn second" name="email" placeholder="email"></input>
+<input type="text" id="password" className="fadeIn third" name="login" placeholder="password"></input>
+<input type="submit" className="fadeIn fourth" value="Log In"></input>
+</form> */}
 
 export default Login;

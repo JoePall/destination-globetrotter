@@ -3,7 +3,9 @@
 #logo {
   display: block;
   margin: 20px auto;
-  width: 200;
+  width: 17%;
+  border-radius: 0%;
+
 }
 
 .menu-item {
@@ -25,7 +27,7 @@ header {
 
 /* Position and sizing of burger button */
 .bm-burger-button {
-  position: fixed;
+  position: absolute;
   width: 36px;
   height: 30px;
   left: 36px;
