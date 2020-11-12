@@ -1,13 +1,16 @@
 module.exports = function (sequelize, DataTypes) {
-    var Bookmarks = sequelize.define('Bookmarks', {
-      tripName: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-        validate: {
-          len: [1],
-        },
+  var Bookmarks = sequelize.define("Bookmarks", {
+    data: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      get: function () {
+        return JSON.parse(this.getDataValue("value"));
       },
-    });
-  
-    return Bookmarks;
-  };
+      set: function (value) {
+        this.setDataValue("value", JSON.stringify(value));
+      },
+    },
+  });
+
+  return Bookmarks;
+};
