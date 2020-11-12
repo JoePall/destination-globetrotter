@@ -19,11 +19,11 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use("/", require("./routes/api-routes"));
-app.use("/", require("./routes/html-routes"));
+app.use(require("./routes/api-routes"));
+app.use(require("./routes/html-routes"));
 
 db.sequelize.sync({ force: true }).then((seq) => {
-  app.use("/", require("./controllers")(seq.models));
+  app.use(require("./controllers")(seq.models));
   app.listen(PORT, function () {
     seed();
     console.log("http://localhost:" + PORT);
