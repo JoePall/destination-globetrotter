@@ -9,6 +9,7 @@ import Login from "./pages/Login-Signup/login";
 import signUp from "./pages/Login-Signup/signUp";
 import NoMatches from "./pages/NoMatches";
 import Navbar from "./components/Navbar";
+import ProtectedRoute from "./pages/ProtectedRoute";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -17,15 +18,14 @@ function App() {
     <Router>
       <Navbar />
       <Switch>
-        <Route exact path={["/", "/dashboard"]} component={Home} />
-        <Route exact path="/my-flights" component={Flights} />
-        <Route exact path="/search-flights" component={Search} />
-        <Route exact path="/messages" component={Messages} />
-        <Route exact path="/trips" component={Trips} />
-        <Route exact path="/profile" component={Profile} />
+        <ProtectedRoute exact path={["/", "/dashboard"]} component={Home} />
+        <ProtectedRoute exact path="/search-flights" component={Search} />
+        <ProtectedRoute exact path="/messages" component={Messages} />
+        <ProtectedRoute exact path="/trips" component={Trips} />
+        <ProtectedRoute exact path="/profile" component={Profile} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/signUp" component={signUp} />
-        <Route component={NoMatches} />
+        <Route exact path="/signup" component={signUp} />
+        <ProtectedRoute component={NoMatches} />
       </Switch>
     </Router>
   );
