@@ -25,6 +25,7 @@
     "pino-colada": "^2.1.0"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
     "antd": "^4.8.2",
     "axios": "^0.18.1",
     "bcrypt": "^5.0.0",
@@ -43,6 +44,7 @@
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
+    "pubnub": "^4.29.9",
     "react-burger-menu": "^2.9.0",
     "react-router-dom": "^5.2.0",
     "sequelize": "^6.3.5",
