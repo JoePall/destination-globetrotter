@@ -36,22 +36,26 @@ class Signup extends React.Component {
   
   render() {
     return (
-      <div className="wrapper fadeInDown">
-        <div id="formContent">
-          <div className="container mx-auto row">
+      <div className="wrapper">
+        <div id="formContent" className="container">
+          <div className="row mx-auto my-2">
             <a href="/login" className="col-5 mx-auto btn btn-white my-4 btn-lg m-1">login</a>
             <a href="/signup" className="col-5 mx-auto btn btn-outline-dark my-4 btn-lg m-1">signup</a>
           </div>
 
-          <div className="fadeIn first">
-            <img src={Logo} id="icon" alt="User Icon"></img>
+          <div className="row mx-auto my-2">
+            <img src={Logo} className="mx-auto" id="icon" alt="User Icon"></img>
           </div>
 
-          <form action="/api/login" method="post">
-            <input type="email" id="login" className="fadeIn second" name="email" placeholder="email"></input>
-            <input type="password" id="password" className="fadeIn third" name="login" placeholder="password"></input>
-            <input type="submit" className="fadeIn fourth" value="Sign Up"></input>
-          </form>
+          <div className="row mx-auto my-2">
+            <input type="email" className="mx-auto" onInput={this.handleInputChange} name="email" placeholder="email" />
+          </div>
+          <div className="row mx-auto my-2">
+            <input type="password" className="mx-auto" onInput={this.handleInputChange} name="password" placeholder="password" />
+          </div>
+          <div className="row mx-auto my-2">
+            <button onClick={this.handleSubmit} className="btn btn-primary my-4 w-75 mx-auto btn-lg">Signup</button>
+          </div>
         </div>
       </div>
     );

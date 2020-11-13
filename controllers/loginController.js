@@ -1,11 +1,12 @@
 const passport = require("../config/passport");
+const db = require("../models");
 
 module.exports = function(router) {
   router.post("/api/signup", (req, res) => {
     console.log(req.body);
     db.User.create(req.body)
       .then(() => {
-        res.redirect(307, "/api/login");
+        res.redirect(307, "/login");
       })
       .catch((err) => {
         res.status(401).json(err);

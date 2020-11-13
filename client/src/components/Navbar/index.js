@@ -11,10 +11,6 @@ import { FaPlane } from 'react-icons/fa';
 import { FaHome } from 'react-icons/fa';
 
 function Navbar() {
-  function showSettings(event) {
-    event.preventDefault();
-  }
-
   return (
     <div>
       <header>
