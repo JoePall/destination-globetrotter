@@ -1,19 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import api from "../utils/API";
+import Card from "react-bootstrap/Card"
 
 function Logout() {
-  useEffect(() => {
-    logout();
-  }, []);
+  api.User.logout().then(() => window.location.assign("/"));
 
-  function logout() {
-    api.User.logout().then(data => {
-      console.log("Logged out");
-      window.location.assign("/");
-    });
-  }
-
-  return <span>Logging out...</span>;  
+  return <Card className="text-center w-25 mx-auto p-5 m-5"><h2>Logging out...</h2></Card>;  
 }
 
 export default Logout;
