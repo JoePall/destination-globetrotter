@@ -9,7 +9,8 @@ const setupGet = (basePath, model) => {
   const path = basePath;
 
   router.get(path, isAuthenticated, (req, res) => {
-    db[model].findAll().then((data) => {
+    console.log(req.user.id);
+    db[model].findAll({ where: { userId: req.user.id } }).then((data) => {
       res.json(data);
     });
   });
@@ -33,7 +34,9 @@ const setupCreate = (basePath, model) => {
   const path = basePath;
 
   router.post(path, isAuthenticated, (req, res) => {
-    db[model].create(req.body).then((data) => {
+    let result = req.body;
+    result.userId = req.user.id;
+    db[model].create(result).then((data) => {
       res.json(data);
     });
   });
