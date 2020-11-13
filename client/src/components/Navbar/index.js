@@ -37,6 +37,9 @@ function Navbar() {
           <a className="menu-item" href="/profile">
           <FaUserAlt />Profile
           </a>
+          <a className="menu-item" href="/logout">
+          <FaUserAlt />Logout
+          </a>
         </Menu>
       </header>
     </div>

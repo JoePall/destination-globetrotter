@@ -43,6 +43,7 @@ const api = {
     update: (id, o) => axios.put("/api/User/" + id, o),
     delete: (id) => axios.delete("/api/User/" + id),
     login: (o) => axios.post("/api/login", o),
+    logout: () => axios.get("/api/logout"),
     signup: (o) => axios.post("/api/signup", o),
     isAuthenticated: () => axios.get("/api/authenticated"),
   },

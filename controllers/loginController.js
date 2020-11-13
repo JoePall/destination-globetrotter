@@ -21,7 +21,7 @@ module.exports = function(router) {
   });
 
   // Log the user out
-  router.get("/logout", function (req, res) {
+  router.get("/api/logout", function (req, res) {
     req.logout();
     res.redirect("/");
   });

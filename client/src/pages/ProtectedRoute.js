@@ -6,7 +6,7 @@ class ProtectedRoute extends React.Component {
   constructor () {
     super();
 
-    this.state = { isAuthenticated: [] };
+    this.state = { isAuthenticated: undefined };
   }
   
   componentDidMount() {
@@ -19,9 +19,10 @@ class ProtectedRoute extends React.Component {
   render() {
     const Component = this.props.component;
     const { isAuthenticated } = this.state
-    return isAuthenticated ? (isAuthenticated) ? <Component /> : <Login /> : (
-      <span>Loading...</span>
-    )
+    if (isAuthenticated === undefined) return <span>Loading...</span>
+    else if (isAuthenticated === false) return <Login />;
+    else if (isAuthenticated === true) return <Component />;
+    else return <span>An error occurred.</span>;
   }
 }
 
