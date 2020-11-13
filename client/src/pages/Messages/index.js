@@ -167,7 +167,7 @@ return(
           Group Messages
         </Typography>
         <Input
-          style = {{width: '100px'}}
+          style = {{width: '200px'}}
           className = "channel"
           id = "channelInput"
           onKeyDown = {handleKeyDown}
@@ -193,6 +193,7 @@ return(
       />
       <Button
         size = "small"
+        id = "messageBtn"
         color = "primary"
         onClick = {publishMessage}
       >

@@ -7,7 +7,7 @@
   
   body {
     width: 100%;
-    margin: 30px auto;
+    margin: 40px auto;
     background-color: #fff;
     font-family: 'Poppins', sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -22,5 +22,10 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+  }
+
+  #messageBtn {
+      background-color: slategray;
+      color: white;
   }
   
