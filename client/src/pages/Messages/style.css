@@ -26,6 +26,18 @@
 
   #messageBtn {
       background-color: slategray;
-      color: white;
+      color: white !important;
   }
+
+  #messageInput, #channelInput, #channelSearch {
+    border: none;
+  }
+
+
+  
+
+
+
+ 
+
   
