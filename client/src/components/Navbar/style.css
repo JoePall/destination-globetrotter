@@ -8,6 +8,11 @@
 
 }
 
+svg {
+  margin-right: 10px;
+  margin-bottom: 3px;
+}
+
 .menu-item {
   color: #ffffff;
   font-family: "Poppins", sans-serif;
