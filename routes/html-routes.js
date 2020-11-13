@@ -41,26 +41,6 @@ router.get("/profile/", isAuthenticated, function (req, res) {
   res.redirect("/profile/" + req.user.id);
 });
 
-router.route("/api/login").post(passport.authenticate("local"), (req, res) => {
-  res.json({
-    email: req.user.email,
-    id: req.user.id,
-  });
-});
-
-router.route("/api/signup").post((req, res) => {
-  db.User.create({
-    email: req.body.email,
-    password: req.body.password,
-  })
-    .then(() => {
-      res.redirect(307, "/api/login");
-    })
-    .catch((err) => {
-      res.status(401).json(err);
-    });
-});
-
 router.route("/logout").get((req, res) => {
   req.logout();
   res.redirect("/login");

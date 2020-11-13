@@ -5,8 +5,9 @@ import Search from "./pages/Search-Flights";
 import Trips from "./pages/Trips";
 import Profile from "./pages/Profile";
 import Messages from "./pages/Messages";
-import Login from "./pages/Login-Signup/login";
-import signUp from "./pages/Login-Signup/signUp";
+import Login from "./pages/Login-Signup/Login";
+import Logout from "./pages/Logout";
+import Signup from "./pages/Login-Signup/Signup";
 import NoMatches from "./pages/NoMatches";
 import Navbar from "./components/Navbar";
 import ProtectedRoute from "./pages/ProtectedRoute";
@@ -25,7 +26,8 @@ function App() {
         <ProtectedRoute exact path="/trips" component={Trips} />
         <ProtectedRoute exact path="/profile" component={Profile} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/signup" component={signUp} />
+        <Route exact path="/logout" component={Logout} />
+        <Route exact path="/signup" component={Signup} />
         <ProtectedRoute component={NoMatches} />
       </Switch>
     </Router>
