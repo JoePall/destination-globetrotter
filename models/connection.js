@@ -31,11 +31,11 @@ module.exports = function (sequelize, DataTypes) {
     });
     
   
-    Connection.associate = function (models) {
-      Connection.hasMany(models.User, {
-        onDelete: 'cascade',
-      });
-    };
+    // Connection.associate = function (models) {
+    //   Connection.hasMany(models.User, {
+    //     onDelete: 'cascade',
+    //   });
+    // };
   
     return Connection;
   };
