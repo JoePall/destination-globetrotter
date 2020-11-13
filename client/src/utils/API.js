@@ -42,6 +42,8 @@ const api = {
     getOne: (id) => axios.get("/api/User/" + id),
     update: (id, o) => axios.put("/api/User/" + id, o),
     delete: (id) => axios.delete("/api/User/" + id),
+    login: (o) => axios.post("/api/login", o),
+    signup: (o) => axios.post("/api/signup", o),
   },
 
 };
