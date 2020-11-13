@@ -100,7 +100,7 @@ function handleKeyDown(event) {
       if(newChannel) {
         if(channel !== newChannel) {
           // If the user isn't trying to navigate to the same channel they're on
-          setChannel(newChannel);
+          setChannel((['user', new Date().getTime()].join('-')) + newChannel);
           let newURL = window.location.origin + "?channel=" + newChannel;
           window.history.pushState(null, '', newURL);
           tempChannel.setValue('');
@@ -167,7 +167,7 @@ return(
           Group Messages
         </Typography>
         <Input
-          style = {{width: '200px'}}
+          style = {{width: '300px'}}
           className = "channel"
           id = "channelInput"
           onKeyDown = {handleKeyDown}
