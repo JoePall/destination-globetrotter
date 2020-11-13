@@ -11,9 +11,9 @@ function Home() {
   }, [bookmarks]);
 
   function loadBookmarks() {
-    api.bookmarks.get().then(data => {
+    api.Bookmarks.get().then(data => {
       console.log(data);
-    });
+    }).catch(console.log);
   }
 
   return (
