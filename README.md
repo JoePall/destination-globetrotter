@@ -21,9 +21,25 @@
 
 <p>To install...
 
-1. Clone this repo 
+1. Clone this repo
 2. Open the project in Visual Studio Code
-3. Open a terminal and run "npm i"
+3. Add a config.json to the config folder with your database settings
+
+<code>
+{
+  "development": {
+    "username": "DB USER NAME HERE",
+    "password": "DB PASSWORD HERE",
+    "database": "DB NAME ",
+    "host": "Host here ",
+    "port": 3306,
+    "dialect": "mysql"
+  }
+}
+</code>
+
+4. Run the schema.sql against your db. 
+5. Open a terminal and run "npm i"
 
 Happy Coding!</p>
 
