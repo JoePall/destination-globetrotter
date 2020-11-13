@@ -3,6 +3,7 @@ import './style.css';
 import useInput from './useInput';
 import PubNub from 'pubnub';
 import {Card, CardActions, CardContent, List, ListItem, Button, Typography, Input} from '@material-ui/core';
+import { InputGroup } from "react-bootstrap";
 
 // Main component, parent to all others, rules them
 function Messages() {
@@ -21,9 +22,11 @@ function Messages() {
   }
 
 const [channel, setChannel] = useState(defaultChannel);
+// const [channelSearch] = useState(defaultChannel);
 const [messages, setMessages] = useState([]);
-const [username,] = useState(['user', new Date().getTime()].join('-'));
+const [username,] = useState(['username']);
 const tempChannel = useInput();
+const tempChannelSearch = useInput();
 const tempMessage = useInput();
 
 useEffect(() => {
@@ -31,7 +34,7 @@ useEffect(() => {
   const pubnub = new PubNub({
     publishKey: "pub-c-d9eb4f4a-5807-4310-bff8-d4bb18295fb0",
     subscribeKey: "sub-c-14656c9a-23bf-11eb-9c54-32dcb901e45f",
-    uuid: username
+    username: username
   });
   
 pubnub.addListener({
@@ -45,7 +48,7 @@ pubnub.addListener({
       console.log(msg.message.text)
       let newMessages = [];
       newMessages.push({
-        uuid: msg.message.uuid,
+        username: msg.message.username,
         text: msg.message.text
       });
       setMessages(messages => messages.concat(newMessages))
@@ -66,7 +69,7 @@ pubnub.history(
   let newMessages = [];
   for (let i = 0; i < response.messages.length; i++) {
     newMessages.push ({
-      uuid: response.messages[i].entry.uuid,
+      username: response.messages[i].entry.username,
       text: response.messages[i].entry.text
     });
   }
@@ -100,10 +103,42 @@ function handleKeyDown(event) {
       if(newChannel) {
         if(channel !== newChannel) {
           // If the user isn't trying to navigate to the same channel they're on
-          setChannel((['user', new Date().getTime()].join('-')) + newChannel);
+          setChannel('username-' + newChannel);
           let newURL = window.location.origin + "?channel=" + newChannel;
           window.history.pushState(null, '', newURL);
           tempChannel.setValue('');
+        }
+      }
+      else {
+        // If the user didn't put anything into the channel input
+        if(channel !== "Global") {
+          setChannel("Global");
+          let newURL = window.location.origin;
+          window.history.pushState(null, '', newURL);
+          tempChannel.setValue('');
+        }
+      }
+    }
+  }
+}
+
+// Channel Search
+function handleKeyDownTwo(event) {
+  if(event.target.id === 'messageInput'){
+    if (event.key === 'Enter') {
+      publishMessage();
+    }
+  } else if(event.target.id === "channelSearch") {
+    if (event.key === 'Enter') {
+      // Navigates to new channels
+      const newChannelSearch = tempChannelSearch.value.trim()
+      if(newChannelSearch) {
+        if(channel !== newChannelSearch) {
+          // If the user isn't trying to navigate to the same channel they're on
+          setChannel(newChannelSearch);
+          let newURL = window.location.origin + "?channel=" + newChannelSearch;
+          window.history.pushState(null, '', newURL);
+          tempChannelSearch.setValue('');
         }
       }
       else {
@@ -123,13 +158,13 @@ function publishMessage() {
   if (tempMessage.value) {
     let messageObject = {
       text: tempMessage.value,
-      uuid: username
+      username: username
     };
 
     const pubnub = new PubNub({
       publishKey: "pub-c-d9eb4f4a-5807-4310-bff8-d4bb18295fb0",
       subscribeKey: "sub-c-14656c9a-23bf-11eb-9c54-32dcb901e45f",
-      uuid: username
+      username: username
     });
     pubnub.publish({
       message: messageObject,
@@ -163,8 +198,8 @@ return(
   <Card >
     <CardContent>
       <div className="top">
-        <Typography variant="h4" inline >
-          Group Messages
+        <Typography variant="h4" >
+          <h4>Group Messages</h4><br></br>
         </Typography>
         <Input
           style = {{width: '300px'}}
@@ -174,6 +209,17 @@ return(
           placeholder = {channel}
           onChange = {tempChannel.onChange}
           value = {tempChannel.value}
+        />
+      </div>
+      <div align="right">
+      <Input 
+          style = {{width: '300px'}}
+          className = "searchChannel"
+          id = "channelSearch"
+          onKeyDown = {handleKeyDownTwo}
+          placeholder = "Search Channel"
+          onChange = {tempChannelSearch.onChange}
+          value = {tempChannelSearch.value}
         />
       </div>
       <div>
@@ -194,7 +240,6 @@ return(
       <Button
         size = "small"
         id = "messageBtn"
-        color = "primary"
         onClick = {publishMessage}
       >
           Submit
@@ -212,7 +257,7 @@ return(
       <ListItem>
         <Typography component = "div">
           {props.messages.map((item, index) => (
-            <Message key = {index} uuid = {item.uuid} text = {item.text}/>
+            <Message key = {index} username = {item.username} text = {item.text}/>
           ))}
         </Typography>
       </ListItem>
@@ -225,30 +270,9 @@ return(
   
     return(
       <div>
-        { props.uuid } : { props.text }
+        { props.username } : { props.text }
       </div>
     );
   }
 
   export default Messages;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
