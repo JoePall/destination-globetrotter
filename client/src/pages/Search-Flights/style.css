@@ -67,3 +67,8 @@ label {
   padding-top: 12px
 }
 
+.divider {
+  width:15px;
+  height:auto;
+  display:inline-block;
+}

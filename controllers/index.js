@@ -28,7 +28,9 @@ const setupGetOne = (basePath, model) => {
 const setupCreate = (basePath, model) => {
   const path = basePath;
   router.post(path, (req, res) => {
+    // console.log("req from setupCreate = ", req)
     db[model].create(req.body).then(data => {
+      console.log("req.body from setupCreate = ", req.body)
       res.json(data);
     });
   });
