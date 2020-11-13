@@ -11,8 +11,9 @@ function Home() {
   }, [bookmarks]);
 
   function loadBookmarks() {
-    api.Bookmarks.get().then(data => {
-      console.log(data);
+    api.Bookmarks.get().then(res => {
+      console.log(res);
+      setBookmarks(JSON.stringify(res.data));
     }).catch(console.log);
   }
 
@@ -21,6 +22,7 @@ function Home() {
       <Row>
         <Col sm="6">
           <h1>HOME </h1>
+          <p>{bookmarks}</p>
         </Col>
         <Col sm="6">
           <h4>

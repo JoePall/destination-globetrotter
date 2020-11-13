@@ -11,10 +11,6 @@ import { FaPlane } from 'react-icons/fa';
 import { FaHome } from 'react-icons/fa';
 
 function Navbar() {
-  function showSettings(event) {
-    event.preventDefault();
-  }
-
   return (
     <div>
       <header>
@@ -40,6 +36,9 @@ function Navbar() {
           </a>
           <a className="menu-item" href="/profile">
           <FaUserAlt />Profile
+          </a>
+          <a className="menu-item" href="/logout">
+          <FaUserAlt />Logout
           </a>
         </Menu>
       </header>

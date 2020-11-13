@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./style.css";
 import Logo from "../../images/logo-small.png";
-import { Link } from "react-router-dom";
 import api from "../../utils/API";
 
 class Login extends React.Component {
@@ -21,10 +20,9 @@ class Login extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     if (!this.loaded) return;
-    console.log('Form submitted: ' + JSON.stringify(this.state));
     
-    api.User.signup(this.state)
-      .then(() => window.location.assign("/"))
+    api.User.login(this.state)
+      .then(window.location.assign("/"))
       .catch(console.log);
   }
 
@@ -33,38 +31,33 @@ class Login extends React.Component {
       [target.name]: target.type === 'checkbox' ? target.checked : target.value
     });
   }
-
+  
   render() {
     return (
-      <form onSubmit={this.handleSubmit} className="m-5 p-5 card mx-auto w-75">
-        <label className="rounded-pill mx-auto btn btn-light px-2">
-          email:
-          <input
-            name="email"
-            type="email"
-            className="rounded-pill px-3 ml-3"
-            value={this.state.email}
-            onChange={this.handleInputChange} />
-        </label>
-        <label className="rounded-pill mx-auto btn btn-light px-2">
-          password:
-          <input
-            name="password"
-            type="password"
-            className="rounded-pill px-3 ml-3"
-            value={this.state.password}
-            onChange={this.handleInputChange} />
-        </label>
-        <button onClick={this.handleSubmit} className="rounded-pill mx-auto btn btn-primary px-4">SUBMIT</button>
-      </form>
+      <div className="wrapper">
+        <div id="formContent" className="container">
+          <div className="row mx-auto my-2">
+            <a href="/login" className="col-5 mx-auto btn btn-outline-dark my-4 btn-lg m-1">login</a>
+            <a href="/signup" className="col-5 mx-auto btn btn-white my-4 btn-lg m-1">signup</a>
+          </div>
+
+          <div className="row mx-auto my-2">
+            <img src={Logo} className="mx-auto" id="icon" alt="User Icon"></img>
+          </div>
+
+          <div className="row mx-auto my-2">
+            <input type="email" className="mx-auto" onInput={this.handleInputChange} name="email" placeholder="email" />
+          </div>
+          <div className="row mx-auto my-2">
+            <input type="password" className="mx-auto" onInput={this.handleInputChange} name="password" placeholder="password" />
+          </div>
+          <div className="row mx-auto my-2">
+            <button onClick={this.handleSubmit} className="btn btn-success my-4 w-75 mx-auto btn-lg">Login</button>
+          </div>
+        </div>
+      </div>
     );
   }
 }
-
-<form action="/api/login" method="post">
-  <input type="text" id="login" className="fadeIn second" name="email" placeholder="email"></input>
-  <input type="text" id="password" className="fadeIn third" name="login" placeholder="password"></input>
-  <input type="submit" className="fadeIn fourth" value="Log In"></input>
-</form>
 
 export default Login;
