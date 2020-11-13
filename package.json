@@ -45,6 +45,7 @@
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "pubnub": "^4.29.9",
+    "react-avatar": "^3.9.7",
     "react-burger-menu": "^2.9.0",
     "react-router-dom": "^5.2.0",
     "sequelize": "^6.3.5",

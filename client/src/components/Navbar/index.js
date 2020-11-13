@@ -18,7 +18,7 @@ function Navbar() {
 
         <Menu>
           <a className="menu-item" href="/my-flights">
-            My-Flights
+            My Flights
           </a>
           <a className="menu-item" href="/search-flights">
             Search Flights
