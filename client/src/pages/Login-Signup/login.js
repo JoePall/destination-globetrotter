@@ -23,7 +23,7 @@ class Login extends React.Component {
     if (!this.loaded) return;
     console.log('Form submitted: ' + JSON.stringify(this.state));
     
-    api.users.login(this.state)
+    api.User.signup(this.state)
       .then(() => window.location.assign("/"))
       .catch(console.log);
   }
