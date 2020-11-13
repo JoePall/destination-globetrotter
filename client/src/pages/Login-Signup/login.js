@@ -23,9 +23,9 @@ class Login extends React.Component {
     if (!this.loaded) return;
     console.log('Form submitted: ' + JSON.stringify(this.state));
     
-    api.users.login(this.state)
-    .then(() => window.location.assign("/"))
-    .catch(err => console.log("ERROR: " + err.responseJSON));
+    api.User.signup(this.state)
+      .then(() => window.location.assign("/"))
+      .catch(console.log);
   }
 
   handleInputChange({ target }) {
@@ -61,10 +61,10 @@ class Login extends React.Component {
   }
 }
 
-{/* <form action="/api/login" method="post">
-<input type="text" id="login" className="fadeIn second" name="email" placeholder="email"></input>
-<input type="text" id="password" className="fadeIn third" name="login" placeholder="password"></input>
-<input type="submit" className="fadeIn fourth" value="Log In"></input>
-</form> */}
+<form action="/api/login" method="post">
+  <input type="text" id="login" className="fadeIn second" name="email" placeholder="email"></input>
+  <input type="text" id="password" className="fadeIn third" name="login" placeholder="password"></input>
+  <input type="submit" className="fadeIn fourth" value="Log In"></input>
+</form>
 
 export default Login;

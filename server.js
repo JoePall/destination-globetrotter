@@ -23,7 +23,10 @@ app.use(require("./routes/api-routes"));
 app.use(require("./routes/html-routes"));
 
 db.sequelize.sync({ force: true }).then((seq) => {
+  
+  // Setting up route controllers for db.
   app.use(require("./controllers")(seq.models));
+  
   app.listen(PORT, function () {
     seed();
     console.log("http://localhost:" + PORT);

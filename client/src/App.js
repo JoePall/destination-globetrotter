@@ -20,6 +20,7 @@ function App() {
       <Switch>
         <ProtectedRoute exact path={["/", "/dashboard"]} component={Home} />
         <ProtectedRoute exact path="/search-flights" component={Search} />
+        <ProtectedRoute exact path="/my-flights" component={Flights} />
         <ProtectedRoute exact path="/messages" component={Messages} />
         <ProtectedRoute exact path="/trips" component={Trips} />
         <ProtectedRoute exact path="/profile" component={Profile} />

@@ -1,50 +1,51 @@
 import axios from "axios";
-
+  
 const api = {
-  bookmarks: {
+  Bookmarks: {
     get: () => axios.get("/api/bookmarks/"),
-    create: (o) => axios.post("/api/bookmarks/", o),
-    getOne: (id) => axios.get("/api/bookmarks/:id", id),
-    update: (id, o) => axios.put("/api/bookmarks/:id", id, o),
-    delete: (id) => axios.delete("/api/bookmarks/:id", id),
+    create: (o) => axios.post("/api/Bookmarks/", o),
+    getOne: (id) => axios.get("/api/Bookmarks/" + id),
+    update: (id, o) => axios.put("/api/Bookmarks/" + id, o),
+    delete: (id) => axios.delete("/api/Bookmarks/" + id),
   },
-  connection: {
-    get: () => axios.get("/api/connection/"),
-    create: (o) => axios.post("/api/connection/", o),
-    getOne: (id) => axios.get("/api/connection/:id", id),
-    update: (id, o) => axios.put("/api/connection/:id", id, o),
-    delete: (id) => axios.delete("/api/connection/:id", id),
+  Connection: {
+    get: () => axios.get("/api/Connection/"),
+    create: (o) => axios.post("/api/Connection/", o),
+    getOne: (id) => axios.get("/api/Connection/" + id),
+    update: (id, o) => axios.put("/api/Connection/" + id, o),
+    delete: (id) => axios.delete("/api/Connection/" + id),
   },
-  groups: {
-    get: () => axios.get("/api/groups/"),
-    create: (o) => axios.post("/api/groups/", o),
-    getOne: (id) => axios.get("/api/groups/:id", id),
-    update: (id, o) => axios.put("/api/groups/:id", id, o),
-    delete: (id) => axios.delete("/api/groups/:id", id),
+  Groups: {
+    get: () => axios.get("/api/Groups/"),
+    create: (o) => axios.post("/api/Groups/", o),
+    getOne: (id) => axios.get("/api/Groups/" + id),
+    update: (id, o) => axios.put("/api/Groups/" + id, o),
+    delete: (id) => axios.delete("/api/Groups/" + id),
   },
-  messages: {
-    get: () => axios.get("/api/messages/"),
-    create: (o) => axios.post("/api/messages/", o),
-    getOne: (id) => axios.get("/api/messages/:id", id),
-    update: (id, o) => axios.put("/api/messages/:id", id, o),
-    delete: (id) => axios.delete("/api/messages/:id", id),
+  Messages: {
+    get: () => axios.get("/api/Messages/"),
+    create: (o) => axios.post("/api/Messages/", o),
+    getOne: (id) => axios.get("/api/Messages/" + id),
+    update: (id, o) => axios.put("/api/Messages/" + id, o),
+    delete: (id) => axios.delete("/api/Messages/" + id),
   },
-  trips: {
-    get: () => axios.get("/api/trips/"),
-    create: (o) => axios.post("/api/trips/", o),
-    getOne: (id) => axios.get("/api/trips/:id", id),
-    update: (id, o) => axios.put("/api/trips/:id", id, o),
-    delete: (id) => axios.delete("/api/trips/:id", id),
+  Trips: {
+    get: () => axios.get("/api/Trips/"),
+    create: (o) => axios.post("/api/Trips/", o),
+    getOne: (id) => axios.get("/api/Trips/" + id),
+    update: (id, o) => axios.put("/api/Trips/" + id, o),
+    delete: (id) => axios.delete("/api/Trips/" + id),
   },
-  users: {
-    get: () => axios.get("/api/user/"),
-    create: (o) => axios.post("/api/user/", o),
-    getOne: (id) => axios.get("/api/user/:id", id),
-    update: (id, o) => axios.put("/api/user/:id", id, o),
-    delete: (id) => axios.delete("/api/user/:id", id),
-    isAuthenticated: (o) => axios.get("/api/authenticated"),
+  User: {
+    get: () => axios.get("/api/User/"),
+    create: (o) => axios.post("/api/User/", o),
+    getOne: (id) => axios.get("/api/User/" + id),
+    update: (id, o) => axios.put("/api/User/" + id, o),
+    delete: (id) => axios.delete("/api/User/" + id),
     login: (o) => axios.post("/api/login", o),
+    signup: (o) => axios.post("/api/signup", o),
   },
+
 };
 
 export default api;
