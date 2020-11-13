@@ -44,8 +44,8 @@ const api = {
     delete: (id) => axios.delete("/api/User/" + id),
     login: (o) => axios.post("/api/login", o),
     signup: (o) => axios.post("/api/signup", o),
+    isAuthenticated: () => axios.get("/api/authenticated"),
   },
-
 };
 
 export default api;

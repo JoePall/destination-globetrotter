@@ -8,12 +8,6 @@ module.exports = function (sequelize, DataTypes) {
         },
       }
     });
-  
-    // Groups.associate = function (models) {
-    //   Groups.hasMany(models.Bookmarks, {
-    //     onDelete: 'cascade',
-    //   });
-    // };
-  
+
     return Groups;
   };

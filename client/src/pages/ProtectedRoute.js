@@ -1,11 +1,12 @@
 import React from "react";
-import Login from "./Login-Signup/login"
+import Login from "./Login-Signup/Login"
 import api from "../utils/API";
 
 class ProtectedRoute extends React.Component {
   render() {
+
     const Component = this.props.component;
-    const isAuthenticated = true; // TODO: api.users.authenticated()
+    const isAuthenticated = api.User.isAuthenticated();
 
     return isAuthenticated ? (
       <Component />
