@@ -42,9 +42,9 @@ const Search = () => {
     const selectflightfunction = (result) => {
       // setselectflight(result.id)
       // selectflight === result.id ?       
-      // api.bookmarks.create({data: JSON.stringify(result)}).then(response => {console.log(response); return(response)})
+      // api.bookmark.create({data: JSON.stringify(result)}).then(response => {console.log(response); return(response)})
       console.log(result)
-      api.Bookmarks.create({data: result}).then(response => {console.log(response); return(response)})
+      api.bookmark.create({data: result}).then(response => {console.log(response); return(response)})
     }
 
         return (
@@ -128,7 +128,7 @@ const Search = () => {
                                 </Table>
                                 
                                 {(displayflights === result.id) ? DisplayFlight(result={result}) : ""}
-                                {/* {(selectflight === result.id) ? api.bookmarks.create({data: result}) : ""} */}
+                                {/* {(selectflight === result.id) ? api.bookmark.create({data: result}) : ""} */}
                                 {(selectflight === result.id) ? console.log("result = ", result) : ""}
                                 </div>
                                 )

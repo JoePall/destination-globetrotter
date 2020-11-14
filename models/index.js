@@ -23,19 +23,8 @@ if (fs.existsSync(__dirname + "/../config/config.json")) {
   var sequelize = new Sequelize(process.env.JAWSDB_URL);
 }
 
-fs.readdirSync(__dirname)
-  .filter((file) => {
-    return (
-      file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
-    );
-  })
-  .forEach((file) => {
-    const model = require(path.join(__dirname, file))(
-      sequelize,
-      Sequelize.DataTypes
-    );
-    db[model.name] = model;
-  });
+getModels(__dirname);
+// getModels(__dirname + "/connections");
 
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
@@ -47,3 +36,20 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 module.exports = db;
+
+function getModels(dirPath) {
+  fs.readdirSync(dirPath)
+    .filter((file) => {
+      return (
+        file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
+      );
+    })
+    .forEach((file) => {
+      const model = require(path.join(dirPath, file))(
+        sequelize,
+        Sequelize.DataTypes
+      );
+      db[model.name] = model;
+    });
+}
+

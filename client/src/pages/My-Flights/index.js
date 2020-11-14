@@ -25,7 +25,7 @@ function MyFlights() {
   }, []);
 
   function loadBookmarks() {
-    api.Bookmarks.get().then(res => {
+    api.bookmark.get().then(res => {
       console.log("res after bookmarks.get = ", res.data);
       setbookmarks(res.data);
     }).catch(console.log);

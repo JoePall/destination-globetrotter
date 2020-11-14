@@ -1,13 +1,13 @@
 module.exports = function (sequelize, DataTypes) {
-    var group = sequelize.define('group', {
-      name: {
-        type: DataTypes.STRING,
+    var message = sequelize.define('message', {
+      text: {
+        type: DataTypes.TEXT,
         allowNull: false,
         validate: {
           len: [1],
         },
-      }
+      },
     });
-
-    return group;
+  
+    return message;
   };
