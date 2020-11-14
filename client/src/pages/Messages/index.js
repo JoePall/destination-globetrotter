@@ -8,8 +8,6 @@ import {Card, CardActions, CardContent, List, ListItem, Button, Typography, Inpu
 // Main component, parent to all others, rules them
 function Messages() {
   let defaultChannel = "Global";
-  
-  
 
   // Access the params provided in the URL
   let query = window.location.search.substring(1);
@@ -26,7 +24,7 @@ function Messages() {
 const [channel, setChannel] = useState(defaultChannel);
 // const [channelSearch] = useState(defaultChannel);
 const [messages, setMessages] = useState([]);
-const user = JSON.parse(sessionStorage.getItem("user"));
+const [user] = useState(JSON.parse(sessionStorage.getItem("user")));
 const tempChannel = useInput();
 const tempChannelSearch = useInput();
 const tempMessage = useInput();
@@ -36,7 +34,7 @@ useEffect(() => {
   const pubnub = new PubNub({
     publishKey: "pub-c-d9eb4f4a-5807-4310-bff8-d4bb18295fb0",
     subscribeKey: "sub-c-14656c9a-23bf-11eb-9c54-32dcb901e45f",
-    user: 'user.id'
+    username: user.id
   });
   
 pubnub.addListener({
@@ -50,7 +48,7 @@ pubnub.addListener({
       console.log(msg.message.text)
       let newMessages = [];
       newMessages.push({
-        user: msg.message.user.id,
+        username: msg.message.user,
         text: msg.message.text
       });
       setMessages(messages => messages.concat(newMessages))
@@ -71,7 +69,7 @@ pubnub.history(
   let newMessages = [];
   for (let i = 0; i < response.messages.length; i++) {
     newMessages.push ({
-      user: response.messages[i].entry.user,
+      username: response.messages[i].entry.user,
       text: response.messages[i].entry.text
     });
   }
@@ -105,7 +103,7 @@ function handleKeyDown(event) {
       if(newChannel) {
         if(channel !== newChannel) {
           // If the user isn't trying to navigate to the same channel they're on
-          setChannel((user.id) + '-' + newChannel);
+          setChannel((user.firstName) + '-' + newChannel);
           let newURL = window.location.origin + "?channel=" + newChannel;
           window.history.pushState(null, '', newURL);
           tempChannel.setValue('');
@@ -160,13 +158,13 @@ function publishMessage() {
   if (tempMessage.value) {
     let messageObject = {
       text: tempMessage.value,
-      user: 'user.id'
+      username: user.id
     };
 
     const pubnub = new PubNub({
       publishKey: "pub-c-d9eb4f4a-5807-4310-bff8-d4bb18295fb0",
       subscribeKey: "sub-c-14656c9a-23bf-11eb-9c54-32dcb901e45f",
-      user: 'user.id'
+      username: user.id
     });
     pubnub.publish({
       message: messageObject,
@@ -260,7 +258,7 @@ return(
       <ListItem>
         <Typography component = "div">
           {props.messages.map((item, index) => (
-            <Message key = {index} user = {item.user} text = {item.text}/>
+            <Message key = {index} username = {item.user} text = {item.text}/>
           ))}
         </Typography>
       </ListItem>
