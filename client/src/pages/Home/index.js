@@ -13,6 +13,7 @@ function Home() {
   function loadBookmarks() {
     api.Bookmarks.get().then(res => {
       console.log(res);
+      
       setBookmarks(JSON.stringify(res.data));
     }).catch(console.log);
   }

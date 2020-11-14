@@ -13,7 +13,7 @@ module.exports = function(router) {
       });
   });
 
-  router.post("/api/login", passport.authenticate("local"), (req, res) => {
+  router.post("/api/login", passport.authenticate("local",), (req, res) => {
     res.json({
       email: req.user.email,
       id: req.user.id,
