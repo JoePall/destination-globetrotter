@@ -22,7 +22,10 @@ class Login extends React.Component {
     if (!this.loaded) return;
     
     api.User.login(this.state)
-      .then(window.location.assign("/"))
+      .then(res => {
+        sessionStorage.setItem("user", JSON.stringify(res.data));
+        window.location.assign("/");
+      })
       .catch(console.log);
   }
 
