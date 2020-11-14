@@ -48,4 +48,10 @@ const seed = () => {
     lastName: "Doe",
     password: "Howdy",
   });
+  db.User.create({
+    email: "mmink@michaelamink.com",
+    firstName: "Michael",
+    lastName: "Mink",
+    password: "mminkmmink",
+  });
 };

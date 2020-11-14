@@ -2,8 +2,7 @@ module.exports = function (sequelize, DataTypes) {
   var Bookmarks = sequelize.define("Bookmarks", {
     data: {
       type: DataTypes.TEXT,
-      allowNull: true,
-      defaultValue: "",
+      allowNull: false,
       get: function () {
         return JSON.parse(this.getDataValue("data"));
       },
@@ -12,6 +11,10 @@ module.exports = function (sequelize, DataTypes) {
         this.setDataValue("data", JSON.stringify(value));
       },
     },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    }
   });
 
   return Bookmarks;
