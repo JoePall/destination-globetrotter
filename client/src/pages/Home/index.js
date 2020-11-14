@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import api from "../../utils/API";
-import { Col, Row, Container } from "react-bootstrap";
+import Logo from "../../images/better-logo.png";
+import { Container } from "react-bootstrap";
 import "./style.css";
 
 function Home() {
@@ -13,24 +14,17 @@ function Home() {
   function loadBookmarks() {
     api.Bookmarks.get().then(res => {
       console.log(res);
+      
       setBookmarks(JSON.stringify(res.data));
     }).catch(console.log);
   }
 
   return (
     <Container fluid="lg" className="p-4">
-      <Row>
-        <Col sm="6">
-          <h1>HOME </h1>
-          <p>{bookmarks}</p>
-        </Col>
-        <Col sm="6">
-          <h4>
-            <span>HELLO</span>
-            <b>WORLD</b>
-          </h4>
-        </Col>
-      </Row>
+      <div class="container">
+      <h1 class="animate__animated animate__fadeIn">Welcome to</h1>
+        <img src={Logo} class="animate__animated animate__fadeInUpBig"></img>
+      </div>
     </Container>
   );
 }

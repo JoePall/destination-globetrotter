@@ -1,20 +1,14 @@
 module.exports = function (sequelize, DataTypes) {
-    var Connection = sequelize.define('Connection', {
+    var user_group = sequelize.define('user_group', {
       userId: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-          len: [1],
-        },
       },
       groupId: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-          len: [1],
-        },
       }
     });
   
-    return Connection;
+    return user_group;
   };

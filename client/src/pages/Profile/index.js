@@ -9,7 +9,7 @@ function Profile() {
       <form className="field">
       <div className="card-content">
 
-      <Avatar size="140" round={true} color={Avatar.getRandomColor('sitebase', ['green', 'purple', 'orange', 'red', 'aqua', 'blue', 'yellow'])} name="Joe Example" />
+      <Avatar size="125" round={true} color={Avatar.getRandomColor('sitebase', ['green', 'purple', 'orange', 'red', 'aqua', 'blue', 'yellow'])} name="Joe Example" />
           <h2 id="name" className="">Joe Example</h2>
                 <p><i className=""></i> mail@domain.com</p>
                 <p><i className=""></i> Group Chat: test</p>
