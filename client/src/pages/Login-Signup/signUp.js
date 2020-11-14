@@ -23,7 +23,7 @@ class Signup extends React.Component {
     
     console.log("Hello");
 
-    api.User.signup(this.state)
+    api.user.signup(this.state)
       .then(window.location.assign("/"))
       .catch(console.log);
   }
@@ -46,7 +46,12 @@ class Signup extends React.Component {
           <div className="row mx-auto my-2">
             <img src={Logo} className="mx-auto" id="icon" alt="User Icon"></img>
           </div>
-
+          <div className="row mx-auto my-2 fadeIn">
+            <input type="text" className="mx-auto" onInput={this.handleInputChange} name="firstName" placeholder="first name" />
+          </div>          
+          <div className="row mx-auto my-2 fadeIn">
+            <input type="text" className="mx-auto" onInput={this.handleInputChange} name="lastName" placeholder="last name" />
+          </div>
           <div className="row mx-auto my-2 fadeIn">
             <input type="email" className="mx-auto" onInput={this.handleInputChange} name="email" placeholder="email" />
           </div>

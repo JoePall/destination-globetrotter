@@ -22,9 +22,11 @@ const setupGetOne = (basePath, model) => {
   const path = basePath + ":id";
 
   router.get(path, isAuthenticated, (req, res) => {
-    db[model].findAll({ where: { id: req.params.id, userId: req.user.id } }).then((data) => {
-      res.json(data);
-    });
+    db[model]
+      .findAll({ where: { id: req.params.id, userId: req.user.id } })
+      .then((data) => {
+        res.json(data);
+      });
   });
 
   return { operation: "getOne", path: path, type: "get", params: ["id"] };
@@ -56,7 +58,13 @@ const setupUpdate = (basePath, model) => {
       });
   });
 
-  return { operation: "update", path: path, type: "put", params: ["id"], object: ["o"] };
+  return {
+    operation: "update",
+    path: path,
+    type: "put",
+    params: ["id"],
+    object: ["o"],
+  };
 };
 
 const setupDelete = (basePath, model) => {
@@ -71,12 +79,12 @@ const setupDelete = (basePath, model) => {
 
 function setupGetAssociation(modelA, modelB, model) {
   const path = "/api/" + modelA + "sby" + modelB + "/:id";
-  
+
   router.get(path, isAuthenticated, (req, res) => {
-    const filter = { where: {} };
+    const joinFilter = {};
+    const filter = { where: {}, joinFilter };
     filter.where[modelA + "Id"] = req.params.id;
-    db[model].findAll(filter)
-    .then(data => {
+    db[model].findAll(filter).then((data) => {
       res.json(data);
     });
   });
@@ -104,7 +112,6 @@ function addToAPIObject(
   return routes;
 }
 
-
 module.exports = (models) => {
   let routes = {};
 
@@ -114,10 +121,17 @@ module.exports = (models) => {
       const models = model.split("_");
 
       if (models.length > 1) {
-        routes = addToAPIObject(routes, model, setupGetAssociation(models[0], models[1], model));
-        routes = addToAPIObject(routes, model, setupGetAssociation(models[1], models[0], model));
-      }
-      else {
+        routes = addToAPIObject(
+          routes,
+          model,
+          setupGetAssociation(models[0], models[1], model)
+        );
+        routes = addToAPIObject(
+          routes,
+          model,
+          setupGetAssociation(models[1], models[0], model)
+        );
+      } else {
         routes = addToAPIObject(routes, model, setupGet(basePath, model));
         routes = addToAPIObject(routes, model, setupCreate(basePath, model));
         routes = addToAPIObject(routes, model, setupGetOne(basePath, model));
@@ -132,12 +146,12 @@ module.exports = (models) => {
   });
 
   fs.readdirSync(__dirname)
-    .filter(file => {
+    .filter((file) => {
       return (
         file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
       );
     })
-    .forEach(file => {
+    .forEach((file) => {
       require("./" + file)(router);
     });
 

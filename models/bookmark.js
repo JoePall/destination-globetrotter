@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-  var Bookmarks = sequelize.define("Bookmarks", {
+  var bookmark = sequelize.define("bookmark", {
     data: {
       type: DataTypes.TEXT,
       allowNull: false,
@@ -7,7 +7,7 @@ module.exports = function (sequelize, DataTypes) {
         return JSON.parse(this.getDataValue("data"));
       },
       set: function (value) {
-        console.log("value from bookmarks.js = ", value);
+        console.log("value from bookmark.js = ", value);
         this.setDataValue("data", JSON.stringify(value));
       },
     },
@@ -17,5 +17,5 @@ module.exports = function (sequelize, DataTypes) {
     }
   });
 
-  return Bookmarks;
+  return bookmark;
 };

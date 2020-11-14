@@ -11,7 +11,7 @@ class ProtectedRoute extends React.Component {
   }
   
   componentDidMount() {
-    api.User.isAuthenticated().then(res => {
+    api.user.isAuthenticated().then(res => {
       console.log(res);
       this.setState({ isAuthenticated: res.data });
     });

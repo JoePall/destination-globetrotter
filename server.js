@@ -27,7 +27,6 @@ app.use(passport.session());
 db.sequelize.sync({ force: true }).then((seq) => {
   // Setting up route controllers for db.
   app.use(require("./controllers")(seq.models));
-  app.use(require("./routes/html-routes"));
 
   app.listen(PORT, function () {
     seed();
@@ -36,22 +35,16 @@ db.sequelize.sync({ force: true }).then((seq) => {
 });
 
 const seed = () => {
-  db.User.create({
+  db.user.create({
     email: "johndoe@web.site",
     firstName: "John",
     lastName: "Doe",
     password: "Hello",
   });
-  db.User.create({
+  db.user.create({
     email: "janedoe@web.site",
     firstName: "Jane",
     lastName: "Doe",
     password: "Howdy",
-  });
-  db.User.create({
-    email: "mmink@michaelamink.com",
-    firstName: "Michael",
-    lastName: "Mink",
-    password: "mminkmmink",
   });
 };

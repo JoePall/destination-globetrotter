@@ -12,7 +12,7 @@ function Home() {
   }, [bookmarks]);
 
   function loadBookmarks() {
-    api.Bookmarks.get().then(res => {
+    api.bookmark.get().then(res => {
       console.log(res);
       
       setBookmarks(JSON.stringify(res.data));

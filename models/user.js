@@ -1,7 +1,7 @@
 var bcrypt = require('bcryptjs');
 
 module.exports = function (sequelize, DataTypes) {
-  var User = sequelize.define('User', {
+  var user = sequelize.define('user', {
     firstName: {
       type: DataTypes.STRING,
       allowNull: true,
@@ -34,20 +34,14 @@ module.exports = function (sequelize, DataTypes) {
   });
 
   // Compare hashed and unhashed passwords
-  User.prototype.validPassword = function (password) {
+  user.prototype.validPassword = function (password) {
     return bcrypt.compareSync(password, this.password);
   };
   
   // Hash the password
-  User.addHook('beforeCreate', function (user) {
+  user.addHook('beforeCreate', function (user) {
     user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
   });
 
-  User.associate = function (models) {
-    User.hasMany(models.Groups, {
-      onDelete: 'cascade',
-    });
-  };
-
-  return User;
+  return user;
 };
