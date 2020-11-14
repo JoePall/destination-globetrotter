@@ -33,6 +33,21 @@
     border: none;
   }
 
+  .search {
+    margin-top: 10px;
+    margin-right: 85px;
+    color: #2C78B6;
+  }
+
+  .title {
+    color: #2C78B6;
+  }
+
+  Input {
+    color: #2C78B6 !important;
+    font-weight: bold !important;
+  }
+
 
   
 

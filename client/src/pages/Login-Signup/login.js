@@ -46,7 +46,7 @@ class Login extends React.Component {
           </div>
 
           <div className="row mx-auto my-2">
-            <input type="email" className="mx-auto" onInput={this.handleInputChange} name="email" placeholder="email" />
+            <input type="email" id="username" className="mx-auto" onInput={this.handleInputChange} name="email" placeholder="email" />
           </div>
           <div className="row mx-auto my-2">
             <input type="password" className="mx-auto" onInput={this.handleInputChange} name="password" placeholder="password" />
