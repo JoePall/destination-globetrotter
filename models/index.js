@@ -24,7 +24,7 @@ if (fs.existsSync(__dirname + "/../config/config.json")) {
 }
 
 getModels(__dirname);
-// getModels(__dirname + "/connections");
+getModels(__dirname + "/connections");
 
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
