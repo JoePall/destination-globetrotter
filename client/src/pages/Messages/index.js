@@ -3,7 +3,7 @@ import './style.css';
 import useInput from './useInput';
 import PubNub from 'pubnub';
 import {Card, CardActions, CardContent, List, ListItem, Button, Typography, Input} from '@material-ui/core';
-import { InputGroup } from "react-bootstrap";
+
 
 // Main component, parent to all others, rules them
 function Messages() {
@@ -24,7 +24,7 @@ function Messages() {
 const [channel, setChannel] = useState(defaultChannel);
 // const [channelSearch] = useState(defaultChannel);
 const [messages, setMessages] = useState([]);
-const [username,] = useState(['username']);
+const [user] = useState(JSON.parse(sessionStorage.getItem("user")));
 const tempChannel = useInput();
 const tempChannelSearch = useInput();
 const tempMessage = useInput();
@@ -34,7 +34,7 @@ useEffect(() => {
   const pubnub = new PubNub({
     publishKey: "pub-c-d9eb4f4a-5807-4310-bff8-d4bb18295fb0",
     subscribeKey: "sub-c-14656c9a-23bf-11eb-9c54-32dcb901e45f",
-    username: username
+    username: user.id
   });
   
 pubnub.addListener({
@@ -48,7 +48,7 @@ pubnub.addListener({
       console.log(msg.message.text)
       let newMessages = [];
       newMessages.push({
-        username: msg.message.username,
+        username: msg.message.user,
         text: msg.message.text
       });
       setMessages(messages => messages.concat(newMessages))
@@ -69,7 +69,7 @@ pubnub.history(
   let newMessages = [];
   for (let i = 0; i < response.messages.length; i++) {
     newMessages.push ({
-      username: response.messages[i].entry.username,
+      username: response.messages[i].entry.user,
       text: response.messages[i].entry.text
     });
   }
@@ -81,7 +81,7 @@ return function cleanup() {
   pubnub.unsubscribeAll();
   setMessages([]);
 }
-}, [channel, username]);
+}, [channel, user]);
 
 useEffect(() => {
   window.addEventListener("popstate", goBack);
@@ -103,7 +103,7 @@ function handleKeyDown(event) {
       if(newChannel) {
         if(channel !== newChannel) {
           // If the user isn't trying to navigate to the same channel they're on
-          setChannel('username-' + newChannel);
+          setChannel((user.firstName) + '-' + newChannel);
           let newURL = window.location.origin + "?channel=" + newChannel;
           window.history.pushState(null, '', newURL);
           tempChannel.setValue('');
@@ -158,13 +158,13 @@ function publishMessage() {
   if (tempMessage.value) {
     let messageObject = {
       text: tempMessage.value,
-      username: username
+      username: user.id
     };
 
     const pubnub = new PubNub({
       publishKey: "pub-c-d9eb4f4a-5807-4310-bff8-d4bb18295fb0",
       subscribeKey: "sub-c-14656c9a-23bf-11eb-9c54-32dcb901e45f",
-      username: username
+      username: user.id
     });
     pubnub.publish({
       message: messageObject,
@@ -199,25 +199,26 @@ return(
     <CardContent>
       <div className="top">
         <Typography variant="h4" >
-          <h4>Group Messages</h4><br></br>
+          <h4 className="title"><strong>Group Messages - {channel}</strong></h4><br></br>
         </Typography>
+      
         <Input
           style = {{width: '300px'}}
           className = "channel"
           id = "channelInput"
           onKeyDown = {handleKeyDown}
-          placeholder = {channel}
+          placeholder = "Create Your Group"
           onChange = {tempChannel.onChange}
           value = {tempChannel.value}
         />
       </div>
       <div align="right">
-      <Input 
+       <Input 
           style = {{width: '300px'}}
           className = "searchChannel"
           id = "channelSearch"
           onKeyDown = {handleKeyDownTwo}
-          placeholder = "Search Channel"
+          placeholder = "Find Your Group"
           onChange = {tempChannelSearch.onChange}
           value = {tempChannelSearch.value}
         />
@@ -257,7 +258,7 @@ return(
       <ListItem>
         <Typography component = "div">
           {props.messages.map((item, index) => (
-            <Message key = {index} username = {item.username} text = {item.text}/>
+            <Message key = {index} username = {item.user} text = {item.text}/>
           ))}
         </Typography>
       </ListItem>
@@ -270,7 +271,7 @@ return(
   
     return(
       <div>
-        { props.username } : { props.text }
+        { props.user } : { props.text }
       </div>
     );
   }

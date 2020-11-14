@@ -50,6 +50,7 @@ class Login extends React.Component {
 
           <div className="row mx-auto my-2 fadeIn">
             <input type="email" className="mx-auto" onInput={this.handleInputChange} name="email" placeholder="email" />
+
           </div>
           <div className="row mx-auto my-2 fadeIn">
             <input type="password" className="mx-auto" onInput={this.handleInputChange} name="password" placeholder="password" />
