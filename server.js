@@ -38,10 +38,11 @@ const seed = () => {
     lastName: "Doe",
     password: "Hello",
   });
-  db.user.create({
-    email: "janedoe@web.site",
-    firstName: "Jane",
-    lastName: "Doe",
-    password: "Howdy",
+  db.group.create({
+    name: "KU Coding Bootcamp reunion - Hawaii?"
+  });
+  db.user_group.create({
+    userId: 1,
+    groupId: 1,
   });
 };
