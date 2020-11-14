@@ -1,5 +1,5 @@
 import React from "react";
-import Login from "./Login-Signup/Login"
+import Login from "./Login-Signup/login"
 import api from "../utils/API";
 
 class ProtectedRoute extends React.Component {
