@@ -1,12 +1,12 @@
 import axios from "axios";
-  
+
 const api = {
   bookmark: {
-    get: () => axios.get("/api/bookmarks/"),
-    create: (o) => axios.post("/api/bookmarks/", o),
-    getOne: (id) => axios.get("/api/bookmarks/" + id),
-    update: (id, o) => axios.put("/api/bookmarks/" + id, o),
-    delete: (id) => axios.delete("/api/bookmarks/" + id),
+    get: () => axios.get("/api/bookmark/"),
+    create: (o) => axios.post("/api/bookmark/", o),
+    getOne: (id) => axios.get("/api/bookmark/" + id),
+    update: (id, o) => axios.put("/api/bookmark/" + id, o),
+    delete: (id) => axios.delete("/api/bookmark/" + id),
   },
   connection: {
     get: () => axios.get("/api/connection/"),
@@ -46,7 +46,12 @@ const api = {
     logout: () => axios.get("/api/logout"),
     signup: (o) => axios.post("/api/signup", o),
     isAuthenticated: () => axios.get("/api/authenticated"),
+    
   },
+  usersbygroup: (id) => axios.get("/api/usersbygroup/:id", id),
+  groupsbyuser: (id) => axios.get("/api/groupsbyuser/:id", id),
+  bookmarksbygroup: (id) => axios.get("/api/bookmarksbygroup/:id", id),
+  groupsbybookmark: (id) => axios.get("/api/groupsbybookmark/:id", id)
 };
 
 export default api;
