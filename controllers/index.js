@@ -84,8 +84,10 @@ function setupGetAssociation(modelA, modelB, model) {
     const joinFilter = {};
     const filter = { where: {}, joinFilter };
     filter.where[modelA + "Id"] = req.params.id;
-    db[model].findAll(filter).then((data) => {
-      res.json(data);
+    db[model].findAll(filter).then(data => {
+      data.forEach(item => {
+        console.log(item);
+      });
     });
   });
 

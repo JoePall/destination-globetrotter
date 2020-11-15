@@ -24,6 +24,7 @@ if (fs.existsSync(__dirname + "/../config/config.json")) {
 }
 
 getModels(__dirname);
+
 getModels(__dirname + "/connections");
 
 Object.keys(db).forEach((modelName) => {
@@ -37,14 +38,14 @@ db.Sequelize = Sequelize;
 
 module.exports = db;
 
-function getModels(dirPath) {
+function getModels(dirPath, onFile) {
   fs.readdirSync(dirPath)
     .filter((file) => {
       return (
         file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
       );
     })
-    .forEach((file) => {
+    .forEach(file => {
       const model = require(path.join(dirPath, file))(
         sequelize,
         Sequelize.DataTypes
