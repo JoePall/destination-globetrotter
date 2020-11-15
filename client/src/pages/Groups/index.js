@@ -10,17 +10,16 @@ function Groups() {
   }, [groups]);
 
   function loadGroups() {
-    api.groupsbyuser.get().then(res => {
+    api.groupsbyuser().then(res => {
+      console.log(res.data);
       console.log(res);
-      
       setGroups(JSON.stringify(res.data));
     }).catch(console.log);
   }
 
   return (
-    <Container fluid="lg" className="p-4">
-      
-      {groups}
+    <Container fluid="lg" className="p-4">     
+      {groups.length > 0 ? groups : "No groups yet"}
     </Container>
   );
 }
