@@ -41,8 +41,18 @@ const seed = () => {
   db.group.create({
     name: "KU Coding Bootcamp reunion - Hawaii?"
   });
+  db.group.create({
+    name: "Family Reunion"
+  });
+  db.group.create({
+    name: "Friends Cruise?"
+  });
   db.user_group.create({
     userId: 1,
     groupId: 1,
+  });
+  db.user_group.create({
+    userId: 1,
+    groupId: 3,
   });
 };
