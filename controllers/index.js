@@ -5,6 +5,7 @@ const fs = require("fs");
 const path = require("path");
 const basename = path.basename(module.filename);
 
+// Sets up routes for getting all records for a model.
 const setupGet = (basePath, model) => {
   const path = basePath;
 
@@ -18,6 +19,7 @@ const setupGet = (basePath, model) => {
   return { operation: "get", path: path, type: "get" };
 };
 
+// Sets up routes for getting a record by id for a model.
 const setupGetOne = (basePath, model) => {
   const path = basePath + ":id";
 
@@ -32,6 +34,7 @@ const setupGetOne = (basePath, model) => {
   return { operation: "getOne", path: path, type: "get", params: ["id"] };
 };
 
+// Sets up routes for creating a model record.
 const setupCreate = (basePath, model) => {
   const path = basePath;
 
@@ -47,6 +50,7 @@ const setupCreate = (basePath, model) => {
   return { operation: "create", path: path, type: "post", object: ["o"] };
 };
 
+// Sets up routes for updating a record for a model. Ignores fields that are not passed in by key.
 const setupUpdate = (basePath, model) => {
   const path = basePath + ":id";
 
@@ -67,6 +71,7 @@ const setupUpdate = (basePath, model) => {
   };
 };
 
+// Sets up routes for deleting a records by id.
 const setupDelete = (basePath, model) => {
   const path = basePath + ":id";
 
@@ -77,23 +82,28 @@ const setupDelete = (basePath, model) => {
   return { method: "delete", path: path, type: "delete", params: ["id"] };
 };
 
+// Sets up routes for junction tables; returns a one to many in either direction by id.
 function setupGetAssociation(modelA, modelB, model) {
-  const path = "/api/" + modelA + "sby" + modelB + "/:id";
+  const path = "/api/" + modelB + "sby" + modelA + "/:id";
 
   router.get(path, isAuthenticated, (req, res) => {
-    const joinFilter = {};
-    const filter = { where: {}, joinFilter };
+    const filter = { where: {} };
     filter.where[modelA + "Id"] = req.params.id;
-    db[model].findAll(filter).then(data => {
-      data.forEach(item => {
-        console.log(item);
-      });
+    db[model].findAll(filter).then((children) => {
+      let ids = children.map((child) => child.dataValues[modelB + "Id"]);
+
+      db[modelB]
+          .findAll({ where: { id: [...ids] } })
+          .then((item) => {
+            res.send(item)
+          });
     });
   });
 
   return { method: "get", path: path, type: "get", params: ["id"] };
 }
 
+// Internal for creating an api object for calling on the front end.
 function addToAPIObject(
   routes,
   model,
@@ -114,6 +124,7 @@ function addToAPIObject(
   return routes;
 }
 
+// init for setting up routes pertaining to the db.
 module.exports = (models) => {
   let routes = {};
 
