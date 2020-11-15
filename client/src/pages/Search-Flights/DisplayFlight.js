@@ -16,7 +16,7 @@ function DisplayFlight(props) {
     if (!props.result && props.result.route.length === 0) return (null)
     return (
         <div>
-            <Card className="mx-auto col-9">
+            <Card className="mx-auto my-3 col-9">
                 <Card.Img variant="top" src="" />
                 <Card.Body>
                     {props.result.route.map((route, i) => (

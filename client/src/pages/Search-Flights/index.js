@@ -12,6 +12,44 @@ import DisplayFlight from "./DisplayFlight.js";
 import DatePicker from "react-datepicker"
 import "../../../node_modules/react-datepicker/dist/react-datepicker.css";
 import api from "../../utils/API";
+import Select from 'react-select'
+
+const options = [
+  { value: 'ATL', label: 'ATL - Hartsfield–Jackson Atlanta International Airport' },
+  { value: 'LAX', label: 'LAX - Los Angeles International Airport' },
+  { value: 'ORD', label: 'ORD - O\'Hare International Airport' },
+  { value: 'DFW', label: 'DFW - Dallas/Fort Worth International Airport' },
+  { value: 'DEN', label: 'DEN - Denver International Airport' },
+  { value: 'JFK', label: 'JFK - John F. Kennedy International Airport' },
+  { value: 'SFO', label: 'SFO - San Francisco International Airport' },
+  { value: 'SEA', label: 'SEA - Seattle–Tacoma International Airport' },
+  { value: 'LAS', label: 'LAS - McCarran International Airport' },
+  { value: 'MCO', label: 'MCO - Orlando International Airport' },
+  { value: 'EWR', label: 'EWR - Newark Liberty International Airport' },
+  { value: 'CLT', label: 'CLT - Charlotte Douglas International Airport' },
+  { value: 'PHX', label: 'PHX - Phoenix Sky Harbor International Airport' },
+  { value: 'IAH', label: 'IAH - George Bush Intercontinental Airport' },
+  { value: 'MIA', label: 'MIA - Miami International Airport' },
+  { value: 'BOS', label: 'BOS - General Edward Lawrence Logan International Airport' },
+  { value: 'MSP', label: 'MSP - Minneapolis–Saint Paul International Airport' },
+  { value: 'FLL', label: 'FLL - Fort Lauderdale–Hollywood International Airport' },
+  { value: 'DTW', label: 'DTW - Detroit Metropolitan Airport' },
+  { value: 'PHL', label: 'PHL - Philadelphia International Airport' },
+  { value: 'LGA', label: 'LGA - LaGuardia Airport' },
+  { value: 'BWI', label: 'BWI - Baltimore–Washington International Airport' },
+  { value: 'SLC', label: 'SLC - Salt Lake City International Airport' },
+  { value: 'SAN', label: 'SAN - San Diego International Airport' },
+  { value: 'IAD', label: 'IAD - Washington Dulles International Airport' },
+  { value: 'DCA', label: 'DCA - Ronald Reagan Washington National Airport' },
+  { value: 'MDW', label: 'MDW - Chicago Midway International Airport' },
+  { value: 'TPA', label: 'TPA - Tampa International Airport' },
+  { value: 'PDX', label: 'PDX - Portland International Airport' },
+  { value: 'HNL', label: 'HNL - Daniel K. Inouye International Airport' }
+];
+
+
+
+
 
 const Search = () => {
 
@@ -56,12 +94,17 @@ const Search = () => {
               <label>Departure Airport</label>
               </Col>
               <Col> 
-              <input
+              <Select 
+                placeholder="Airport Code - i.e. MCI"
+                options={options}
+                onChange={(e) => setfromairport(e.value)}
+                className="input" />
+              {/* <input
                 placeholder="Airport Code - i.e. MCI"
                 value={fromairport}
                 onChange={(e) => setfromairport(e.target.value)}
                 className="input"
-              />
+              /> */}
               </Col>
               </Form.Row>
               <Form.Row> 
@@ -69,12 +112,11 @@ const Search = () => {
               <label>Return Airport</label>
               </Col>
               <Col> 
-              <input
-                placeholder="Airport Code - i.e. LAS"
-                value={toairport}
-                onChange={(e) => settoairport(e.target.value)}
-                className="input"
-              />
+              <Select 
+                placeholder="Airport Code - i.e. LAX"
+                options={options}
+                onChange={(e) => settoairport(e.value)}
+                className="input" />
               </Col>
               </Form.Row>
               <DatePicker
