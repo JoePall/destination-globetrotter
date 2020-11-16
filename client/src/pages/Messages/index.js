@@ -34,7 +34,7 @@ useEffect(() => {
   const pubnub = new PubNub({
     publishKey: "pub-c-d9eb4f4a-5807-4310-bff8-d4bb18295fb0",
     subscribeKey: "sub-c-14656c9a-23bf-11eb-9c54-32dcb901e45f",
-    username: user.id
+    user: user.firstName
   });
   
 pubnub.addListener({
@@ -48,7 +48,7 @@ pubnub.addListener({
       console.log(msg.message.text)
       let newMessages = [];
       newMessages.push({
-        username: msg.message.user,
+        user: msg.message.user,
         text: msg.message.text
       });
       setMessages(messages => messages.concat(newMessages))
@@ -69,7 +69,7 @@ pubnub.history(
   let newMessages = [];
   for (let i = 0; i < response.messages.length; i++) {
     newMessages.push ({
-      username: response.messages[i].entry.user,
+      user: response.messages[i].entry.user,
       text: response.messages[i].entry.text
     });
   }
@@ -158,13 +158,13 @@ function publishMessage() {
   if (tempMessage.value) {
     let messageObject = {
       text: tempMessage.value,
-      username: user.id
+      user: user.firstName
     };
 
     const pubnub = new PubNub({
       publishKey: "pub-c-d9eb4f4a-5807-4310-bff8-d4bb18295fb0",
       subscribeKey: "sub-c-14656c9a-23bf-11eb-9c54-32dcb901e45f",
-      username: user.id
+      user: user.firstName
     });
     pubnub.publish({
       message: messageObject,
@@ -199,7 +199,7 @@ return(
     <CardContent>
       <div className="top">
         <Typography variant="h4" >
-          <h4 className="title"><strong>Group Messages - {channel}</strong></h4><br></br>
+        <h4 className="title"><strong>Group Messages - {channel}</strong></h4><br></br>
         </Typography>
       
         <Input
@@ -258,7 +258,7 @@ return(
       <ListItem>
         <Typography component = "div">
           {props.messages.map((item, index) => (
-            <Message key = {index} username = {item.user} text = {item.text}/>
+            <Message key = {index} user = {item.user} text = {item.text}/>
           ))}
         </Typography>
       </ListItem>
