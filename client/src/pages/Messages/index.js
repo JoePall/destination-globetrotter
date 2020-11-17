@@ -34,7 +34,7 @@ useEffect(() => {
   const pubnub = new PubNub({
     publishKey: "pub-c-d9eb4f4a-5807-4310-bff8-d4bb18295fb0",
     subscribeKey: "sub-c-14656c9a-23bf-11eb-9c54-32dcb901e45f",
-    user: user.firstName
+    user: user.firstName + ' ' + user.lastName
   });
   
 pubnub.addListener({
@@ -103,7 +103,7 @@ function handleKeyDown(event) {
       if(newChannel) {
         if(channel !== newChannel) {
           // If the user isn't trying to navigate to the same channel they're on
-          setChannel((user.firstName) + '-' + newChannel);
+          setChannel((user.firstName) + ' ' + (user.lastName) + '-' + newChannel);
           let newURL = window.location.origin + "?channel=" + newChannel;
           window.history.pushState(null, '', newURL);
           tempChannel.setValue('');
@@ -158,13 +158,13 @@ function publishMessage() {
   if (tempMessage.value) {
     let messageObject = {
       text: tempMessage.value,
-      user: user.firstName
+      user: user.firstName + ' ' + user.lastName
     };
 
     const pubnub = new PubNub({
       publishKey: "pub-c-d9eb4f4a-5807-4310-bff8-d4bb18295fb0",
       subscribeKey: "sub-c-14656c9a-23bf-11eb-9c54-32dcb901e45f",
-      user: user.firstName
+      user: user.firstName + ' ' + user.lastName
     });
     pubnub.publish({
       message: messageObject,
