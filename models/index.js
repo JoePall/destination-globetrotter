@@ -38,7 +38,7 @@ db.Sequelize = Sequelize;
 
 module.exports = db;
 
-function getModels(dirPath, onFile) {
+function getModels(dirPath) {
   fs.readdirSync(dirPath)
     .filter((file) => {
       return (
