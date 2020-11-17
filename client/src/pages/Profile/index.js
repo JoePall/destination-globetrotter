@@ -11,7 +11,7 @@ function Profile() {
       <form className="field">
       <div className="card-content">
 
-      <Avatar size="125" round={true} color={Avatar.getRandomColor('sitebase', ['green', 'purple', 'orange', 'red', 'aqua', 'blue', 'yellow'])} name={user.firstName + user.lastName} />
+      <Avatar size="125" round={true} color={Avatar.getRandomColor('sitebase', ['green', 'purple', 'orange', 'red', 'aqua', 'blue', 'yellow'])} name={user.firstName + 'user.lastName'} />
           <h2 id="name" className="">{user.firstName + " " + user.lastName}</h2>
                 <p><i className=""></i>{user.email}</p>
                 <p><i className=""></i> Group Chat: {user.firstName + " " + user.lastName}</p>
