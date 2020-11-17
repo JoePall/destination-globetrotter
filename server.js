@@ -39,14 +39,14 @@ const seed = () => {
     password: "Hello",
   });
   db.group.create({
-    name: "KU Coding Bootcamp Reunion - Hawaii?"
+    name: "KU Coding Bootcamp Class of '20"
   });
   db.group.create({
-    name: "Family Reunion"
+    name: "Smith Family"
   });
   let date = Date.now();
   db.group.create({
-    name: "Friends Cruise?"
+    name: "BFF's"
   });
   db.trip.create({
     name: "Friends Cruise?",
