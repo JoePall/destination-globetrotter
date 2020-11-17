@@ -1,26 +1,42 @@
-import React, { useState, useEffect } from "react";
-import api from "../../utils/API";
-import { Container } from "react-bootstrap";
+import React from "react";
+import { Container, Card } from "react-bootstrap";
+import { Get } from "react-axios";
 
 function Groups() {
-  const [groups, setGroups] = useState([]);
-
-  useEffect(() => {
-    loadGroups();
-  }, [groups]);
-
-  function loadGroups() {
-    api.groupsbyuser().then(res => {
-      console.log(res.data);
-      console.log(res);
-      setGroups(JSON.stringify(res.data));
-    }).catch(console.log);
-  }
-
+  const user = JSON.parse(sessionStorage.getItem("user"));
+  const path = "/api/groupsbyuser/" + user.id;
   return (
-    <Container fluid="lg" className="p-4">     
-      {groups.length > 0 ? groups : "No groups yet"}
+    <Container col="6" className="mx-auto">
+      <Get url={path}>
+        {(error, response, isLoading, makeRequest, axios) => {
+          if (error) {
+            return (
+              <div>
+                Something bad happened: {error.message}{" "}
+                <button
+                  onClick={() => makeRequest({ params: { reload: true } })}
+                >
+                  Retry
+                </button>
+              </div>
+            );
+          } else if (isLoading) {
+            return <div></div>;
+          } else if (response !== null) {
+            return response.data.map((item) => <Group key={item.id} item={item}></Group>);
+          }
+          return <div>Default message before request is made.</div>;
+        }}
+      </Get>
     </Container>
+  );
+}
+
+function Group(props) {
+  return (
+    <Card className="col-7 m-3 p-3 mx-auto">
+      {props.item.name}
+    </Card>
   );
 }
 

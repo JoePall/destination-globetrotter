@@ -48,10 +48,10 @@ const api = {
     isAuthenticated: () => axios.get("/api/authenticated"),
     
   },
-  usersbygroup: (id) => axios.get("/api/usersbygroup/:id", id),
-  groupsbyuser: (id) => axios.get("/api/groupsbyuser/:id", id),
-  bookmarksbygroup: (id) => axios.get("/api/bookmarksbygroup/:id", id),
-  groupsbybookmark: (id) => axios.get("/api/groupsbybookmark/:id", id)
+  usersbygroup: (id) => axios.get("/api/usersbygroup/" + id),
+  groupsbyuser: (id) => axios.get("/api/groupsbyuser/" + id),
+  bookmarksbygroup: (id) => axios.get("/api/bookmarksbygroup/" + id),
+  groupsbybookmark: (id) => axios.get("/api/groupsbybookmark/" + id)
 };
 
 export default api;

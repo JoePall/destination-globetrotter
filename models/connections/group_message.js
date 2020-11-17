@@ -1,14 +1,14 @@
 module.exports = function (sequelize, DataTypes) {
-  var group_bookmark = sequelize.define("group_bookmark", {
+  var message_group = sequelize.define("message_group", {
     groupId: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    bookmarkId: {
+    messageId: {
       type: DataTypes.STRING,
       allowNull: false,
     },
   });
 
-  return group_bookmark;
+  return message_group;
 };
