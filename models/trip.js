@@ -7,6 +7,14 @@ module.exports = function (sequelize, DataTypes) {
           len: [1],
         },
       },
+      start: {
+        type: DataTypes.DATE,
+        allowNull: true,
+      },
+      end: {
+        type: DataTypes.DATE,
+        allowNull: true,
+      },
     });
   
     return trip;
