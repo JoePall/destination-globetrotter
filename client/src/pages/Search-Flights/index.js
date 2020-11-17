@@ -13,7 +13,7 @@ import DatePicker from "react-datepicker"
 import "../../../node_modules/react-datepicker/dist/react-datepicker.css";
 import api from "../../utils/API";
 import Select from 'react-select'
-
+// import Async, { makeAsyncSelect } from 'react-select/async';
 const options = [
   { value: 'ATL', label: 'ATL - Hartsfield–Jackson Atlanta International Airport' },
   { value: 'LAX', label: 'LAX - Los Angeles International Airport' },
@@ -94,6 +94,7 @@ const Search = () => {
               <label>Departure Airport</label>
               </Col>
               <Col> 
+              {/* <makeAsyncSelect */}
               <Select 
                 placeholder="Airport Code - i.e. MCI"
                 options={options}
