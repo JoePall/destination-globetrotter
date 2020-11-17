@@ -89,11 +89,16 @@ const Search = () => {
     //   return (<div></div>)
     // }
 
-    const selectflightfunction = (result) => {
+    const selectflightfunction = (result, i) => {
       // setselectflight(result.id)
       // selectflight === result.id ?       
       // api.bookmark.create({data: JSON.stringify(result)}).then(response => {console.log(response); return(response)})
-      console.log(result)
+      console.log("i from select flight function = ", i);
+      const button = document.getElementById(i);
+      console.log("button = " + button);
+      button.disabled = true;
+      button.innerHTML = "Saved";
+      console.log(result);
       api.bookmark.create({data: result}).then(response => {console.log(response); return(response)})
     }
 
@@ -111,13 +116,13 @@ const Search = () => {
               <fieldset>
               <div className="radiobutton">
                 <input className="radio" type="radio" value="price" name="sortresby"  onChange={(e) => setsortby(e.target.value)}/>
-                <label for="price">Price</label>
+                <label htmlFor="price">Price</label>
                 <input className="radio" type="radio" value="duration" name="sortresby"  onChange={(e) => setsortby(e.target.value)}/>
-                <label for="duration">Duration</label>
+                <label htmlFor="duration">Duration</label>
                 <input className="radio" type="radio" value="quality" name="sortresby"  onChange={(e) => setsortby(e.target.value)}/>
-                <label for="quality">Quality</label>
+                <label htmlFor="quality">Quality</label>
                 <input className="radio" type="radio" value="date" name="sortresby"  onChange={(e) => setsortby(e.target.value)}/>
-                <label for="date">Date</label>
+                <label htmlFor="date">Date</label>
               </div>
               </fieldset>
               </Col>
@@ -187,7 +192,8 @@ const Search = () => {
 
                        { (isLoading && !searchresults) ? displayloading() : "" }
                        { searchresults &&
-                        searchresults.map( result => {
+                        searchresults.map( (result, i) => {
+                            // console.log("i = " + i);
                             let departureduration = 0;
                             let returnduration = 0;
                             // console.log("result inside of search flights = ", result)
@@ -209,7 +215,7 @@ const Search = () => {
                                         <td>${result.price}</td>
                                         <td><Button variant="primary" onClick={() => setdisplayflights(result.id)}>View Details</Button></td>
                                         {/* <td><Button className = "selectbutton" variant="primary" onClick={() => setselectflight(result.id)}>Select</Button></td> */}
-                                        <td><Button className = "selectbutton" variant="primary" onClick={() => selectflightfunction(result)}>Select</Button></td>
+                                        <td><Button id = {i} className = "selectbutton" variant="primary" onClick={() => selectflightfunction(result, i)}>Select</Button></td>
                                         </tr>
                                     </tbody>
                                 </Table>
