@@ -47,15 +47,35 @@ const seed = () => {
   db.group.create({
     name: "KU Coding Bootcamp Class of '20"
   });
+  db.trip_user.create({
+    userId: 1,
+    tripId: 1
+  });
+  db.trip_user.create({
+    userId: 2,
+    tripId: 1
+  });
+  db.trip_user.create({
+    userId: 1,
+    tripId: 2
+  });
+  db.trip_user.create({
+    userId: 3,
+    tripId: 1
+  });
+  db.trip_user.create({
+    userId: 1,
+    tripId: 3
+  });
   db.group.create({
     name: "Smith Family"
   });
   let date = Date.now();
-  db.group.create({
-    name: "BFF's"
+  db.trip.create({
+    location: "BFF's"
   });
   db.trip.create({
-    name: "Friends Cruise?",
+    location: "Friends Cruise?",
     start: date + 6,
     end: date + 12
   })
