@@ -41,12 +41,7 @@ function Home() {
           />
         </Col>
         <Button onClick={() => {
-          history.push({
-            pathname: '/trips',
-            state: {
-              location: location
-            }
-          });
+          history.push({ pathname: '/search-flights', state: { location: location } });
         }}>
           Let's go Places!
         </Button>
