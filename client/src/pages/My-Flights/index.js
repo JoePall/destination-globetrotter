@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Jumbotron } from "react-bootstrap";
 import "./style.css";
 import api from "../../utils/API";
-
 import ConvertAirline from "../Search-Flights/ConvertAirline";
 import CalculateDuration from "../Search-Flights/CalculateDuration";
 import Table from 'react-bootstrap/Table'
@@ -20,7 +19,7 @@ function MyFlights() {
 
 
   useEffect(() => {
-    console.log("in useEffect");
+    // console.log("in useEffect");
     loadBookmarks();
   }, []);
 
@@ -42,8 +41,11 @@ console.log("bookmarks = ", bookmarks);
       {
         bookmarks &&
           bookmarks.map( (result) => {
-            result = result.data
-            console.log("result = ", result)
+            let resultid = result.id
+            // console.log("result.id = " + result.id);
+            result = result.data;
+            // console.log("result in myflights = ", result);
+            // console.log("result.airlines[0] = ", result.airlines[0]);
               let departureduration = 0;
               let returnduration = 0;
               let airlinename = ConvertAirline(result.airlines[0]);
@@ -58,6 +60,7 @@ console.log("bookmarks = ", bookmarks);
                   <Table striped bordered hover>
                       <tbody>
                           <tr>
+                          <td>{resultid}</td>
                           <td className="searchresults">{airlinename}</td>
                           <td>{result.flyFrom}</td>
                           <td>{result.flyTo}</td>
