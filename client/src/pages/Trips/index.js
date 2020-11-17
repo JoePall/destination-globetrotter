@@ -42,7 +42,7 @@ function Trips() {
 function Trip(props) {
   return (
     <Card className="col-7 m-3 p-3 mx-auto">
-      <h1>{props.item.name}</h1>
+      <h1>{props.item.location}</h1>
       <h3>{props.item.start}{props.item.end ? " - " + props.item.end : ""}</h3>
     </Card>
   );
