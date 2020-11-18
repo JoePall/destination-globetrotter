@@ -1,5 +1,3 @@
-// import React from "react";
-// let airlinecode = '';
 
 const airlines = [
   { mnemonic: "DL", name: "Delta Air Lines" },
