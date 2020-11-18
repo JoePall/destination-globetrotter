@@ -3,7 +3,6 @@ import Card from 'react-bootstrap/Card';
 import ConvertAirline from "./ConvertAirline";
 import CalculateDuration from "./CalculateDuration";
 import ConvertDateTime  from "./ConvertDateTime";
-// import Button from 'react-bootstrap/Table'
 
 
 function DisplayFlight(props) {
@@ -12,7 +11,6 @@ function DisplayFlight(props) {
     let ddh = CalculateDuration(durationdeparture);
     let rdh = CalculateDuration(durationreturn);
 
-    // let i=0;
     if (!props.result && props.result.route.length === 0) return (null)
     return (
         <div>
