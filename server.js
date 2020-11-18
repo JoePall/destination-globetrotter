@@ -22,16 +22,13 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(express.static('/client/build'));
-
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 db.sequelize.sync({ force: true }).then((seq) => {
   // Setting up route controllers for db.
   app.use(require("./controllers")(seq.models));
-
-  // Always return the main index.html, so react-router render the route in the client
-  app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, '/client/build/index.html'));
-  });
 
   app.listen(PORT, function () {
     seed();
