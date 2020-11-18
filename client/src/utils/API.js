@@ -51,7 +51,9 @@ const api = {
   usersbygroup: (id) => axios.get("/api/usersbygroup/" + id),
   groupsbyuser: (id) => axios.get("/api/groupsbyuser/" + id),
   bookmarksbygroup: (id) => axios.get("/api/bookmarksbygroup/" + id),
-  groupsbybookmark: (id) => axios.get("/api/groupsbybookmark/" + id)
+  groupsbybookmark: (id) => axios.get("/api/groupsbybookmark/" + id),
+  tripsbyuser: (id) => axios.get("/api/tripsbyuser/" + id),
+  usersbytrip: (id) => axios.get("/api/usersbytrip/" + id)
 };
 
 export default api;

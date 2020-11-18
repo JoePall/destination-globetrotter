@@ -3,8 +3,10 @@ import { Container } from "react-bootstrap";
 import "./style.css";
 import { Get } from "react-axios";
 import Loader from "react-loader-spinner";
+import TripItem from "./TripItem";
 
 function TripItems() {
+  const user = JSON.parse(sessionStorage.getItem("user"));
   const path = "/api/tripsbyuser/" + user.id;
   console.log(path);
 

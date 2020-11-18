@@ -1,0 +1,13 @@
+{
+  "short_name": "Destination Globetrotter",
+  "name": "Destination Globetrotter - The collaborative travel planner",
+  "icons": [{
+      "src": "/images/logo-small.png",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

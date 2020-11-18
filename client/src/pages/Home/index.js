@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Logo from "../../images/better-logo.png";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import "./style.css";
@@ -25,7 +25,7 @@ function Home() {
       <Row>
         <Col>
           <Select
-            placeholder=" Going places?"
+            placeholder="Going places?"
             options={options.map((option) => {
               return {
                 value: option[option.length - 1],
