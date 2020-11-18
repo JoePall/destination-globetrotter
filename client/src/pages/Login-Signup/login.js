@@ -24,7 +24,7 @@ class Login extends React.Component {
     api.user.login(this.state)
       .then(res => {
         sessionStorage.setItem("user", JSON.stringify(res.data));
-        window.location.assign("/");
+        location.reload();
       })
       .catch(console.log);
   }
