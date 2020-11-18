@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/static/css/main.05a98365.chunk.css",
+    "main.js": "/static/js/main.c67b879e.chunk.js",
+    "main.js.map": "/static/js/main.c67b879e.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.5e6c2be2.js",
+    "runtime-main.js.map": "/static/js/runtime-main.5e6c2be2.js.map",
+    "static/css/2.046848f9.chunk.css": "/static/css/2.046848f9.chunk.css",
+    "static/js/2.a484c462.chunk.js": "/static/js/2.a484c462.chunk.js",
+    "static/js/2.a484c462.chunk.js.map": "/static/js/2.a484c462.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.046848f9.chunk.css.map": "/static/css/2.046848f9.chunk.css.map",
+    "static/css/main.05a98365.chunk.css.map": "/static/css/main.05a98365.chunk.css.map",
+    "static/js/2.a484c462.chunk.js.LICENSE.txt": "/static/js/2.a484c462.chunk.js.LICENSE.txt",
+    "static/media/better-logo.190084e2.png": "/static/media/better-logo.190084e2.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5e6c2be2.js",
+    "static/css/2.046848f9.chunk.css",
+    "static/js/2.a484c462.chunk.js",
+    "static/css/main.05a98365.chunk.css",
+    "static/js/main.c67b879e.chunk.js"
+  ]
+}
