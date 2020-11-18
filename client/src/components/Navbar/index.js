@@ -13,7 +13,7 @@ import { FaHome } from 'react-icons/fa';
 function Navbar() {
   return (
     <div>
-      <header>
+      <header className="fixed-top body-content">
         <Link to="/">
           <img alt="logo" src={Logo} id="logo"></img>
         </Link>

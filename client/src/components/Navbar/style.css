@@ -8,6 +8,10 @@
 
 }
 
+body {
+  padding-top: 175px;
+}
+
 svg {
   margin-right: 10px;
   margin-bottom: 3px;
