@@ -22,6 +22,8 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(express.static('/client/build'));
+
 db.sequelize.sync({ force: true }).then((seq) => {
   // Setting up route controllers for db.
   app.use(require("./controllers")(seq.models));
