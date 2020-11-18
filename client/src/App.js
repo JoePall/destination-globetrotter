@@ -18,7 +18,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <Router>
-      <Navbar />
+      <Navbar style={{position: "sticky", top: 0, left: 0, right: 0}} />
       <Switch>
         <ProtectedRoute exact path={["/", "/dashboard"]} component={Home} />
         <ProtectedRoute exact path="/search-flights" component={Search} />

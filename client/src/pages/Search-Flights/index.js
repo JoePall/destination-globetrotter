@@ -18,7 +18,10 @@ import { useHistory } from "react-router-dom";
 
 const Search = () => {
   const history = useHistory();
-  let selectedDestination = history.location.state.location;
+  let selectedDestination = undefined;
+  if (history.location && history.location.state && history.location.state.location) {
+    selectedDestination = history.location.state.location;
+  }
 
   const [fromairport, setfromairport] = useState('');
   const [toairport, settoairport] = useState('');
@@ -58,6 +61,22 @@ const Search = () => {
     button.disabled = true;
     button.innerHTML = "Saved";
     api.bookmark.create({data: result}).then(response => {console.log(response); return(response)})
+  }
+  
+  const createTrip = (result, i) => {
+    const button = document.getElementById(i);
+    button.disabled = true;
+    api.bookmark.create({data: result}).then(bookmark => {
+      console.log(bookmark);
+      api.trip.create({ location: result.cityTo, start: result.route[0].local_departure, end: result.route[result.route.length - 1].local_arrival }).then(trip => {
+        console.log(trip);
+        api.trip_bookmark.create({ tripId: 1, bookmarkId: 1 });
+        const user = JSON.parse(sessionStorage.getItem("user"));
+        api.trip_user.create({ userId: user.id, tripId: trip.id });
+      }) 
+
+      location.assign("/trips/" + "1")
+    });
   }
 
   return (
@@ -109,6 +128,7 @@ const Search = () => {
             <Col className="secondcolumn"> 
               <Select
                   placeholder="Airport Code - i.e. LAX"
+                  defaultValue={(selectedDestination) ? selectedDestination : ""}
                   options={options.map((option) => {
                     return {
                       value: option[option.length - 1],
@@ -178,6 +198,7 @@ const Search = () => {
                       <td>${result.price}</td>
                       <td><Button variant="primary" onClick={() => setdisplayflights(result.id)}>View Details</Button></td>
                       <td><Button id = {i} className = "selectbutton" variant="primary" onClick={() => selectflightfunction(result, i)}>Select</Button></td>
+                      <td><Button id = {i} className = "tripbutton" variant="secondary" onClick={() => createTrip(result, i)}>Create Trip</Button></td>
                       </tr>
                   </tbody>
               </Table>
