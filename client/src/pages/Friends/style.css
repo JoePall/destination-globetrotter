@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+.friendList, h1 {
+    font-family: 'Poppins', sans-serif;
+    margin-left: 30px;
+}
+
+.removeAll {
+    font-family: 'Poppins', sans-serif;
+    background-color:#F0A812;
+    margin-left: 50px;
+    padding: 5px;
+}
+
+.deactivateFriend, .activateFriend {
+    font-family: 'Poppins', sans-serif;
+    background-color:#ededed;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+.removeFriend {
+    font-family: 'Poppins', sans-serif;
+    background-color:#ededed;
+    margin-left: 20px;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+.submit {
+    font-family: 'Poppins', sans-serif;
+    background-color:#ededed;
+    padding: 5px;
+}
+
+h1 {
+    color: #2C78B6;
+    padding: 20px;
+}
+
+.friendList {
+    margin-left: 105px;
+}

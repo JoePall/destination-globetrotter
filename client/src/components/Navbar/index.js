@@ -7,6 +7,7 @@ import { FaUserAlt } from 'react-icons/fa';
 import { FaCommentDots } from 'react-icons/fa';
 import { FaSearchLocation } from 'react-icons/fa';
 import { FaSuitcaseRolling } from 'react-icons/fa';
+import { FaUserFriends } from 'react-icons/fa';
 import { FaPlane } from 'react-icons/fa';
 import { FaHome } from 'react-icons/fa';
 
@@ -33,6 +34,9 @@ function Navbar() {
           </a>
           <a className="menu-item" href="/messages">
           <FaCommentDots />Messages
+          </a>
+          <a className="menu-item" href="/friends">
+          <FaUserFriends />Friends
           </a>
           <a className="menu-item" href="/profile">
           <FaUserAlt />Profile
