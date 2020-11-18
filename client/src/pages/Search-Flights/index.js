@@ -46,7 +46,7 @@ const Search = () => {
   }, [fromairport, toairport, dateto, returnto, sortby]);
 
   const displayloading = () => {
-    return (<Loader className ="m-5 p-5 loadingclass" type="Bars" color="#00eFFF44" height={200} width={200} />
+    return (<Loader className="p-5 loadingclass" type="Bars" color="#00eFFF44" height={200} width={200} />
     )
   }
 
