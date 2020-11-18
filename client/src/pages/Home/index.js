@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Logo from "../../images/better-logo.png";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import "./style.css";
