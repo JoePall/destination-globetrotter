@@ -25,7 +25,7 @@ function Home() {
       <Row>
         <Col>
           <Select
-            placeholder=" Going places?"
+            placeholder="Going places?"
             options={options.map((option) => {
               return {
                 value: option[option.length - 1],

@@ -5,10 +5,10 @@ import { useHistory } from "react-router-dom";
 import { Get } from "react-axios";
 import Loader from "react-loader-spinner";
 import moment from "moment";
+import TripItems from "./TripItems";
 
 function Trips(props) {
   if (props.id) {
-    const user = JSON.parse(sessionStorage.getItem("user"));
     return Trip(props.id);
   }
   
