@@ -12,10 +12,7 @@ class ProtectedRoute extends React.Component {
   
   componentDidMount() {
     this.state.id = this.props.computedMatch.params.id;
-    api.user.isAuthenticated().then(res => {
-      console.log(res);
-      this.setState({ isAuthenticated: res.data });
-    });
+    api.user.isAuthenticated().then(res => this.setState({ isAuthenticated: res.data }));
   }
 
   render() {
