@@ -12,7 +12,7 @@
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   background-color: lightgrey;
-  margin-top: 0px !important;
+  margin-top: -50px !important;
 }
 .form input {
   font-family: 'Poppins', sans-serif;
@@ -88,9 +88,12 @@ label {
 }
 
 .loadingclass {
+  position: relative;
   text-align: center !important;
-  font-size: 30px !important;
+  font-size: 20px !important;
   color: blue;
+  margin-top: -26.5rem !important;
+  z-index: 1;
 }
 
 
