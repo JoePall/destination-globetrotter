@@ -14,8 +14,11 @@ import api from "../../utils/API";
 import Select from "react-select";
 import Loader from "react-loader-spinner";
 import options from "../../utils/airports.json";
+import { useHistory } from "react-router-dom";
 
 const Search = () => {
+  const history = useHistory();
+  let selectedDestination = history.location.state.location;
 
   const [fromairport, setfromairport] = useState('');
   const [toairport, settoairport] = useState('');
