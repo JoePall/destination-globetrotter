@@ -26,6 +26,7 @@ app.use(passport.session());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
+
 db.sequelize.sync({ force: true }).then((seq) => {
   // Setting up route controllers for db.
   app.use(require("./controllers")(seq.models));
@@ -77,10 +78,10 @@ const seed = () => {
   });
   let date = Date.now();
   db.trip.create({
-    location: "BFF's"
+    location: "Hawaii"
   });
   db.trip.create({
-    location: "Friends Cruise?",
+    location: " Cruise?",
     start: date + 6,
     end: date + 12
   })
