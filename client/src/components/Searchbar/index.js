@@ -25,11 +25,7 @@ const Searchbar = (returnfrom, dateto, fromairport, toairport, callback, sortby)
               }
               })
               .then((response)=>{
-                  // console.log("url = ", {surl})
-                  // console.log("headers = ", {apikey})
-                  // console.log("this is the response from the promise = ", response.data.data);
                   callback(response.data.data);
-                  // console.log("searchresults = ", searchresults)      
               })
               .catch((error)=>{
                   console.log(error)

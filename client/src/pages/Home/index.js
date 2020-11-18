@@ -19,7 +19,7 @@ function Home() {
           alt="Destination Globetrotter logo"
           className="mx-auto"
         ></img>
-        <h2 className="text-center mx-auto">Grab a friend and let's go Places!</h2>
+        <h4 className="text-center mx-auto">Grab a friend and let's go Places!</h4>
       </Card>
 
       <Row>
