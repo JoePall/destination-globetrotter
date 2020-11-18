@@ -4,13 +4,14 @@ import api from "../utils/API";
 import Loader from "react-loader-spinner";
 
 class ProtectedRoute extends React.Component {
-  constructor () {
-    super();
+  constructor (props) {
+    super(props);
 
     this.state = { isAuthenticated: undefined };
   }
   
   componentDidMount() {
+    this.state.id = this.props.computedMatch.params.id;
     api.user.isAuthenticated().then(res => {
       console.log(res);
       this.setState({ isAuthenticated: res.data });
@@ -18,13 +19,14 @@ class ProtectedRoute extends React.Component {
   }
 
   render() {
+    
     const Component = this.props.component;
     const { isAuthenticated } = this.state;
     if (isAuthenticated === undefined) return <div className="m-5 p-5 mx-auto w-25 text-center">
       <Loader className ="m-5 p-5" type="Bars" color="#00eFFF44" height={200} width={200} />
     </div>;
     else if (isAuthenticated === false) return <Login />;
-    else if (isAuthenticated === true) return <Component />;
+    else if (isAuthenticated === true) return <Component id={this.state.id} />;
     else return <span>An error occurred.</span>;
   }
 }

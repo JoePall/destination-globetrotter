@@ -23,8 +23,8 @@ function App() {
         <ProtectedRoute exact path={["/", "/dashboard"]} component={Home} />
         <ProtectedRoute exact path="/search-flights" component={Search} />
         <ProtectedRoute exact path="/my-flights" component={Flights} />
-        <ProtectedRoute exact path="/messages" component={Messages} />
-        <ProtectedRoute exact path="/trips" component={Trips} />
+        <ProtectedRoute exact path="/messages/:id?" component={Messages} />
+        <ProtectedRoute exact path="/trips/:id?" component={Trips} />
         <ProtectedRoute exact path="/profile" component={Profile} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/logout" component={Logout} />
