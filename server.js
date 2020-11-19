@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-
+const moment = require("moment");
 const session = require("express-session");
 const passport = require("./config/passport");
 const PORT = process.env.PORT || 8080;
@@ -60,29 +60,19 @@ const seed = () => {
     userId: 2,
     tripId: 1
   });
-  db.trip_user.create({
-    userId: 1,
-    tripId: 2
-  });
-  db.trip_user.create({
-    userId: 3,
-    tripId: 1
-  });
-  db.trip_user.create({
-    userId: 1,
-    tripId: 3
-  });
   db.group.create({
     name: "Smith Family"
   });
   let date = Date.now();
   db.trip.create({
-    location: "Hawaii"
+    location: "KU Coding Bootcamp '20 - Hawaii Islands Cruise",
+    userId: 1
   });
   db.trip.create({
-    location: " Cruise?",
-    start: date + 6,
-    end: date + 12
+    location: "Powell Tahiti",
+    start: moment(date).add(7, 'days').format("M/D/Y"),
+    end: moment(date).add(15, 'days').format("M/D/Y"),
+    userId: 1
   })
   db.user_group.create({
     userId: 1,
