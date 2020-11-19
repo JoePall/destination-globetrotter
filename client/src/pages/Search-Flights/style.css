@@ -90,7 +90,7 @@ label {
 .loadingclass {
   position: relative;
   text-align: center !important;
-  font-size: 20px !important;
+  font-size: 8rem !important;
   color: blue;
   margin-top: -26.5rem !important;
   z-index: 1;
@@ -122,11 +122,11 @@ fieldset {
 }
 
 .firstcolumn {
-  width: 200px;
+  width: 175px;
 }
 
 .secondcolumn {
-  margin-left: -100px;
+  margin-left: -125px;
 }
 
 .form-row {
