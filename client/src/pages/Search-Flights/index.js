@@ -15,6 +15,7 @@ import Select from "react-select";
 import Loader from "react-loader-spinner";
 import options from "../../utils/airports.json";
 import { useHistory } from "react-router-dom";
+import moment from "moment";
 
 const Search = () => {
   const history = useHistory();
@@ -68,14 +69,13 @@ const Search = () => {
     button.disabled = true;
     api.bookmark.create({data: result}).then(bookmark => {
       console.log(bookmark);
-      api.trip.create({ location: result.cityTo, start: result.route[0].local_departure, end: result.route[result.route.length - 1].local_arrival }).then(trip => {
+      api.trip.create({ location: result.cityTo, start: moment(result.route[0].local_departure).format("M/D/Y"), end: moment(result.route[result.route.length - 1].local_arrival).format("M/D/Y") }).then(trip => {
         console.log(trip);
-        api.trip_bookmark.create({ tripId: 1, bookmarkId: 1 });
+        api.trip_bookmark.create({ tripId: trip.data.id, bookmarkId: bookmark.data.id });
         const user = JSON.parse(sessionStorage.getItem("user"));
-        api.trip_user.create({ userId: user.id, tripId: trip.id });
+        api.trip_user.create({ userId: user.id, tripId: trip.data.id });
+        location.assign("/trips/" + trip.data.id);
       }) 
-
-      location.assign("/trips/" + "1")
     });
   }
 
@@ -84,30 +84,41 @@ const Search = () => {
       <div className="form">
         <form className="field">
           <Form.Row>
-            <Col className="firstcolumn">            
+            <Col md={6} sm={12} className="firstcolumn">            
               <label>Sort By</label>
             </Col>
             <Col className="secondcolumn">
               <fieldset>
-                <div className="radiobutton">
-                  <input className="radio" type="radio" value="price" name="sortresby"  onChange={(e) => setsortby(e.target.value)}/>
-                  <label htmlFor="price">Price</label>
-                  <input className="radio" type="radio" value="duration" name="sortresby"  onChange={(e) => setsortby(e.target.value)}/>
-                  <label htmlFor="duration">Duration</label>
-                  <input className="radio" type="radio" value="quality" name="sortresby"  onChange={(e) => setsortby(e.target.value)}/>
-                  <label htmlFor="quality">Quality</label>
-                  <input className="radio" type="radio" value="date" name="sortresby"  onChange={(e) => setsortby(e.target.value)}/>
-                  <label htmlFor="date">Date</label>
+                <div className="radiobutton container">
+                  <Form.Row>
+                    <Col md={6} sm={12}>
+                    <input className="radio col-1" type="radio" value="price" name="sortresby"  onChange={(e) => setsortby(e.target.value)}/>
+                    <label htmlFor="price">Price</label>
+                    </Col>
+                    <Col md={6} sm={12}>
+                    <input className="radio col-1" type="radio" value="duration" name="sortresby"  onChange={(e) => setsortby(e.target.value)}/>
+                    <label htmlFor="duration">Duration</label>
+                    </Col>
+                    <Col md={6} sm={12}>
+                    <input className="radio col-1" type="radio" value="quality" name="sortresby"  onChange={(e) => setsortby(e.target.value)}/>
+                    <label htmlFor="quality">Quality</label>
+                    </Col>
+                    <Col md={6} sm={12}>
+                    <input className="radio col-1" type="radio" value="date" name="sortresby"  onChange={(e) => setsortby(e.target.value)}/>
+                    <label htmlFor="date">Date</label>
+                    </Col> 
+                  </Form.Row>
                 </div>
               </fieldset>
             </Col>
           </Form.Row>
           <Form.Row> 
-            <Col className="firstcolumn">            
+            <Col md={6} sm={12} className="firstcolumn">            
               <label>Departure Airport</label>
             </Col>
             <Col className="secondcolumn"> 
               <Select
+                  autoFocus
                   placeholder="Airport Code - i.e. MCI"
                   options={options.map((option) => {
                     return {
@@ -122,7 +133,7 @@ const Search = () => {
             </Col>
           </Form.Row>
           <Form.Row> 
-            <Col className="firstcolumn">            
+            <Col md={6} sm={12} className="firstcolumn">            
               <label>Destination Airport</label>
             </Col>
             <Col className="secondcolumn"> 
@@ -142,7 +153,7 @@ const Search = () => {
             </Col>
           </Form.Row>
           <Form.Row>
-            <Col className="firstcolumn">            
+            <Col md={6} sm={12} className="firstcolumn">            
               <label>Departure Date</label>
             </Col>
             <Col className="secondcolumn"> 
@@ -153,12 +164,12 @@ const Search = () => {
                 selected={dateto}
                 minDate={new Date()}
                 onChange={date => setdateto(date)}
-                className="input"
+                className="input w-100 px-5 py-2 border border-warning m-0"
               />
             </Col>
           </Form.Row>
           <Form.Row>
-            <Col className="firstcolumn">            
+            <Col md={6} sm={12} className="firstcolumn">            
               <label>Return Date</label>
             </Col>
             <Col className="secondcolumn"> 
@@ -169,7 +180,7 @@ const Search = () => {
                 selected={returnto}
                 minDate={new Date()}
                 onChange={date => setreturnto(date)}
-                className="input"
+                className="input w-100 px-5 py-2 border border-warning m-0"
               />
             </Col>
           </Form.Row>

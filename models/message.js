@@ -7,7 +7,11 @@ module.exports = function (sequelize, DataTypes) {
           len: [1],
         },
       },
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      }
     });
-  
+
     return message;
   };

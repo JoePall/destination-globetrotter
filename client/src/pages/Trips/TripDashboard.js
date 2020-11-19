@@ -1,61 +1,37 @@
 import React from "react";
-import { Card, Container, Col, Row } from "react-bootstrap";
+import { Container, Col, Row } from "react-bootstrap";
 import "./style.css";
 import apiHandler from "../../utils/apiHandler";
+import Messages from "./components/Messages";
+import Bookmarks from "./components/Bookmarks";
+import People from "./components/People";
 
 function TripDashboard(id) {
   return (
-    <Container>
+    <Container fluid className="mt-5">
       <Row>
-        <Col>
-        <h3>Bookmarks</h3>
         {apiHandler({
-          path: "/api/bookmarksbytrip/" + id,
-          component: (response) => (
-            <Card bg="light" className="col-7 mx-auto">
-              {console.log(response.response)}
-              {response.response.map((item) => (
-                <span key={item.id} className="btn btn-primary rounded-pill mx-auto p-2 m-2">
-                  {JSON.stringify(item)}
-                </span>
-              ))}
-            </Card>
-          ),
+          path: "/api/trip/" + id,
+          component: ({response}) => {
+            return <div className="mx-auto text-center">
+              <h1 className="mx-auto text-center">{response[0].location}</h1>
+              {response[0].start ? <h3>DEPARTING: {response[0].start}</h3> : ""}
+              {response[0].end ? <h3>RETURNING: {response[0].end}</h3> : ""}
+            </div>;
+          },
         })}
-        </Col> 
-        <Col>
-        <h3>People</h3>
-        {apiHandler({
-          path: "/api/usersbytrip/" + id,
-          component: (response) => (
-            <Card bg="light" className="col-7 mx-auto">
-              {console.log(response.response)}
-              {response.response.map((item) => (
-                <span key={item.id} className="btn btn-outline-primary rounded-pill mx-auto p-2 m-2">
-                  {item.firstName + " " + item.lastName}
-                </span>
-              ))}
-            </Card>
-          ),
-        })}
-        </Col>  
-        <Col>
-        <h3>Messages</h3>
-        {apiHandler({
-          path: "/api/messagesbytrip/" + id,
-          component: (response) => (
-            <Card bg="light" className="col-7 mx-auto">
-              {console.log(response.response)}
-              {response.response.map((item) => (
-                <span key={item.id} className="btn btn-primary rounded-pill mx-auto p-2 m-2">
-                  {JSON.stringify(item)}
-                </span>
-              ))}
-            </Card>
-          ),
-        })}
+      </Row>
+      <Row className="bg-light py-5">
+        <Col className="m-0 p-0">
+          <Bookmarks id={id} />
         </Col>
-      </Row>  
+        <Col className="m-0 p-0">
+          <People id={id} />
+        </Col>
+        <Col className="m-0 p-0">
+          <Messages id={id} />
+        </Col>
+      </Row>
     </Container>
   );
 }

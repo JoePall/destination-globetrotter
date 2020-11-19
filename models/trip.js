@@ -8,13 +8,17 @@ module.exports = function (sequelize, DataTypes) {
         },
       },
       start: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING,
         allowNull: true,
       },
       end: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING,
         allowNull: true,
       },
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      }
     });
   
     return trip;
