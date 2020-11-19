@@ -14,24 +14,27 @@ import Navbar from "./components/Navbar";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container } from "react-bootstrap";
 
 function App() {
   return (
-    <Router>
-      <Navbar style={{position: "sticky", top: 0, left: 0, right: 0}} />
-      <Switch>
-        <ProtectedRoute exact path={["/", "/dashboard"]} component={Home} />
-        <ProtectedRoute exact path="/search-flights" component={Search} />
-        <ProtectedRoute exact path="/my-flights" component={Flights} />
-        <ProtectedRoute exact path="/messages/:id?" component={Messages} />
-        <ProtectedRoute exact path="/trips/:id?" component={Trips} />
-        <ProtectedRoute exact path="/profile" component={Profile} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/logout" component={Logout} />
-        <Route exact path="/signup" component={Signup} />
-        <ProtectedRoute component={NoMatches} />
-      </Switch>
-    </Router>
+    <Container fluid className="mt-5">
+      <Router>
+        <Navbar style={{position: "sticky", top: 0, left: 0, right: 0}}/>
+        <Switch>
+          <ProtectedRoute exact path={["/", "/dashboard"]} component={Home} />
+          <ProtectedRoute exact path="/search-flights" component={Search} />
+          <ProtectedRoute exact path="/my-flights" component={Flights} />
+          <ProtectedRoute exact path="/messages/:id?" component={Messages} />
+          <ProtectedRoute exact path="/trips/:id?" component={Trips} />
+          <ProtectedRoute exact path="/profile" component={Profile} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/logout" component={Logout} />
+          <Route exact path="/signup" component={Signup} />
+          <ProtectedRoute component={NoMatches} />
+        </Switch>
+      </Router>
+    </Container>
   );
 }
 
