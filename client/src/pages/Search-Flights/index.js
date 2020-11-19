@@ -15,6 +15,7 @@ import Select from "react-select";
 import Loader from "react-loader-spinner";
 import options from "../../utils/airports.json";
 import { useHistory } from "react-router-dom";
+import moment from "moment";
 
 const Search = () => {
   const history = useHistory();
@@ -68,7 +69,7 @@ const Search = () => {
     button.disabled = true;
     api.bookmark.create({data: result}).then(bookmark => {
       console.log(bookmark);
-      api.trip.create({ location: result.cityTo, start: result.route[0].local_departure, end: result.route[result.route.length - 1].local_arrival }).then(trip => {
+      api.trip.create({ location: result.cityTo, start: moment(result.route[0].local_departure).format("M/D/Y"), end: moment(result.route[result.route.length - 1].local_arrival).format("M/D/Y") }).then(trip => {
         console.log(trip);
         api.trip_bookmark.create({ tripId: trip.data.id, bookmarkId: bookmark.data.id });
         const user = JSON.parse(sessionStorage.getItem("user"));
