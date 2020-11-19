@@ -30,7 +30,7 @@ module.exports = function (sequelize, DataTypes) {
       validate: {
         len: [5],
       },
-    },
+    }
   });
 
   // Compare hashed and unhashed passwords
