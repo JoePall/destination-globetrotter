@@ -32,7 +32,7 @@ const setupGetOne = (basePath, model) => {
 
   router.get(path, isAuthenticated, (req, res) => {
     db[model]
-      .findAll({ where: { id: req.params.id, userId: req.user.id } })
+      .findOne({ where: { id: req.params.id } })
       .then((data) => {
         res.json(data);
       });
