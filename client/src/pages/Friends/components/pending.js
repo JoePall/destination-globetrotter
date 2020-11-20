@@ -53,7 +53,8 @@ function Pending(props) {
                           api.pending.delete(item.pending.id).then((res) => {
                             console.log("Should change pages to: " + "/trips/" + item.trip.id);
 
-                            window.location.assign("/trips/" + item.trip.id ? item.trip.id : "");
+                            let id = res.data.tripId ? res.data.tripId : "";
+                            location.assign("/trips/" + id);
                           });
                         });
                     }}

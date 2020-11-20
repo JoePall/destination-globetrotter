@@ -97,7 +97,8 @@ const Search = () => {
         },
       })
       .then((res) => {
-        location.assign("/trips/" + res.data.tripId ? res.data.tripId : "");
+        let id = res.data.tripId ? res.data.tripId : "";
+        location.assign("/trips/" + id);
       });
   };
 
