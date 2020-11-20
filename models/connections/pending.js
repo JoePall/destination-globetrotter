@@ -1,10 +1,10 @@
 module.exports = function (sequelize, DataTypes) {
   var pending = sequelize.define("pending", {
-    userAId: {
+    requesterId: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    userBId: {
+    requestedId: {
       type: DataTypes.STRING,
       allowNull: false,
     },

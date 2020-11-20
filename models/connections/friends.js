@@ -1,14 +1,14 @@
 module.exports = function (sequelize, DataTypes) {
-  var user_user = sequelize.define("user_user", {
-    userAId: {
+  var friends = sequelize.define("friends", {
+    userId: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    userBId: {
+    friendId: {
       type: DataTypes.STRING,
       allowNull: false,
     },
   });
 
-  return user_user;
+  return friends;
 };
