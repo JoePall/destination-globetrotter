@@ -9,17 +9,14 @@ import api from "../../../utils/API";
 
 
 function People(id) {
+  id = id.id ? id.id : id;
   const [people, setPeople] = useState([]);
 
-  api.user.get((res) => {
-    console.log(res);
-    console.log(res.data);
-    setPeople(res.map((item) => {
+  api.user.get().then((res) => {
+    setPeople(res.data.map((item) => {
       return { label: item.firstName + " " + item.lastName, value: item.id };
     }));
   });
-
-  id = id.id ? id.id : id;
 
   return (
     <Container fluid>
@@ -51,7 +48,6 @@ function People(id) {
                   </Toast>
                 ))}
                 <Toast className="p-3 mx-auto">
-                {JSON.stringify(people)}
                   <Select
                     placeholder="Invite a friend!"
                     options={people}
