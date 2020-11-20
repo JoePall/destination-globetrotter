@@ -55,6 +55,7 @@ const api = {
   },
   tripsbyuser: (id) => axios.get("/api/tripsbyuser/" + id),
   usersbytrip: (id) => axios.get("/api/usersbytrip/" + id),
+  createfromflight: (o) => axios.post("/api/createfromflight/", o),
 };
 
 export default api;
