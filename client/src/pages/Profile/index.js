@@ -8,7 +8,7 @@ function Profile() {
   const initials = (user.firstName + user.lastName);
 
   return (
-    <div className="form">
+    <div className="form animate__animated animate__fadeIn">
       <form className="field">
       <div className="card-content">
 
