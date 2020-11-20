@@ -42,14 +42,11 @@ module.exports = function (router) {
       db.trip_user
         .findAll({ where: { userId: req.user.id, tripId: req.params.id } })
         .then((trip_user) => {
-          if (!trip_user.length > 0)
-            return res.status(500).json(
-              "User is not authorized ... Request invite from the trip owner"
-            );
 
           db.message
             .findAll({ where: { tripId: req.params.id } })
             .then((messages) => {
+              console.log("MSEEA: " + messages);
               let messageIds = messages.map((message) => message.id);
               db.user.findAll({ where: { id: messageIds } }).then((users) => {
                 let result = messages.map((message) => {
