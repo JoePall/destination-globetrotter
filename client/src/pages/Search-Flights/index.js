@@ -16,6 +16,8 @@ import Loader from "react-loader-spinner";
 import options from "../../utils/airports.json";
 import { useHistory } from "react-router-dom";
 import moment from "moment";
+import Alert from "react-bootstrap/Alert";
+
 
 const Search = () => {
   const history = useHistory();
@@ -32,6 +34,8 @@ const Search = () => {
   const [displayflights, setdisplayflights] = useState(null);
   const [isLoading, setisLoading] = useState(false);
   const [sortby, setsortby] = useState(null);
+  const [errorresults, seterrorresults] = useState(null);
+
 
   useEffect(() => {
       const timeoutID = setTimeout(() => {
@@ -43,7 +47,8 @@ const Search = () => {
               console.log("sortby = " + sortby);
               setisLoading(true);
               setsearchresults(null);
-              Searchbar(returnto, dateto, fromairport, toairport, setsearchresults, sortby);
+              seterrorresults(null);
+              Searchbar(returnto, dateto, fromairport, toairport, setsearchresults, seterrorresults, sortby);
           }
       }, 750);
       return () => {
@@ -187,8 +192,10 @@ const Search = () => {
       </form>
       </div>
 
-      { (isLoading && !searchresults) ? displayloading() : "" }
-      { searchresults && searchresults.map( (result, i) => {
+      { (isLoading && !searchresults && !errorresults) ? displayloading() : "" }      
+      { (searchresults && searchresults.length === 0) ? <Alert className="mx-auto col-8 alert alert-danger text-center"> <h2>No Flights Found...</h2> <hr /> <h4> Try a Different Search. </h4> </Alert> : 
+        errorresults != null ? <Alert className="mx-auto col-8 alert alert-danger text-center"> <h2>Error...</h2> <hr /> <h4> {errorresults.errors[0]}  </h4> </Alert>  : searchresults === null ? <div></div> :
+        searchresults.map( (result, i) => {
           let departureduration = 0;
           let returnduration = 0;
           let airlinename = ConvertAirline(result.airlines[0]);

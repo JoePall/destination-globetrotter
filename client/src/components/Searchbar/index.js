@@ -2,7 +2,7 @@ import React, { useState, setState, useEffect }from "react";
 import moment from "moment";
 const axios = require("axios");
 
-const Searchbar = (returnfrom, dateto, fromairport, toairport, callback, sortby) => {
+const Searchbar = (returnfrom, dateto, fromairport, toairport, callback, errorcallback, sortby) => {
     
         let searchurl = "https://tequila-api.kiwi.com/v2/search?&curr=USD&select_airlines=DL,B6,WN,AS,HA,UA,NK,AA,F9&flight_type=round"
         let apikey = "dRfNfRXhvDHSsgF7Got2L96r1cNGF9gl"
@@ -28,7 +28,9 @@ const Searchbar = (returnfrom, dateto, fromairport, toairport, callback, sortby)
                   callback(response.data.data);
               })
               .catch((error)=>{
-                  console.log(error)
+                console.log("catch error log = " + error.response.status, error.response)
+                console.log(error)
+                errorcallback(error.response.data.message[0])
               })
       
         return (null);

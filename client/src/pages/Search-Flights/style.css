@@ -132,3 +132,15 @@ fieldset {
 .form-row {
   padding-bottom: 20px;
 }
+
+.noflightsfound {
+  color: black;
+  text-align: center;
+  background-color: lightcoral;
+}
+
+.errorreturned {
+  color: black;
+  text-align: center;
+  background-color: lightcoral;
+}
