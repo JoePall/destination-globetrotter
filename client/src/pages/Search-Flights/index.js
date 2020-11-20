@@ -248,7 +248,7 @@ const Search = () => {
 
       { (isLoading && !searchresults && !errorresults) ? displayloading() : "" }      
       { (searchresults && searchresults.length === 0) ? <Alert className="mx-auto col-8 alert alert-danger text-center"> <h2>No Flights Found...</h2> <hr /> <h4> Try a Different Search. </h4> </Alert> : 
-        errorresults != null ? <Alert className="mx-auto col-8 alert alert-danger text-center"> <h2>Error...</h2> <hr /> <h4> {errorresults.errors[0]}  </h4> </Alert>  : searchresults === null ? <div></div> :
+        errorresults != null ? <Alert className="mx-auto col-8 alert alert-danger text-center"> <h2>Error...</h2> <hr /> <h4> {errorresults.errors[0]}  </h4> <hr /> <h4>Please fix the issue above and try again...</h4> </Alert>  : searchresults === null ? <div></div> :
         searchresults.map( (result, i) => {
           let departureduration = 0;
           let returnduration = 0;

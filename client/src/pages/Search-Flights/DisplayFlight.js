@@ -8,6 +8,7 @@ import Col from "react-bootstrap/Col";
 
 function DisplayFlight(props) {
 
+    console.log("props = ", props);
 
   if (!props.result && props.result.route.length === 0) return null;
   console.log(props.result);
