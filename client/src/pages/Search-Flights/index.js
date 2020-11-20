@@ -81,7 +81,7 @@ const Search = () => {
 
   return (
     <div className="ui segment searchbar" id="searchbar">
-      <div className="form">
+      <div className="form animate__animated animate__fadeIn">
         <form className="field">
           <Form.Row>
             <Col md={6} sm={12} className="firstcolumn">            

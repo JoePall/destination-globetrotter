@@ -10,6 +10,7 @@ import { FaSuitcaseRolling } from 'react-icons/fa';
 import { FaUserFriends } from 'react-icons/fa';
 import { FaPlane } from 'react-icons/fa';
 import { FaHome } from 'react-icons/fa';
+import { FaSignOutAlt } from 'react-icons/fa';
 
 function Navbar() {
   return (
@@ -42,7 +43,7 @@ function Navbar() {
           <FaUserAlt />Profile
           </a>
           <a className="menu-item" href="/logout">
-          <FaUserAlt />Logout
+          <FaSignOutAlt />Logout
           </a>
         </Menu>
       </header>
