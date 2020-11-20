@@ -24,21 +24,20 @@ return (
         <Col lg={6} md={12}>
             <Card className="border border-warning m-3 p-3">
                 <h3>Return Flight</h3>
-                {props.result.route.filter(r => r.return === 1).map((route, i) => getFlight(route, i+1, props))}
+                {props.result.route.filter(r => r.return === 1).map((route, i) => getFlight(route, i, props))}
             </Card>
         </Col>
     </Row>
 )
 }
 
-function getFlight(flight, props) {
+function getFlight(route, i, props) {
     let durationdeparture = props.result.duration.departure;
     let durationreturn = props.result.duration.return;
     let ddh = CalculateDuration(durationdeparture);
     let rdh = CalculateDuration(durationreturn);
     console.log(props);
     console.log(props.result);
-    console.log(flight);
 
      return <div key={i} className="my-3">
         <div>{ConvertAirline(route.airline)} - Flight #{route.flight_no}</div>

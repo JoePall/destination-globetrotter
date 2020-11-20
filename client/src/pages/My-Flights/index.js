@@ -41,10 +41,15 @@ console.log("bookmarks = ", bookmarks);
       {
         bookmarks &&
           bookmarks.map( (result) => {
+            console.log("result in myflights = ", result)
             let resultid = result.id
             // console.log("result.id = " + result.id);
-            result = result.data;
-            console.log("result in myflights = ", result);
+            if (result.data.result) {
+              result = result.data.result
+            } else {
+              result = result.data;
+            }
+            console.log("result in myflights after result.data = ", result);
             // console.log("result.airlines[0] = ", result.airlines[0]);
               let departureduration = 0;
               let returnduration = 0;
