@@ -1,9 +1,8 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
-import Toast from "react-bootstrap/Toast";
 import { Get } from "react-axios";
-import Loader from "react-loader-spinner";
+import Loading from "../../../components/Loading";
 import DisplayFlight from "../../Search-Flights/DisplayFlight";
 
 
@@ -28,22 +27,13 @@ function Bookmarks(id) {
               </Alert>
             );
           } else if (response !== null) {
-            console.log(JSON.stringify(response));
             return <Container fluid>
               {response.data.map(item => {
-                return <Container fluid>{DisplayFlight({ result: item.data })}</Container>;
+                return <Container key={item.data.id} fluid>{DisplayFlight({ result: item.data })}</Container>;
               })}
             </Container>
           }
-          return (
-            <Loader
-              className="m-5 p-5"
-              type="Bars"
-              color="#00eFFF44"
-              height={200}
-              width={200}
-            />
-          );
+          return <Loading />;
         }}
       </Get>
     </Container>;

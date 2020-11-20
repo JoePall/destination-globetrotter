@@ -1,15 +1,15 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
 import { Get } from "react-axios";
-import Loader from "react-loader-spinner";
-import Toast from "react-bootstrap/Toast";
+import Alert from "react-bootstrap/Alert";
+import Loading from "../../../components/Loading";
 
 function Messages(id) {
   id = id.id ? id.id : id;
   
   return <Container fluid>
       <h3 className="mx-auto text-center">Messages</h3>
-      <Get url={"/api/messagesbytrip/" + id}>
+      <Get url={"/api/messagesfromtrip/" + id}>
         {(error, response, makeRequest) => {
           if (error) {
             return (
@@ -25,25 +25,17 @@ function Messages(id) {
               </Alert>
             );
           } else if (response !== null) {
+            console.log(response);
             return response.data.map(item => {
-              return <Toast>
-              <Toast.Header>
-                <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
-                <strong className="mr-auto">{item.name}</strong>
-              </Toast.Header>
-              <Toast.Body>{item.message}</Toast.Body>
-            </Toast>
+              
+              return <Alert key={item.id} className="mx-auto warning alert-warning text-center">
+              <strong className="mr-auto">{item.name}</strong>
+              <hr />
+              <p>{item.text}</p>
+            </Alert>
             });
           }
-          return (
-            <Loader
-              className="m-5 p-5"
-              type="Bars"
-              color="#00eFFF44"
-              height={200}
-              width={200}
-            />
-          );
+          return <Loading />;
         }}
       </Get>
     </Container>;
