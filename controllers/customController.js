@@ -1,8 +1,9 @@
+const isAuthenticated = require("../config/middleware/isAuthenticated");
 const db = require("../models");
 
 module.exports = function (router) {
   //TODO: Finish this...
-  router.post("/api/createfromflight", (req, res) => {
+  router.post("/api/createfromflight", isAuthenticated, (req, res) => {
     console.log("HELLOOOOOOOOOO");
     if (!req.user) return res.send("No user found");
 
@@ -29,13 +30,13 @@ module.exports = function (router) {
       });
   });
 
-  router.get("/api/user/", (req, res) => {
+  router.get("/api/user/", isAuthenticated, (req, res) => {
     db.user.findAll().then((data) => {
       res.json(data);
     });
   });
 
-  router.get("/api/messagesfromtrip/:id", (req, res) => {
+  router.get("/api/messagesfromtrip/:id", isAuthenticated, (req, res) => {
     try {
       db.trip_message
         .findAll({ where: { tripId: req.params.id } })

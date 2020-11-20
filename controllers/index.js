@@ -178,7 +178,7 @@ module.exports = (models) => {
     }
   });
 
-  router.get("/api/", (req, res) => {
+  router.get("/api/", isAuthenticated, (req, res) => {
     res.send("const api = " + JSON.stringify(routes));
   });
 
