@@ -26,6 +26,7 @@ const Searchbar = (returnfrom, dateto, fromairport, toairport, callback, errorca
               }
               })
               .then((response)=>{
+                console.log("response.data.data from .then = ", response.data.data);
                   callback(response.data.data);
               })
               .catch((error)=>{
