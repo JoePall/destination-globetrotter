@@ -3,7 +3,7 @@ import { slide as Menu } from "react-burger-menu";
 import { Link } from "react-router-dom";
 import "./style.css";
 import Logo from "../../images/logo-small.png";
-import { FaUserAlt } from 'react-icons/fa';
+import { FaRegTimesCircle, FaUserAlt } from 'react-icons/fa';
 import { FaCommentDots } from 'react-icons/fa';
 import { FaSearchLocation } from 'react-icons/fa';
 import { FaSuitcaseRolling } from 'react-icons/fa';
@@ -42,7 +42,7 @@ function Navbar() {
           <FaUserAlt />Profile
           </a>
           <a className="menu-item" href="/logout">
-          <FaUserAlt />Logout
+          <FaRegTimesCircle />Logout
           </a>
         </Menu>
       </header>
