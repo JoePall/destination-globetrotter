@@ -9,26 +9,25 @@ import People from "./components/People";
 function TripDashboard(id) {
   return (
     <Container fluid className="mt-5">
-      <Row>
+      <Row className="mb-5">
         {apiHandler({
           path: "/api/trip/" + id,
           component: ({response}) => {
             return <div className="mx-auto text-center">
-              <h1 className="mx-auto text-center">{response[0].location}</h1>
-              {response[0].start ? <h3>DEPARTING: {response[0].start}</h3> : ""}
-              {response[0].end ? <h3>RETURNING: {response[0].end}</h3> : ""}
+              <h1 className="mx-auto text-center">{response.length > 0 ? response[0].location : ""}</h1>
+              {response.length > 0 ? response.start ? <h3>DEPARTING: {response.start}{response.end ? <span>RETURNING: {response.end}</span> : ""}</h3> : "" : ""}
             </div>;
           },
         })}
       </Row>
       <Row className="bg-light py-5">
-        <Col className="m-0 p-0">
+        <Col md={12} lg={12} className="m-0 p-0">
           <Bookmarks id={id} />
         </Col>
-        <Col className="m-0 p-0">
+        <Col md={12} lg={6} className="m-0 p-0">
           <People id={id} />
         </Col>
-        <Col className="m-0 p-0">
+        <Col md={12} lg={6} className="m-0 p-0">
           <Messages id={id} />
         </Col>
       </Row>
