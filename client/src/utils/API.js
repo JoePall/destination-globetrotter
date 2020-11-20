@@ -34,10 +34,6 @@ const api = {
     create: (o) => axios.post("/api/trip_bookmark/", o),
     delete: (id) => axios.delete("/api/trip_bookmark/" + id),
   },
-  trip_message: {
-    create: (o) => axios.post("/api/trip_message/", o),
-    delete: (id) => axios.delete("/api/trip_message/" + id),
-  },
   trip_user: {
     create: (o) => axios.post("/api/trip_user/", o),
     delete: (id) => axios.delete("/api/trip_user/" + id),
