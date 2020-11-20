@@ -12,11 +12,11 @@
     padding: 5px;
 }
 
-.deactivateFriend, .activateFriend {
+.deactivateFriend, .activateFriend, .removeFriendTwo, .declineFriend {
     font-family: 'Poppins', sans-serif;
     background-color:#ededed;
     margin-left: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     padding: 5px;
 }
 
@@ -24,9 +24,20 @@
     font-family: 'Poppins', sans-serif;
     background-color:#ededed;
     margin-left: 20px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     padding: 5px;
 }
+
+.acceptFriend {
+    font-family: 'Poppins', sans-serif;
+    background-color:#2C78B6;
+    color: white;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+
 
 .submit {
     font-family: 'Poppins', sans-serif;
@@ -42,3 +53,4 @@ h1 {
 .friendList {
     margin-left: 105px;
 }
+
