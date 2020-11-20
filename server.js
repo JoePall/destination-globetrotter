@@ -56,20 +56,16 @@ const seed = () => {
     userId: 1,
     tripId: 1
   });
-  db.trip_user.create({
-    userId: 2,
-    tripId: 1
-  });
   db.group.create({
     name: "Smith Family"
   });
   let date = Date.now();
   db.trip.create({
-    location: "KU Coding Bootcamp '20 - Hawaii Islands Cruise",
+    location: "Los Angeles",
     userId: 1
   });
   db.trip.create({
-    location: "Powell Tahiti",
+    location: "Los Angeles",
     start: moment(date).add(7, 'days').format("M/D/Y"),
     end: moment(date).add(15, 'days').format("M/D/Y"),
     userId: 1
@@ -90,20 +86,20 @@ const seed = () => {
     tripId: 1,
     userId: 1,
   });
-  db.trip_message.create({
-    tripId: 1,
-    messageId: 1,
+  db.user.create({
+    email: "josiahpowell@outlook.com",
+    firstName: "Josiah",
+    lastName: "Powell",
+    password: "#passedIT",
   });
   db.message.create({
-    userId: 1,
-    text: "Fly into Hawaii and jump on a cruise? ... we can see every island that way and unload our bags once as opposed to multiple hotels on different islands and extra travel time which can be accomplished during the night."
-  });
-  db.trip_message.create({
+    userId: 3,
     tripId: 1,
-    messageId: 2,
+    text: "Fly into Hawaii and jump on a cruise? ... we can see every island that way and unload our bags once as opposed to multiple hotels on different islands and extra travel time which can be accomplished during the night."
   });
   db.message.create({
     userId: 2,
+    tripId: 1,
     text: "That sounds good!"
   });
   db.trip_bookmark.create({

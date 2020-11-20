@@ -1,14 +1,18 @@
 module.exports = function (sequelize, DataTypes) {
-  var trip_message = sequelize.define("trip_message", {
+  var pending = sequelize.define("pending", {
+    requesterId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     tripId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    messageId: {
+    requestedId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
   });
 
-  return trip_message;
+  return pending;
 };

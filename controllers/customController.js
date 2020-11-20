@@ -1,8 +1,9 @@
+const isAuthenticated = require("../config/middleware/isAuthenticated");
 const db = require("../models");
 
 module.exports = function (router) {
   //TODO: Finish this...
-  router.post("/api/createfromflight", (req, res) => {
+  router.post("/api/createfromflight", isAuthenticated, (req, res) => {
     console.log("HELLOOOOOOOOOO");
     if (!req.user) return res.send("No user found");
 
@@ -18,40 +19,38 @@ module.exports = function (router) {
                 bookmarkId: bookmark.dataValues.id,
               })
               .then(() => {
-                db.trip_user.create({
-                  userId: req.user.id,
-                  tripId: trip.dataValues.id,
-                }).then(() => {
-                  res.json({ tripId: trip.dataValues.id });
-                });
+                db.trip_user
+                  .create({
+                    userId: req.user.id,
+                    tripId: trip.dataValues.id,
+                  })
+                  .then(() => {
+                    res.json({ tripId: trip.dataValues.id });
+                  });
               });
           });
       });
   });
 
-  router.get("/api/user/", (req, res) => {
+  router.get("/api/user/", isAuthenticated, (req, res) => {
     db.user.findAll().then((data) => {
       res.json(data);
     });
   });
 
-  router.get("/api/messagesfromtrip/:id", (req, res) => {
+  router.get("/api/messagesfromtrip/:id", isAuthenticated, (req, res) => {
     try {
-      db.trip_message
-        .findAll({ where: { tripId: req.params.id } })
-        .then((children) => {
-          let childIds = children.map((child) => {
-            return child.dataValues.id;
-          });
-          console.log(childIds);
+      let promises = [];
+
+      db.trip_user
+        .findOne({ where: { userId: req.user.id, tripId: req.params.id } })
+        .then((hasOne) => {
+          console.log(hasOne);
 
           db.message
-            .findAll({ where: { id: [...childIds] } })
+            .findAll({ where: { tripId: req.params.id } })
             .then((messages) => {
-              let promises = [];
-
               messages.map((message) => {
-                console.log(message.dataValues.userId);
                 promises.push(
                   db.user
                     .findOne({ where: { id: message.dataValues.userId } })
@@ -64,19 +63,18 @@ module.exports = function (router) {
                         user.dataValues.lastName;
                       result.email = user.dataValues.email;
                       result.text = message.text;
+                      console.log(result);
                       return result;
                     })
                 );
               });
-
-              Promise.all(promises).then((data) => {
-                console.log("YOU PROMISED" + data);
-                res.json(data);
-              });
             });
         });
+
+      Promise.all(promises).then();
+      
     } catch (error) {
-      res.status(401).json(error);
+      res.status(500).json(error);
     }
   });
 };

@@ -34,10 +34,6 @@ const api = {
     create: (o) => axios.post("/api/trip_bookmark/", o),
     delete: (id) => axios.delete("/api/trip_bookmark/" + id),
   },
-  trip_message: {
-    create: (o) => axios.post("/api/trip_message/", o),
-    delete: (id) => axios.delete("/api/trip_message/" + id),
-  },
   trip_user: {
     create: (o) => axios.post("/api/trip_user/", o),
     delete: (id) => axios.delete("/api/trip_user/" + id),
@@ -52,6 +48,18 @@ const api = {
     logout: () => axios.get("/api/logout"),
     signup: (o) => axios.post("/api/signup", o),
     isAuthenticated: () => axios.get("/api/authenticated"),
+  },
+  friends: {
+    get: () => axios.get("/api/friends/"),
+    create: (o) => axios.post("/api/friends/", o),
+    getOne: (id) => axios.get("/api/friends/:id", id),
+    delete: (id) => axios.delete("/api/friends/:id", id),
+  },
+  pending: {
+    get: () => axios.get("/api/pending/"),
+    create: (o) => axios.post("/api/pending/", o),
+    getOne: (id) => axios.get("/api/pending/:id", id),
+    delete: (id) => axios.delete("/api/pending/:id", id),
   },
   tripsbyuser: (id) => axios.get("/api/tripsbyuser/" + id),
   usersbytrip: (id) => axios.get("/api/usersbytrip/" + id),
