@@ -24,7 +24,7 @@ function Home() {
         <Row>
           <Col>
             <Select
-              autoFocus
+              autoFocus="true"
               placeholder="Going places?"
               options={options.map((option) => {
                 return {
@@ -54,11 +54,11 @@ function Home() {
               });
             }}
           >
-            Let's travel! ✈
+            Let's go Places!
           </Button>
         </Row>
         <h2 className="text-center text-white mt-4 mb-0 mx-auto">
-          Grab a friend and let's go see the world! ✈
+          Grab a friend and let's go see the world!
         </h2>
       </Card>
     </Container>

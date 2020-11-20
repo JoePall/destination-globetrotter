@@ -41,6 +41,7 @@ const setupCreate = (basePath, model) => {
   router.post(path, isAuthenticated, (req, res) => {
     let result = req.body;
     result.userId = req.user.id;
+    console.log(result);
     db[model].create(result).then((data) => {
       res.json(data);
     });
@@ -78,7 +79,7 @@ const setupDelete = (basePath, model) => {
     db[model].destroy({ where: { id: req.params.id } });
   });
 
-  return { operation: "delete", path: path, type: "delete", params: ["id"] };
+  return { method: "delete", path: path, type: "delete", params: ["id"] };
 };
 
 // Sets up routes for junction tables; returns a one to many in either direction by id.
@@ -99,7 +100,7 @@ function setupGetAssociation(modelA, modelB, model) {
     });
   });
 
-  return { operation: "get", path: path, type: "get", params: ["id"] };
+  return { method: "get", path: path, type: "get", params: ["id"] };
 }
 
 // Internal for creating an api object for calling on the front end.
@@ -115,22 +116,6 @@ function addToAPIObject(
   if (params && object) result += ", ";
   if (object) result += object.join(", ");
   result += ") => axios." + type + '("' + path + '"';
-  if (params) result += ", " + params.join(", ");
-  if (object) result += ", " + object.join(", ");
-  result += ")";
-  routes[name].push(result);
-
-  return routes;
-}
-
-function addConnectionToAPIObject(
-  routes,
-  model,
-  { operation, path, type, params, object }
-) {
-  let name = model.toLowerCase();
-  if (!routes[name]) routes[name] = [];
-  let result = '(o) => axios.create("' + path + '"';
   if (params) result += ", " + params.join(", ");
   if (object) result += ", " + object.join(", ");
   result += ")";
@@ -159,8 +144,6 @@ module.exports = (models) => {
           model,
           setupGetAssociation(models[1], models[0], model)
         );
-        routes = addToAPIObject(routes, model, setupCreate(basePath, model));
-        routes = addToAPIObject(routes, model, setupDelete(basePath, model));
       } else {
         routes = addToAPIObject(routes, model, setupGet(basePath, model));
         routes = addToAPIObject(routes, model, setupCreate(basePath, model));
