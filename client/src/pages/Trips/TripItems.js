@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import { Alert, Container } from "react-bootstrap";
 import "./style.css";
 import { Get } from "react-axios";
 import Loader from "react-loader-spinner";
@@ -12,16 +12,18 @@ function TripItems() {
   console.log(path);
 
   return (
-    <Container>
-      <h2>Trips</h2>
-      {apiHandler({
-        path: path,
-        component: (response) => {
-          return response.response.map(item => {
-            return <TripItem key={item.id} item={item}></TripItem>;
-          });
-        },
-      })}
+    <Container fluid>
+      <Alert className="mx-auto card p-5 text-center">
+        <h2>Trips</h2>
+        {apiHandler({
+          path: path,
+          component: (response) => {
+            return response.response.map(item => {
+              return <TripItem key={item.id} item={item}></TripItem>;
+            });
+          },
+        })}
+      </Alert>
     </Container>
   );
 }
