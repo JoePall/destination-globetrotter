@@ -22,8 +22,7 @@ function Bookmarks(id) {
                 <button
                   className="btn btn-danger"
                   onClick={() => makeRequest({ params: { reload: true } })}
-                  value="Reload"
-                />
+                >Reload</button>
               </Alert>
             );
           } else if (response !== null) {

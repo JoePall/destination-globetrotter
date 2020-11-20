@@ -9,7 +9,7 @@ const basename = path.basename(module.filename);
 const setupGet = (basePath, model) => {
   const path = basePath;
 
-  router.get(path, isAuthenticated, (req, res) => {
+  router.get(path, (req, res) => {
     console.log(req.user.id);
     if (model === "user") {
       db[model].findAll().then((data) => {
