@@ -12,7 +12,8 @@ function TripItems() {
   console.log(path);
 
   return (
-    <Container col="6" className="mx-auto">
+    <Container>
+      <h2>Trips</h2>
       {apiHandler({
         path: path,
         component: (response) => {

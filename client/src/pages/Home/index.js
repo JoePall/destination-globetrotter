@@ -22,7 +22,7 @@ function Home() {
           className="mx-auto drop-shadow-light"
         ></img>
         <Row>
-          <Col>
+          <Col lg={9} md={12}>
             <Select
               autoFocus
               placeholder="Going places?"
@@ -39,23 +39,25 @@ function Home() {
                   search: option[0].split(" ")[0],
                 };
               })}
-              className="input"
+              className="input my-2"
               onChange={(e) => {
                 console.log(e);
                 location = e;
               }}
             />
           </Col>
-          <Button className="btn btn-warning"
-            onClick={() => {
-              history.push({
-                pathname: "/search-flights",
-                state: { location: location },
-              });
-            }}
-          >
-            Let's travel! ✈
-          </Button>
+          <Col lg={3} md={12}>
+            <Button 
+              className="btn w-100 h-75 my-2 btn-warning"
+              onClick={() => {
+                history.push({
+                  pathname: "/search-flights",
+                  state: { location: location },
+                });
+              }}>
+              Let's travel! ✈
+              </Button>
+          </Col>
         </Row>
         <h2 className="text-center text-white mt-4 mb-0 mx-auto">
           Grab a friend and let's go see the world! ✈
