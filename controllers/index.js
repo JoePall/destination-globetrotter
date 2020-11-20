@@ -11,9 +11,16 @@ const setupGet = (basePath, model) => {
 
   router.get(path, isAuthenticated, (req, res) => {
     console.log(req.user.id);
-    db[model].findAll({ where: { userId: req.user.id } }).then((data) => {
-      res.json(data);
-    });
+    if (model === "user") {
+      db[model].findAll().then((data) => {
+        res.json(data);
+      });
+    }
+    else {
+      db[model].findAll({ where: { userId: req.user.id } }).then((data) => {
+        res.json(data);
+      });
+    }
   });
 
   return { operation: "get", path: path, type: "get" };
