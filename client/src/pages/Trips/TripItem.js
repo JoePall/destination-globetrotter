@@ -1,15 +1,39 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
+import Alert from "react-bootstrap/Alert";
 import moment from "moment";
+import { Get } from "react-axios";
+import Loading from "../../components/Loading";
 
 function TripItem(props) {
+  console.log(props);
+  console.log(props.id);
   return (
-    <Container fluid>
-      <a href={'/trips/' + props.item.id} className="btn btn-outline-warning text-dark m-3 p-3">
-        <h3>{props.item.location}</h3>
-        <h4>{props.item.start ? moment(props.item.start).format("DD/MM/YY") : ""}{props.item.end ? " - " + moment(props.item.end).format("DD/MM/YY") : ""}</h4>
-      </a>
-    </Container>
+    <Get url={"/api/trip/" + props.id}>
+    {(error, response, makeRequest) => {
+        if (error) {
+          return (
+            <Alert className="mx-auto col-8 alert alert-danger text-center">
+              <h2>Sorry!</h2>
+              <hr />
+              <h4>This is embarrassing ... and ... our app isn't working right now.</h4>
+              <button
+                className="btn btn-danger"
+                onClick={() => makeRequest({ params: { reload: true } })}
+              >Reload</button>
+            </Alert>
+          );
+        } else if (response !== null) {
+          console.log(response);
+          
+          return <Container fluid>
+            <h3>{response.location}</h3>
+            <h4>{response.start ? moment(response.start).format("DD/MM/YY") : ""}{response.end ? " - " + moment(response.end).format("DD/MM/YY") : ""}</h4>
+          </Container>
+        }
+        return <Loading />;
+      }}
+    </Get>
   );
 }
 

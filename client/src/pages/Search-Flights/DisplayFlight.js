@@ -31,13 +31,14 @@ return (
 )
 }
 
-function getFlight(route, i, props) {
-    console.log("route from getflight = ", route);
-    console.log("i = " + i);
+function getFlight(flight, props) {
     let durationdeparture = props.result.duration.departure;
     let durationreturn = props.result.duration.return;
     let ddh = CalculateDuration(durationdeparture);
     let rdh = CalculateDuration(durationreturn);
+    console.log(props);
+    console.log(props.result);
+    console.log(flight);
 
      return <div key={i} className="my-3">
         <div>{ConvertAirline(route.airline)} - Flight #{route.flight_no}</div>

@@ -1,28 +1,48 @@
 import React from "react";
 import { Alert, Container } from "react-bootstrap";
-import "./style.css";
-import { Get } from "react-axios";
-import Loader from "react-loader-spinner";
 import TripItem from "./TripItem";
-import apiHandler from "../../utils/apiHandler";
+import { Get } from "react-axios";
+import Loading from "../../components/Loading";
 
 function TripItems() {
   const user = JSON.parse(sessionStorage.getItem("user"));
   const path = "/api/tripsbyuser/" + user.id;
-  console.log(path);
+  console.log(user.id);
 
   return (
     <Container fluid>
       <Alert className="mx-auto card p-5 text-center">
         <h2>Trips</h2>
-        {apiHandler({
-          path: path,
-          component: (response) => {
-            return response.response.map(item => {
-              return <TripItem key={item.id} item={item}></TripItem>;
-            });
-          },
-        })}
+        <Get url={path}>
+          {(error, response) => {
+            if (error) {
+              return (
+                <Alert className="mx-auto col-8 alert alert-danger text-center">
+                  <h2>Sorry!</h2>
+                  <hr />
+                  <h4>
+                    This is embarrassing ... and ... our app isn't working right
+                    now.
+                  </h4>
+                </Alert>
+              );
+            } else if (response !== null) {
+              return (
+                <Container fluid>
+                  {response.data.map((trip) => (
+                    <a
+                      href={"/trips/" + trip.id}
+                      className="btn btn-outline-warning text-dark m-3 p-3"
+                    >
+                      <TripItem id={trip.id} />
+                    </a>
+                  ))}
+                </Container>
+              );
+            }
+            return <Loading />;
+          }}
+        </Get>
       </Alert>
     </Container>
   );

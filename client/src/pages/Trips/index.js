@@ -1,5 +1,4 @@
 import React from "react";
-import "./style.css";
 import TripItems from "./TripItems";
 import TripDashboard from "./TripDashboard";
 

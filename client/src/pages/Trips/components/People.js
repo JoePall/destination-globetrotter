@@ -10,8 +10,11 @@ import Select from "react-select";
 function People(tripId) {
   tripId = tripId.id ? tripId.id : tripId;
 
+  const [ state, setState ] = useState({});
+  const user = JSON.parse(sessionStorage.getItem("user"));
+
   return (
-    <Container fluid className="py-4">
+    <Container fluid className="py-4 m-0">
       <h3 className="mx-auto text-center">People</h3>
       <Get url={"/api/usersbytrip/" + tripId}>
         {(error, response, makeRequest) => {
@@ -24,10 +27,6 @@ function People(tripId) {
                   This is embarrassing ... and ... our app isn't working right
                   now.
                 </h4>
-                <button
-                  className="btn btn-danger"
-                  onClick={() => makeRequest({ params: { reload: true } })}
-                >Reload</button>
               </Alert>
             );
           } else if (response !== null) {
@@ -54,14 +53,6 @@ function People(tripId) {
                               This is embarrassing ... and ... our app isn't
                               working right now.
                             </h4>
-                            <button
-                              className="btn btn-danger"
-                              onClick={() =>
-                                makeRequest({ params: { reload: true } })
-                              }
-                            >
-                              Reload
-                            </button>
                           </Alert>
                         );
                       } else if (response !== null) {
@@ -78,30 +69,29 @@ function People(tripId) {
                               })}
                               className="input"
                               onChange={(e) => {
-                                console.log(e.value);
-                                const user = JSON.parse(
-                                  sessionStorage.getItem("user")
-                                );
+                                setState({ ...state, person: e.value });
+                              }}
+                            />
+                            <button
+                              className="btn btn-outline-warning w-100 p-2 my-3"
+                              onClick={() => {
+                                if (!state.person) return alert("No friend selected");
                                 api.pending
                                   .create({
                                     requesterId: user.id,
-                                    requestedId: e.value,
+                                    requestedId: state.person,
                                     tripId: tripId,
-                                  })
-                                  .then((data) => {
-                                    if (data)
-                                      return (
-                                        <Alert className="mx-auto col-8 alert alert-danger text-center">
-                                          <h4>Friend Request Sent!</h4>
-                                          <hr />
-                                          <h5>{e.label}</h5>
-                                        </Alert>
-                                      );
+                                  }).then(res => {
+                                    setState({ ...state, success: "Sent!", showing: true });
+                                    setTimeout(function() {
+                                      setState({ ...state, showing: false });
+                                    }, 3000);
                                   });
-                                //TODO... ADD to pending table
-                                // location = e;
                               }}
-                            />
+                            >
+                              Invite
+                            </button>
+                            {(state.showing) ? <Alert>{state.success}</Alert> : ""}
                           </Container>
                         );
                       }

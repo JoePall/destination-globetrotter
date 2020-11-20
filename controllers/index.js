@@ -15,8 +15,7 @@ const setupGet = (basePath, model) => {
       db[model].findAll().then((data) => {
         res.json(data);
       });
-    }
-    else {
+    } else {
       db[model].findAll({ where: { userId: req.user.id } }).then((data) => {
         res.json(data);
       });
@@ -31,11 +30,9 @@ const setupGetOne = (basePath, model) => {
   const path = basePath + ":id";
 
   router.get(path, isAuthenticated, (req, res) => {
-    db[model]
-      .findAll({ where: { id: req.params.id, userId: req.user.id } })
-      .then((data) => {
-        res.json(data);
-      });
+    db[model].findOne({ where: { id: req.params.id } }).then((data) => {
+      res.json(data);
+    });
   });
 
   return { operation: "getOne", path: path, type: "get", params: ["id"] };
@@ -93,17 +90,19 @@ function setupGetAssociation(modelA, modelB, model) {
   const path = "/api/" + modelB + "sby" + modelA + "/:id";
 
   router.get(path, isAuthenticated, (req, res) => {
-    const filter = { where: {} };
-    filter.where[modelA + "Id"] = req.params.id;
-    db[model].findAll(filter).then((children) => {
-      let ids = children.map((child) => child.dataValues[modelB + "Id"]);
-
-      db[modelB]
-          .findAll({ where: { id: [...ids] } })
-          .then((item) => {
-            res.send(item)
-          });
-    });
+    try {
+      const filter = { where: {} };
+      filter.where[modelA + "Id"] = req.params.id;
+      db[model].findAll(filter).then((children) => {
+        let ids = children.map((child) => child.dataValues[modelB + "Id"]);
+  
+        db[modelB].findAll({ where: { id: [...ids] } }).then((item) => {
+          res.send(item);
+        });
+      });
+    } catch (error) {
+      res.status(500).send(error)
+    }
   });
 
   return { operation: "get", path: path, type: "get", params: ["id"] };

@@ -35,10 +35,6 @@ class ProtectedRoute extends React.Component {
           <h4>
             This is embarrassing ... and ... our app isn't working right now.
           </h4>
-          <button
-            className="btn btn-danger"
-            onClick={() => makeRequest({ params: { reload: true } })}
-            >Reload</button>
         </Alert>
       );
     else if (isAuthenticated === undefined)
@@ -51,10 +47,6 @@ class ProtectedRoute extends React.Component {
     <h4>
       This is embarrassing ... and ... our app isn't working right now.
     </h4>
-    <button
-      className="btn btn-danger"
-      onClick={() => makeRequest({ params: { reload: true } })}
-      >Reload</button>
   </Alert>;
   }
 }
