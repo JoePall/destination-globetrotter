@@ -14,7 +14,7 @@ function People(tripId) {
   const user = JSON.parse(sessionStorage.getItem("user"));
 
   return (
-    <Container fluid className="py-4">
+    <Container fluid className="py-4 m-0">
       <h3 className="mx-auto text-center">People</h3>
       <Get url={"/api/usersbytrip/" + tripId}>
         {(error, response, makeRequest) => {

@@ -3,7 +3,7 @@ import './style.css';
 import ActiveFriends from './ActiveFriends';
 import InactiveFriends from './InactiveFriends';
 import PotentialFriends from './PotentialFriends';
-import Pending from './components/Pending';
+import Pending from './components/pending';
 
 class App extends Component {
 
