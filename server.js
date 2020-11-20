@@ -90,6 +90,22 @@ const seed = () => {
     tripId: 1,
     userId: 1,
   });
+  db.trip_message.create({
+    tripId: 1,
+    messageId: 1,
+  });
+  db.message.create({
+    userId: 1,
+    text: "Fly into Hawaii and jump on a cruise? ... we can see every island that way and unload our bags once as opposed to multiple hotels on different islands and extra travel time which can be accomplished during the night."
+  });
+  db.trip_message.create({
+    tripId: 1,
+    messageId: 2,
+  });
+  db.message.create({
+    userId: 2,
+    text: "That sounds good!"
+  });
   db.trip_bookmark.create({
     bookmarkId: 1,
     tripId: 1,
