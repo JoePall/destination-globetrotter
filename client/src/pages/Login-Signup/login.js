@@ -56,7 +56,7 @@ class Login extends React.Component {
             <input type="password" className="mx-auto" onInput={this.handleInputChange} name="password" placeholder="password" />
           </div>
           <div className="row mx-auto my-2 fadeIn">
-            <button onClick={this.handleSubmit} className="btn btn-success my-4 w-75 mx-auto btn-lg">Login</button>
+            <button autoFocus onClick={this.handleSubmit} className="btn btn-success my-4 w-75 mx-auto btn-lg">Login</button>
           </div>
         </div>
       </div>
