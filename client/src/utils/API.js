@@ -53,6 +53,18 @@ const api = {
     signup: (o) => axios.post("/api/signup", o),
     isAuthenticated: () => axios.get("/api/authenticated"),
   },
+  friends: {
+    get: () => axios.get("/api/friends/"),
+    create: (o) => axios.post("/api/friends/", o),
+    getOne: (id) => axios.get("/api/friends/:id", id),
+    delete: (id) => axios.delete("/api/friends/:id", id),
+  },
+  pending: {
+    get: () => axios.get("/api/pending/"),
+    create: (o) => axios.post("/api/pending/", o),
+    getOne: (id) => axios.get("/api/pending/:id", id),
+    delete: (id) => axios.delete("/api/pending/:id", id),
+  },
   tripsbyuser: (id) => axios.get("/api/tripsbyuser/" + id),
   usersbytrip: (id) => axios.get("/api/usersbytrip/" + id),
   createfromflight: (o) => axios.post("/api/createfromflight/", o),
