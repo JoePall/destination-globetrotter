@@ -51,8 +51,9 @@ function Pending(props) {
                         .create({ userId: user.id, tripId: item.trip.id })
                         .then(() => {
                           api.pending.delete(item.pending.id).then((res) => {
-                            location.assign("/trips/" + res.data.tripId);
-                            //TODO: handle ui!
+                            console.log("Should change pages to: " + "/trips/" + item.trip.id);
+
+                            window.location.assign("/trips/" + item.trip.id ? item.trip.id : "");
                           });
                         });
                     }}
@@ -60,7 +61,7 @@ function Pending(props) {
                     Accept
                   </Button>
                   <Button className="btn btn-danger m-2" onClick={() => {
-                    api.pending.delete(item.pending.id).then(() => {
+                    api.pending.delete(item.pending.id).then((res) => {
                       //TODO: handle ui
                     });
                   }}>

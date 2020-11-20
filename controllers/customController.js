@@ -4,7 +4,7 @@ const db = require("../models");
 module.exports = function (router) {
   //TODO: Finish this...
   router.post("/api/createfromflight", isAuthenticated, (req, res) => {
-    if (!req.user) return res.send("No user found");
+    if (!req.user) return res.status(500).send("No user found");
 
     db.bookmark
       .create({ ...req.body.bookmark, userId: req.user.id })
@@ -43,7 +43,7 @@ module.exports = function (router) {
         .findAll({ where: { userId: req.user.id, tripId: req.params.id } })
         .then((trip_user) => {
           if (!trip_user.length > 0)
-            return res.send(
+            return res.status(500).json(
               "User is not authorized ... Request invite from the trip owner"
             );
 

@@ -11,8 +11,9 @@ function Messages(tripId) {
     <Container fluid>
       <h3 className="mx-auto text-center">Messages</h3>
       <Get url={"/api/messagesfromtrip/" + tripId}>
-        {(error, response, makeRequest) => {
+        {(error, response) => {
           if (error) {
+            window.location.assign("/trips");
             return (
               <Alert className="mx-auto col-8 alert alert-danger text-center">
                 <h2>Sorry!</h2>

@@ -92,14 +92,12 @@ const Search = () => {
         bookmark: { data: result },
         trip: {
           location: result.cityTo,
-          start: moment(result.route[0].local_departure).format("D/M/Y"),
-          end: moment(
-            result.route[result.route.length - 1].local_arrival
-          ).format("D/M/Y"),
+          start: moment(result.route[0].local_departure).format("M/D/Y"),
+          end: moment(result.route[result.route.length - 1].local_arrival).format("M/D/Y"),
         },
       })
       .then((res) => {
-        location.assign("/trips/" + res.data.tripId);
+        location.assign("/trips/" + res.data.tripId ? res.data.tripId : "");
       });
   };
 
