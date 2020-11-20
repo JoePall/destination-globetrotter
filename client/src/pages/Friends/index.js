@@ -1,4 +1,4 @@
-import React, { useState, Component } from 'react';
+import React, { Component } from 'react';
 import './style.css';
 import ActiveFriends from './ActiveFriends';
 import InactiveFriends from './InactiveFriends';
@@ -11,7 +11,9 @@ class App extends Component {
     super(props);
     this.state = {
       potentialFriends: [
-        { name: user.firstName + " " + user.lastName + ", " + user.email, potential: true }
+        { name: user.firstName + " " + user.lastName + ", " + user.email, potential: true },
+        { name: "Mary Smith", potential: true },
+        { name: "Jack Frost", potential: true }
       ],
       friends: [
         { name: 'John Doe', active: true },
@@ -47,7 +49,6 @@ class App extends Component {
 
   handleRemoveAll = () => {
     this.setState({
-      potentialFriends: [],
       friends: []
     });
   };
@@ -65,11 +66,11 @@ class App extends Component {
     });
   };
 
-  handleToggle = nam => {
+  handleAcceptFriend = nam => {
     this.setState(prevState => {
-      const { friends } = prevState;
-      const friend = friends.find(frnd => frnd.name === nam);
-      const newFriends = friends.filter(f => f !== friend);
+      const { potentialFriends } = prevState;
+      const friend = potentialFriends.find(frnd => frnd.name === nam);
+      const newFriends = potentialFriends.filter(f => f !== friend);
       return {
         friends: [
           ...newFriends,
@@ -78,9 +79,10 @@ class App extends Component {
             active: !friend.active
           }
         ]
-      };
-    });
-  };
+      }
+      
+    }) 
+  }
 
   handleToggle = nam => {
     this.setState(prevState => {
@@ -118,15 +120,12 @@ class App extends Component {
             potentialFriends => potentialFriends.potential === true
           )}
           remove={this.handleDeclineFriend}
-          acceptFriend={this.handleAcceptFriend}
+          toggle={this.handleAcceptFriend}
         />
     
         <h1>Active Friends</h1>
         <ActiveFriends
-          // potentialFriends={this.state.potentialFriends.filter(
-          //   potentialFriends => potentialFriends.potential === true
-          // )}
-          friends={this.state.friends.filter(
+            friends={this.state.friends.filter(
             friends => friends.active === true
           )}
           remove={this.handleRemoveFriend}
