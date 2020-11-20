@@ -49,6 +49,17 @@ const seed = () => {
     lastName: "Mink",
     password: "mminkmmink",
   });
+  db.pending.create({
+    requestedId: 1,
+    requesterId: 2,
+    tripId: 2
+  });
+  
+  db.pending.create({
+    requestedId: 2,
+    requesterId: 1,
+    tripId: 2
+  });
   db.group.create({
     name: "KU Coding Bootcamp Class of '20"
   });
@@ -93,7 +104,7 @@ const seed = () => {
     password: "#passedIT",
   });
   db.message.create({
-    userId: 3,
+    userId: 1,
     tripId: 1,
     text: "Fly into Hawaii and jump on a cruise? ... we can see every island that way and unload our bags once as opposed to multiple hotels on different islands and extra travel time which can be accomplished during the night."
   });

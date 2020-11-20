@@ -3,6 +3,7 @@ import './style.css';
 import ActiveFriends from './ActiveFriends';
 import InactiveFriends from './InactiveFriends';
 import PotentialFriends from './PotentialFriends';
+import Pending from './components/pending';
 
 class App extends Component {
 
@@ -115,13 +116,14 @@ class App extends Component {
         <br />
 
         <h1>Potential Friends</h1>
-        <PotentialFriends
+        <Pending />
+        {/* <PotentialFriends
           potentialFriends={this.state.potentialFriends.filter(
             potentialFriends => potentialFriends.potential === true
           )}
           remove={this.handleDeclineFriend}
           toggle={this.handleAcceptFriend}
-        />
+        /> */}
     
         <h1>Active Friends</h1>
         <ActiveFriends

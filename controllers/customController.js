@@ -4,7 +4,6 @@ const db = require("../models");
 module.exports = function (router) {
   //TODO: Finish this...
   router.post("/api/createfromflight", isAuthenticated, (req, res) => {
-    console.log("HELLOOOOOOOOOO");
     if (!req.user) return res.send("No user found");
 
     db.bookmark
@@ -40,39 +39,72 @@ module.exports = function (router) {
 
   router.get("/api/messagesfromtrip/:id", isAuthenticated, (req, res) => {
     try {
-      let promises = [];
-
       db.trip_user
-        .findOne({ where: { userId: req.user.id, tripId: req.params.id } })
-        .then((hasOne) => {
-          console.log(hasOne);
+        .findAll({ where: { userId: req.user.id, tripId: req.params.id } })
+        .then((trip_user) => {
+          if (!trip_user.length > 0)
+            return res.send(
+              "User is not authorized ... Request invite from the trip owner"
+            );
 
           db.message
             .findAll({ where: { tripId: req.params.id } })
             .then((messages) => {
-              messages.map((message) => {
-                promises.push(
-                  db.user
-                    .findOne({ where: { id: message.dataValues.userId } })
-                    .then((user) => {
-                      let result = {};
-                      result.id = message.id;
-                      result.name =
-                        user.dataValues.firstName +
-                        " " +
-                        user.dataValues.lastName;
-                      result.email = user.dataValues.email;
-                      result.text = message.text;
-                      console.log(result);
-                      return result;
-                    })
-                );
+              let messageIds = messages.map((message) => message.id);
+              db.user.findAll({ where: { id: messageIds } }).then((users) => {
+                let result = messages.map((message) => {
+                  if (!message) {
+                    console.log("Hello");
+                    return;
+                  }
+                  console.log(message);
+                  console.log(users);
+                  let item = {};
+                  console.log(users);
+                  let user = users.find((u) => {
+                    console.log(u);
+                    return u.id === message.dataValues.userId;
+                  });
+                  console.log(user);
+                  item.id = message.dataValues.id;
+                  item.name =
+                    user.dataValues.firstName + " " + user.dataValues.lastName;
+                  item.email = user.dataValues.email;
+                  item.text = message.dataValues.text;
+                  return item;
+                });
+
+                res.json(result);
               });
             });
         });
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  });
 
-      Promise.all(promises).then();
-      
+  router.get("/api/pendingtrips/:id", isAuthenticated, (req, res) => {
+    try {
+      db.pending
+        .findAll({ where: { requestedId: req.user.id } })
+        .then((pending) => {
+          let ownerIds = pending.map(p => p.requesterId);
+          let tripIds = pending.map(p => p.tripId);
+          
+          db.user.findAll({ where: { id: ownerIds } }).then(owner => {
+            db.trip.findAll({ where: { id: tripIds } }).then(trip => {
+              let result = pending.map(item => {
+                let x = {};
+                x.pending = item;
+                x.owner = owner[0];
+                x.trip = trip[0];
+                return x;
+              });
+
+              res.json(result);
+            });
+          });
+        });
     } catch (error) {
       res.status(500).json(error);
     }

@@ -38,14 +38,9 @@ function Messages(tripId) {
                     {JSON.stringify(error)}
                   </div>
                 </div>
-
-                <button
-                  className="btn btn-danger"
-                  onClick={() => makeRequest({ params: { reload: true } })}
-                >Reload</button>
               </Alert>
             );
-          } else if (response !== null) {
+          } else if (response !== null && response.data !== null) {
             console.log(response);
             return response.data.map((item) => {
               return (
