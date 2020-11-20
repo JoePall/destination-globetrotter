@@ -19,7 +19,7 @@ import { Container } from "react-bootstrap";
 
 function App() {
   return (
-    <Container fluid className="">
+    <Container fluid>
       <Router>
         <Navbar style={{ position: "sticky", top: 0, left: 0, right: 0 }} />
         <Switch>

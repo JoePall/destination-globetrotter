@@ -52,14 +52,14 @@ const api = {
   friends: {
     get: () => axios.get("/api/friends/"),
     create: (o) => axios.post("/api/friends/", o),
-    getOne: (id) => axios.get("/api/friends/:id", id),
-    delete: (id) => axios.delete("/api/friends/:id", id),
+    getOne: (id) => axios.get("/api/friends/" + id),
+    delete: (id) => axios.delete("/api/friends/" + id),
   },
   pending: {
     get: () => axios.get("/api/pending/"),
     create: (o) => axios.post("/api/pending/", o),
-    getOne: (id) => axios.get("/api/pending/:id", id),
-    delete: (id) => axios.delete("/api/pending/:id", id),
+    getOne: (id) => axios.get("/api/pending/" + id),
+    delete: (id) => axios.delete("/api/pending/" + id),
   },
   tripsbyuser: (id) => axios.get("/api/tripsbyuser/" + id),
   usersbytrip: (id) => axios.get("/api/usersbytrip/" + id),
