@@ -10,6 +10,10 @@ module.exports = function (sequelize, DataTypes) {
       userId: {
         type: DataTypes.INTEGER,
         allowNull: false,
+      },
+      tripId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
       }
     });
 
