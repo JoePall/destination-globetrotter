@@ -10,13 +10,14 @@ import { FaSuitcaseRolling } from 'react-icons/fa';
 import { FaUserFriends } from 'react-icons/fa';
 import { FaPlane } from 'react-icons/fa';
 import { FaHome } from 'react-icons/fa';
+import { FaSignOutAlt } from 'react-icons/fa';
 
 function Navbar() {
   return (
     <div>
-      <header className="fixed-top body-content border-bottom border-warning">
+      <header style={{ height: "6.5rem" }} className="fixed-top body-content border-bottom border-warning">
         <Link to="/">
-          <img alt="logo" src={Logo} id="logo"></img>
+          <img alt="logo" style={{ height: "3.5rem", width: "15rem" }} src={Logo} id="logo"></img>
         </Link>
 
         <Menu>

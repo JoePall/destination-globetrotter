@@ -11,8 +11,8 @@ function Home() {
   let location = "";
 
   return (
-    <Container fluid="lg" className="p-4">
-      <Card className="animate__animated animate__fadeInUpBig text-center bg-dark mx-auto p-5 m-5">
+    <Container fluid="lg" className="animate__animated animate__fadeIn">
+      <Card className=" text-center bg-dark mx-auto p-5 m-5">
         <h1 className="mx-auto drop-shadow-light text-white">
           Welcome to
         </h1>
@@ -22,9 +22,9 @@ function Home() {
           className="mx-auto drop-shadow-light"
         ></img>
         <Row>
-          <Col>
+          <Col lg={9} md={12}>
             <Select
-              autoFocus="true"
+              autoFocus
               placeholder="Going places?"
               options={options.map((option) => {
                 return {
@@ -39,26 +39,28 @@ function Home() {
                   search: option[0].split(" ")[0],
                 };
               })}
-              className="input"
+              className="input my-2"
               onChange={(e) => {
                 console.log(e);
                 location = e;
               }}
             />
           </Col>
-          <Button className="btn btn-warning"
-            onClick={() => {
-              history.push({
-                pathname: "/search-flights",
-                state: { location: location },
-              });
-            }}
-          >
-            Let's go Places!
-          </Button>
+          <Col lg={3} md={12}>
+            <Button 
+              className="btn w-100 h-75 my-2 btn-warning"
+              onClick={() => {
+                history.push({
+                  pathname: "/search-flights",
+                  state: { location: location },
+                });
+              }}>
+              Let's travel! ✈
+              </Button>
+          </Col>
         </Row>
         <h2 className="text-center text-white mt-4 mb-0 mx-auto">
-          Grab a friend and let's go see the world!
+          Grab a friend and let's go see the world! ✈
         </h2>
       </Card>
     </Container>

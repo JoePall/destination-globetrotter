@@ -8,13 +8,6 @@ const api = {
     update: (id, o) => axios.put("/api/bookmark/" + id, o),
     delete: (id) => axios.delete("/api/bookmark/" + id),
   },
-  connection: {
-    get: () => axios.get("/api/connection/"),
-    create: (o) => axios.post("/api/connection/", o),
-    getOne: (id) => axios.get("/api/connection/" + id),
-    update: (id, o) => axios.put("/api/connection/" + id, o),
-    delete: (id) => axios.delete("/api/connection/" + id),
-  },
   group: {
     get: () => axios.get("/api/group/"),
     create: (o) => axios.post("/api/group/", o),
@@ -35,6 +28,19 @@ const api = {
     getOne: (id) => axios.get("/api/trip/" + id),
     update: (id, o) => axios.put("/api/trip/" + id, o),
     delete: (id) => axios.delete("/api/trip/" + id),
+    createFromFlight: (o) => axios.post("/api/createfromflight", o),
+  },
+  trip_bookmark: {
+    create: (o) => axios.post("/api/trip_bookmark/", o),
+    delete: (id) => axios.delete("/api/trip_bookmark/" + id),
+  },
+  trip_message: {
+    create: (o) => axios.post("/api/trip_message/", o),
+    delete: (id) => axios.delete("/api/trip_message/" + id),
+  },
+  trip_user: {
+    create: (o) => axios.post("/api/trip_user/", o),
+    delete: (id) => axios.delete("/api/trip_user/" + id),
   },
   user: {
     get: () => axios.get("/api/user/"),
@@ -46,14 +52,9 @@ const api = {
     logout: () => axios.get("/api/logout"),
     signup: (o) => axios.post("/api/signup", o),
     isAuthenticated: () => axios.get("/api/authenticated"),
-    
   },
-  usersbygroup: (id) => axios.get("/api/usersbygroup/" + id),
-  groupsbyuser: (id) => axios.get("/api/groupsbyuser/" + id),
-  bookmarksbygroup: (id) => axios.get("/api/bookmarksbygroup/" + id),
-  groupsbybookmark: (id) => axios.get("/api/groupsbybookmark/" + id),
   tripsbyuser: (id) => axios.get("/api/tripsbyuser/" + id),
-  usersbytrip: (id) => axios.get("/api/usersbytrip/" + id)
+  usersbytrip: (id) => axios.get("/api/usersbytrip/" + id),
 };
 
 export default api;

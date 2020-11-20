@@ -1,27 +1,48 @@
 import React from "react";
-import Login from "./Login-Signup/login"
+import Login from "./Login-Signup/login";
 import api from "../utils/API";
-import Loader from "react-loader-spinner";
+import Loading from "../components/Loading";
 
 class ProtectedRoute extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
 
-    this.state = { isAuthenticated: undefined };
+    this.state = { isAuthenticated: undefined, error: undefined };
   }
-  
+
   componentDidMount() {
     this.state.id = this.props.computedMatch.params.id;
-    api.user.isAuthenticated().then(res => this.setState({ isAuthenticated: res.data }));
+
+    api.user
+      .isAuthenticated()
+      .then((res) => {
+        this.setState({ isAuthenticated: res.data });
+      })
+      .catch((error) => {
+        this.setState({ error: error });
+      });
   }
 
   render() {
-    
     const Component = this.props.component;
-    const { isAuthenticated } = this.state;
-    if (isAuthenticated === undefined) return <div className="m-5 p-5 mx-auto w-25 text-center">
-      <Loader className ="m-5 p-5" type="Bars" color="#00eFFF44" height={200} width={200} />
-    </div>;
+    const { isAuthenticated, error } = this.state;
+    if (error)
+      return (
+        <Alert className="mx-auto col-8 alert alert-danger text-center">
+          <h2>Sorry!</h2>
+          <hr />
+          <h4>
+            This is embarrassing ... and ... our app isn't working right now.
+          </h4>
+          <button
+            className="btn btn-danger"
+            onClick={() => makeRequest({ params: { reload: true } })}
+            value="Reload"
+          />
+        </Alert>
+      );
+    else if (isAuthenticated === undefined)
+      return <Loading />
     else if (isAuthenticated === false) return <Login />;
     else if (isAuthenticated === true) return <Component id={this.state.id} />;
     else return <span>An error occurred.</span>;
