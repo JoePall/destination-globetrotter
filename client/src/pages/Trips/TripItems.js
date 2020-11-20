@@ -37,6 +37,7 @@ function TripItems() {
                       <TripItem id={trip.id} />
                     </a>
                   ))}
+                  {(response.data.length <= 0) ? <><span>No trips planned? </span><a className="btn btn-outline-warning" href="/search-flights">Find a Flight</a><span> now!</span></> : ""}
                 </Container>
               );
             }
