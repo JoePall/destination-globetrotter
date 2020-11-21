@@ -28,7 +28,7 @@ function TripItem(props) {
           
           return <Container fluid>
             <h3>{response.data.location}</h3>
-            <h4>{response.data.start ? moment(response.data.start).format("DD/MM/YY") : ""}{response.data.end ? " - " + moment(response.data.end).format("DD/MM/YY") : ""}</h4>
+            <h4>{response.data.start ? response.data.start : ""}{response.data.end ? " - " + response.data.end : ""}</h4>
           </Container>
         }
         return <Loading />;
