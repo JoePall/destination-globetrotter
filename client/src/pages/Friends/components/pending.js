@@ -1,9 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import Container from "react-bootstrap/Container";
-import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
-import { Get } from "react-axios";
-import Loading from "../../../components/Loading";
 import api from "../../../utils/API";
 
 class Pending extends React.Component {
