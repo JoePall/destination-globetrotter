@@ -54,15 +54,18 @@ function Messages(tripId) {
               );
             } else if (response !== null && response.data !== null) {
               console.log(response);
+              console.log(response);
+              console.log(response.data);
+              if (response.data.data) console.log("DATA-----" + response.data.data);
               return response.data.map((item) => {
                 return (
                   <Alert
-                    key={item.id}
+                    key={item.message.id}
                     className="w-100 warning alert-warning text-center"
                   >
-                    <strong className="mr-auto">{item.name}</strong>
+                    <strong className="mr-auto">{item.owner.firstName + " " + item.owner.lastName}</strong>
                     <hr />
-                    <p>{item.text}</p>
+                    <p>{item.message.text}</p>
                   </Alert>
                 );
               });

@@ -42,25 +42,17 @@ module.exports = function (router) {
       db.trip_user
         .findAll({ where: { userId: req.user.id, tripId: req.params.id } })
         .then((trip_user) => {
-
           db.message
             .findAll({ where: { tripId: req.params.id } })
             .then((messages) => {
-              let messageIds = messages.map((message) => message.id);
-              db.user.findAll({ where: { id: messageIds } }).then((users) => {
+              let messageOwnerIds = messages.map((message) => message.dataValues.userId);
+              db.user.findAll({ where: { id: messageOwnerIds } }).then((users) => { 
                 let result = messages.map((message) => {
-                  if (!message) {
-                    return;
-                  }
                   let item = {};
-                  let user = users.find((u) => u.id === message.userId);
-                  console.log(user);
-                  console.log(message);
-                  item.id = message.dataValues.id;
-                  item.name =
-                    user.firstName + " " + user.lastName;
-                  item.email = user.email;
-                  item.text = message.dataValues.text;
+
+                  item.message = message.dataValues;
+                  item.owner = users.find(user => user.dataValues.id === message.dataValues.userId).dataValues;
+
                   return item;
                 });
 
@@ -78,12 +70,12 @@ module.exports = function (router) {
       db.pending
         .findAll({ where: { requestedId: req.user.id } })
         .then((pending) => {
-          let ownerIds = pending.map(p => p.requesterId);
-          let tripIds = pending.map(p => p.tripId);
-          
-          db.user.findAll({ where: { id: ownerIds } }).then(owner => {
-            db.trip.findAll({ where: { id: tripIds } }).then(trip => {
-              let result = pending.map(item => {
+          let ownerIds = pending.map((p) => p.requesterId);
+          let tripIds = pending.map((p) => p.tripId);
+
+          db.user.findAll({ where: { id: ownerIds } }).then((owner) => {
+            db.trip.findAll({ where: { id: tripIds } }).then((trip) => {
+              let result = pending.map((item) => {
                 let x = {};
                 x.pending = item;
                 x.owner = owner[0];
