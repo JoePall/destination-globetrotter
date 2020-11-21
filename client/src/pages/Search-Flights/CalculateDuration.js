@@ -8,7 +8,7 @@ function CalculateDuration(props) {
   if (hours > 20) {
     returnduration = -1;
   } else {
-    returnduration = "Duration -- " + hours + ":" + minutes
+    returnduration = hours + ":" + minutes
   }
 
   return returnduration;

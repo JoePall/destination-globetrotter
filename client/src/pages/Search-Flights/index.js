@@ -28,6 +28,7 @@ const Search = () => {
     history.location.state.location
   ) {
     selectedDestination = history.location.state.location;
+    history.location.state.location = undefined;
   }
 
   const [fromairport, setfromairport] = useState("");

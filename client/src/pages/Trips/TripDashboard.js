@@ -15,10 +15,10 @@ function TripDashboard(tripId) {
         <Col md={12} lg={12} className="m-0 p-0">
           <Bookmarks id={tripId} />
         </Col>
-        <Col md={12} lg={6} className="m-0 p-0">
+        <Col md={12} lg={6} className="m-0 p-0 vh-50">
           <People id={tripId} />
         </Col>
-        <Col md={12} lg={6} className="m-0 p-0">
+        <Col md={12} lg={6} className="m-0 p-0 vh-50">
           <Messages id={tripId} />
         </Col>
       </Row>
