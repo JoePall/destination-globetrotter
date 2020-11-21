@@ -49,11 +49,13 @@ module.exports = function (router) {
               let messageIds = messages.map((message) => message.id);
               db.user.findAll({ where: { id: messageIds } }).then((users) => {
                 let result = messages.map((message) => {
-                  if (!message) {
-                    return;
-                  }
+                  console.log(message);
                   let item = {};
-                  let user = users.find((u) => u.id === message.userId);
+                  let user = users.find((u) => {
+                    console.log(u);
+                    console.log(message);
+                    return (u.id === message.userId);
+                  });
                   console.log(user);
                   console.log(message);
                   item.id = message.dataValues.id;

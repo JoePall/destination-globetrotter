@@ -15,7 +15,7 @@ app.use(
     secret: "Espresso in Tahiti Mornings! Fresh Seafood in Hawaii evenings!",
     resave: true,
     saveUninitialized: true,
-    cookie: { maxAge: 86400000 }
+    cookie: { maxAge: 86400000 },
   })
 );
 app.use(passport.initialize());
@@ -29,6 +29,10 @@ if (process.env.NODE_ENV === "production") {
 db.sequelize.sync({ force: true }).then((seq) => {
   // Setting up route controllers for db.
   app.use(require("./controllers")(seq.models));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname + "/client/build/index.html"));
+  });
 
   app.listen(PORT, function () {
     seed();
@@ -54,45 +58,45 @@ const seed = () => {
     firstName: "Andrew",
     lastName: "Popp",
     password: "password",
-  })
+  });
   db.user.create({
     email: "julieschaub@hotmail.com",
     firstName: "Julie",
     lastName: "Schaub",
     password: "Libby",
-  })
+  });
   db.pending.create({
     requestedId: 1,
     requesterId: 2,
-    tripId: 2
+    tripId: 2,
   });
-  
+
   db.pending.create({
     requestedId: 2,
     requesterId: 1,
-    tripId: 2
+    tripId: 2,
   });
   db.group.create({
-    name: "KU Coding Bootcamp Class of '20"
+    name: "KU Coding Bootcamp Class of '20",
   });
   db.trip_user.create({
     userId: 1,
-    tripId: 1
+    tripId: 1,
   });
   db.group.create({
-    name: "Smith Family"
+    name: "Smith Family",
   });
   let date = Date.now();
   db.trip.create({
     location: "Los Angeles",
-    userId: 1
+    userId: 1,
   });
   db.trip.create({
     location: "Los Angeles",
-    start: moment(date).add(7, 'days').format("M/D/Y"),
-    end: moment(date).add(15, 'days').format("M/D/Y"),
-    userId: 1
-  })
+    start: moment(date).add(7, "days").format("M/D/Y"),
+    end: moment(date).add(15, "days").format("M/D/Y"),
+    userId: 1,
+  });
   db.user_group.create({
     userId: 1,
     groupId: 1,
@@ -114,11 +118,12 @@ const seed = () => {
   db.message.create({
     userId: 1,
     tripId: 1,
-    text: "Fly into Hawaii and jump on a cruise? ... we can see every island that way and unload our bags once as opposed to multiple hotels on different islands and extra travel time which can be accomplished during the night."
+    text:
+      "Fly into Hawaii and jump on a cruise? ... we can see every island that way and unload our bags once as opposed to multiple hotels on different islands and extra travel time which can be accomplished during the night.",
   });
   db.message.create({
     userId: 2,
     tripId: 1,
-    text: "That sounds good!"
+    text: "That sounds good!",
   });
 };
