@@ -13,15 +13,15 @@ function TripDashboard(props) {
       </Row>
       <Row className="bg-light my-3 py-3">
         <Col md={12} lg={12} className="m-0 p-0">
-          <Bookmarks id={props.tripId} />
+          <Bookmarks tripId={props.tripId} />
         </Col>
       </Row>
       <Row className="bg-warning my-3 py-3">
         <Col md={12} lg={6} className="m-0 p-0 vh-50">
-          <People id={props.tripId} />
+          <People tripId={props.tripId} />
         </Col>
         <Col md={12} lg={6} className="m-0 p-0 vh-50">
-          <Messages id={props.tripId} />
+          <Messages tripId={props.tripId} />
         </Col>
       </Row>
     </Container>

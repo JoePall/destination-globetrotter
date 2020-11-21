@@ -6,11 +6,11 @@ import { Get } from "react-axios";
 import Loading from "../../../components/Loading";
 import Invite from "../../Friends/components/invite";
 
-function People(tripId) {
+function People(props) {
   return (
     <Container fluid className="py-4 m-0">
       <h3 className="mx-auto text-center">People</h3>
-      <Get url={"/api/usersbytrip/" + tripId.id}>
+      <Get url={"/api/usersbytrip/" + props.tripId}>
         {(error, response) => {
           if (error) {
             return (
@@ -35,7 +35,7 @@ function People(tripId) {
                 {response.data.map((item, i) => <section key={item.id}><span>{item.firstName + " " + item.lastName}</span>{response.data.length - 1 === i ? "" : <hr />}</section>)}
                 </Toast>
                 <Toast className="p-3 border border-warning mx-auto">
-                  <Invite props={tripId} />
+                  <Invite tripId={props.tripId} />
                 </Toast>
               </Container>
             );
