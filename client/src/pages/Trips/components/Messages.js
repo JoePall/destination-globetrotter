@@ -10,11 +10,8 @@ import { Get } from "react-axios";
 import Loading from "../../../components/Loading";
 import api from "../../../utils/API";
 
-function Messages(tripId) {
-  tripId = tripId.id ? tripId.id : tripId;
+function Messages(props) {
   const user = JSON.parse(sessionStorage.getItem("user"));
-
-  console.log(tripId);
   const [message, setMessage] = useState("");
 
   return (
@@ -23,7 +20,7 @@ function Messages(tripId) {
         <Col xs={12}>
           <h3 className="mx-auto text-center">Messages</h3>
         </Col>
-        <Get url={"/api/messagesfromtrip/" + tripId}>
+        <Get url={"/api/messagesfromtrip/" + props.tripId}>
           {(error, response, makeRequest) => {
             if (error) {
               window.location.assign("/trips");
@@ -92,7 +89,7 @@ function Messages(tripId) {
                 let result = {};
 
                 result.userId = user.id;
-                result.tripId = tripId;
+                result.tripId = props.tripId;
                 result.text = message;
 
                 api.message.create(result).then((res) => {

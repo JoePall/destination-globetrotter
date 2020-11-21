@@ -6,7 +6,7 @@ import Select from "react-select";
 import { Get } from "react-axios";
 import Loading from "../../../components/Loading";
 
-function Invite(tripId) {
+function Invite(props) {
   const [state, setState] = useState({});
   const user = JSON.parse(sessionStorage.getItem("user"));
 
@@ -48,7 +48,7 @@ function Invite(tripId) {
                   let pending = {
                     requesterId: user.id,
                     requestedId: state.person,
-                    tripId: tripId,
+                    tripId: props.tripId,
                   };
 
                   console.log(pending);

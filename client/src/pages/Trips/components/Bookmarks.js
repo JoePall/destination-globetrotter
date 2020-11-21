@@ -6,12 +6,10 @@ import Loading from "../../../components/Loading";
 import DisplayFlight from "../../Search-Flights/DisplayFlight";
 
 
-function Bookmarks(id) {
-  id = id.id ? id.id : id;
-  
+function Bookmarks(props) {
   return <Container fluid>
       <h3 className="mx-auto text-center">Bookmarks</h3>
-      <Get url={"/api/bookmarksbytrip/" + id}>
+      <Get url={"/api/bookmarksbytrip/" + props.tripId}>
       {(error, response, makeRequest) => {
           if (error) {
             return (
