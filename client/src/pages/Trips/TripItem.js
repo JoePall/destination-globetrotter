@@ -1,13 +1,10 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
-import moment from "moment";
 import { Get } from "react-axios";
 import Loading from "../../components/Loading";
 
 function TripItem(props) {
-  console.log(props);
-  console.log(props.id);
   return (
     <Get url={"/api/trip/" + props.id}>
     {(error, response, makeRequest) => {
@@ -27,8 +24,8 @@ function TripItem(props) {
           console.log(response.data);
           
           return <Container fluid>
-            <h3>{response.data.location}</h3>
-            <h4>{response.data.start ? response.data.start : ""}{response.data.end ? " - " + response.data.end : ""}</h4>
+            <h4>{response.data.location}</h4>
+            <h5>{response.data.start ? response.data.start : ""}{response.data.end ? " - " + response.data.end : ""}</h5>
           </Container>
         }
         return <Loading />;

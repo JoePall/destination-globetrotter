@@ -11,10 +11,12 @@ function TripDashboard(tripId) {
       <Row className="mb-5 mx-auto text-center">
         <TripItem id={tripId} />
       </Row>
-      <Row className="bg-light py-5">
+      <Row className="bg-light my-3 py-3">
         <Col md={12} lg={12} className="m-0 p-0">
           <Bookmarks id={tripId} />
         </Col>
+      </Row>
+      <Row className="bg-warning my-3 py-3">
         <Col md={12} lg={6} className="m-0 p-0 vh-50">
           <People id={tripId} />
         </Col>
