@@ -50,17 +50,10 @@ module.exports = function (router) {
               db.user.findAll({ where: { id: messageIds } }).then((users) => {
                 let result = messages.map((message) => {
                   if (!message) {
-                    console.log("Hello");
                     return;
                   }
-                  console.log(message);
-                  console.log(users);
                   let item = {};
-                  console.log(users);
-                  let user = users.find((u) => {
-                    console.log(u);
-                    return u.id === message.dataValues.userId;
-                  });
+                  let user = users.find((u) => u.id === message.userId);
                   console.log(user);
                   item.id = message.dataValues.id;
                   item.name =
