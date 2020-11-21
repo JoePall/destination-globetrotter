@@ -55,10 +55,11 @@ module.exports = function (router) {
                   let item = {};
                   let user = users.find((u) => u.id === message.userId);
                   console.log(user);
+                  console.log(message);
                   item.id = message.dataValues.id;
                   item.name =
-                    user.dataValues.firstName + " " + user.dataValues.lastName;
-                  item.email = user.dataValues.email;
+                    user.firstName + " " + user.lastName;
+                  item.email = user.email;
                   item.text = message.dataValues.text;
                   return item;
                 });

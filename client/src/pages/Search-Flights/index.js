@@ -87,10 +87,11 @@ const Search = () => {
     });
   };
 
-  const createTrip = (result, i) => {
+  const createTrip = (data, i) => {
     const button = document.getElementById(i);
     button.disabled = true;
 
+    let result = data.result ? data.result : data;
     api
       .createfromflight({
         bookmark: { data: result },
