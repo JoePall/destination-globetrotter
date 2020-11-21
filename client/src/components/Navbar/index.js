@@ -36,7 +36,7 @@ function Navbar() {
           <a className="menu-item" href="/messages">
           <FaCommentDots />Messages
           </a>
-          <a className="menu-item" href="/friends">
+          <a className="menu-item" href="/invites">
           <FaUserFriends />Invites
           </a>
           <a className="menu-item" href="/profile">
