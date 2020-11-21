@@ -10,7 +10,7 @@ function ConvertDateTime(props) {
 
     splitdatetime = removezerosandz.split("T");
     console.log("striptime = ", splitdatetime);
-    let formatdate = moment(splitdatetime[0]).format("MM/DD/YYYY")
+    let formatdate = moment(splitdatetime[0]).format("DD/MM/YYYY")
 
     returndatetime = formatdate + " @ " + splitdatetime[1];
   
