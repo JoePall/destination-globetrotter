@@ -10,7 +10,7 @@ function People(tripId) {
   return (
     <Container fluid className="py-4 m-0">
       <h3 className="mx-auto text-center">People</h3>
-      <Get url={"/api/usersbytrip/" + tripId}>
+      <Get url={"/api/usersbytrip/" + tripId.id}>
         {(error, response) => {
           if (error) {
             return (
@@ -31,7 +31,8 @@ function People(tripId) {
                   bg="light"
                   className="p-3 my-3 w-100 mx-auto"
                 >
-                {response.data.map((item) => <section key={item.id}><span>{item.firstName + " " + item.lastName}</span><hr /></section>)}
+                  {console.log(response)}
+                {response.data.map((item, i) => <section key={item.id}><span>{item.firstName + " " + item.lastName}</span>{response.data.length - 1 === i ? "" : <hr />}</section>)}
                 </Toast>
                 <Toast className="p-3 border border-warning mx-auto">
                   <Invite props={tripId} />

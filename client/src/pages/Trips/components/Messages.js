@@ -18,7 +18,7 @@ function Messages(tripId) {
   const [message, setMessage] = useState("");
 
   return (
-    <Container fluid className="m-2">
+    <Container fluid className="p-5">
       <Row>
         <Col xs={12}>
           <h3 className="mx-auto text-center">Messages</h3>
@@ -56,14 +56,17 @@ function Messages(tripId) {
               console.log(response);
               console.log(response);
               console.log(response.data);
-              if (response.data.data) console.log("DATA-----" + response.data.data);
+              if (response.data.data)
+                console.log("DATA-----" + response.data.data);
               return response.data.map((item) => {
                 return (
                   <Alert
                     key={item.message.id}
                     className="w-100 warning alert-warning text-center"
                   >
-                    <strong className="mr-auto">{item.owner.firstName + " " + item.owner.lastName}</strong>
+                    <strong className="mr-auto">
+                      {item.owner.firstName + " " + item.owner.lastName}
+                    </strong>
                     <hr />
                     <p>{item.message.text}</p>
                   </Alert>
@@ -83,22 +86,23 @@ function Messages(tripId) {
             onChange={(e) => setMessage(e.target.value)}
           />
           <InputGroup.Append>
-            <Button variant="outline-secondary"
-                          onClick={() => {
-                            let result = {};
-            
-                            result.userId = user.id;
-                            result.tripId = tripId;
-                            result.text = message;
-            
-                            console.log(result);
-            
-                            api.message.create(result).then((res) => {
-                              console.log(res);
-                            });
-                          }}
-                          id="inputGroup-sizing-lg"
-                        >Send</Button>
+            <Button
+              variant="secondary"
+              onClick={() => {
+                let result = {};
+
+                result.userId = user.id;
+                result.tripId = tripId;
+                result.text = message;
+
+                api.message.create(result).then((res) => {
+                  console.log(res);
+                });
+              }}
+              id="inputGroup-sizing-lg"
+            >
+              Send
+            </Button>
           </InputGroup.Append>
         </InputGroup>
       </Row>
