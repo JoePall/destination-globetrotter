@@ -7,8 +7,6 @@ import ConvertDateTime from "./ConvertDateTime";
 import Col from "react-bootstrap/Col";
 
 function DisplayFlight(props) {
-
-
   if (!props.result && props.result.route.length === 0) return null;
   console.log(props.result);
 
@@ -22,30 +20,32 @@ function DisplayFlight(props) {
             <Card className="border border-warning m-3 p-3">
                 <h3>Destination Flight</h3>
                 <h5>Duration: {departureDuration}</h5>
-                {getDepartureFlights(props)}
+                <DepartureFlights props={props} />
             </Card>
         </Col>
         <Col lg={6} md={12}>
             <Card className="border border-warning m-3 p-3">
                 <h3>Return Flight</h3>
                 <h5>Duration: {returnDuration}</h5>
-                {getReturnFlights(props)}
+                <ReturnFlights props={props} />
             </Card>
         </Col>
     </Row>
   );
 }
 
-function getReturnFlights(props) {
-    return props.result.route.map(leg => {
+function ReturnFlights(state) {
+    console.log(state);
+    return state.props.result.route.map(leg => {
         if (leg.return === 1) {
-            return getFlight(leg, props);
+            return getFlight(leg);
         }
     });    
 }
 
-function getDepartureFlights(props) {
-    return props.result.route.map(leg => {
+function DepartureFlights(state) {
+    console.log(state);
+    return state.props.result.route.map(leg => {
         if (leg.return === 0) {
             return getFlight(leg);
         }
