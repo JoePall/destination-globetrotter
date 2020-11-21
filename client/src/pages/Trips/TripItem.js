@@ -6,7 +6,7 @@ import Loading from "../../components/Loading";
 
 function TripItem(props) {
   return (
-    <Get url={"/api/trip/" + props.id}>
+    <Get url={"/api/trip/" + props.tripId}>
     {(error, response, makeRequest) => {
         if (error) {
           return (
@@ -21,7 +21,7 @@ function TripItem(props) {
             </Alert>
           );
         } else if (response !== null) {
-          console.log(response.data);
+          console.log(response);
           
           return <Container fluid>
             <h4>{response.data.location}</h4>
