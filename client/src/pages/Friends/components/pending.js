@@ -45,11 +45,7 @@ class Pending extends React.Component {
                       tripId: pend.trip.id,
                     });
                     api.pending.delete(pend.pending.id);
-                    this.setState({
-                      pends: this.state.pends.filter(
-                        (p) => p.pending.id !== pend.pending.id
-                      ),
-                    });
+                    location.assign("/trips/" + pend.trip.id);
                   }}
                 >
                   Accept
