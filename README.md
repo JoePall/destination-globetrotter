@@ -71,3 +71,6 @@ Please make sure to update tests as appropriate.</p><br>
     
 </body>
 </html> 
+
+![Front Screen](https://user-images.githubusercontent.com/64329660/99882697-07e83e80-2be8-11eb-98ba-ac31f45efd7b.PNG)
+![Trips](https://user-images.githubusercontent.com/64329660/99882700-0a4a9880-2be8-11eb-887b-6c3f37b7b143.PNG)
