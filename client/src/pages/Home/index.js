@@ -3,7 +3,7 @@ import Logo from "../../images/better-logo.png";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import "./style.css";
 import Select from "react-select";
-import options from "../../utils/codes.json";
+import options from "../../utils/airports.json";
 import { useHistory } from "react-router-dom";
 
 function Home() {
