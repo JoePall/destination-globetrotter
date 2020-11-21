@@ -1,6 +1,7 @@
 import React from "react";
 import { Alert, Container } from "react-bootstrap";
 import TripItem from "./TripItem";
+import Error from "../Error";
 import { Get } from "react-axios";
 import Loading from "../../components/Loading";
 
@@ -15,16 +16,7 @@ function TripItems() {
         <Get url={path}>
           {(error, response) => {
             if (error) {
-              return (
-                <Alert className="mx-auto col-8 alert alert-danger text-center">
-                  <h2>Sorry!</h2>
-                  <hr />
-                  <h4>
-                    This is embarrassing ... and ... our app isn't working right
-                    now.
-                  </h4>
-                </Alert>
-              );
+              return <Error />;
             } else if (response !== null) {
               return (
                 <Container fluid>

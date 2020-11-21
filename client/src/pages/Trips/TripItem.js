@@ -1,7 +1,7 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
-import Alert from "react-bootstrap/Alert";
 import { Get } from "react-axios";
+import Error from "../Error";
 import Loading from "../../components/Loading";
 
 function TripItem(props) {
@@ -9,17 +9,7 @@ function TripItem(props) {
     <Get url={"/api/trip/" + props.tripId}>
     {(error, response, makeRequest) => {
         if (error) {
-          return (
-            <Alert className="mx-auto col-8 alert alert-danger text-center">
-              <h2>Sorry!</h2>
-              <hr />
-              <h4>This is embarrassing ... and ... our app isn't working right now.</h4>
-              <button
-                className="btn btn-danger"
-                onClick={() => makeRequest({ params: { reload: true } })}
-              >Reload</button>
-            </Alert>
-          );
+          return <Error />;
         } else if (response !== null) {
           console.log(response);
           
