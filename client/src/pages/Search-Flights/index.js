@@ -108,7 +108,6 @@ const Search = () => {
 
   return (
     <div className="ui segment searchbar" id="searchbar">
-      <h1>{JSON.stringify(toairport)}</h1>
       <div className="form animate__animated animate__fadeIn">
         <form className="field">
           <Form.Row>
