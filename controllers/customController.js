@@ -50,22 +50,16 @@ module.exports = function (router) {
               db.user.findAll({ where: { id: messageIds } }).then((users) => {
                 let result = messages.map((message) => {
                   if (!message) {
-                    console.log("Hello");
                     return;
                   }
-                  console.log(message);
-                  console.log(users);
                   let item = {};
-                  console.log(users);
-                  let user = users.find((u) => {
-                    console.log(u);
-                    return u.id === message.dataValues.userId;
-                  });
+                  let user = users.find((u) => u.id === message.userId);
                   console.log(user);
+                  console.log(message);
                   item.id = message.dataValues.id;
                   item.name =
-                    user.dataValues.firstName + " " + user.dataValues.lastName;
-                  item.email = user.dataValues.email;
+                    user.firstName + " " + user.lastName;
+                  item.email = user.email;
                   item.text = message.dataValues.text;
                   return item;
                 });
