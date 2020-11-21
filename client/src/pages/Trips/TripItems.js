@@ -7,7 +7,6 @@ import Loading from "../../components/Loading";
 function TripItems() {
   const user = JSON.parse(sessionStorage.getItem("user"));
   const path = "/api/tripsbyuser/" + user.id;
-  console.log(user.id);
 
   return (
     <Container fluid>
@@ -31,13 +30,14 @@ function TripItems() {
                 <Container fluid>
                   {response.data.map((trip) => (
                     <a
-                      href={"/trips/" + trip.id}
-                      className="btn btn-outline-warning text-dark m-3 p-3"
+                    key={trip.id}
+                    href={"/trips/" + trip.id}
+                    className="btn btn-outline-warning text-dark m-3 p-3"
                     >
-                      <TripItem id={trip.id} />
+                      <TripItem tripId={trip.id} />
                     </a>
                   ))}
-                  {(response.data.length <= 0) ? <><span>No trips planned? </span><a className="btn btn-outline-warning" href="/search-flights">Find a Flight</a><span> now!</span></> : ""}
+                  {(response.data.length <= 0) ? <section className="mt-3"><span>No trips planned? </span><a className="btn m-2 p-2 btn-outline-warning" href="/search-flights">Find a Flight</a><span> now!</span></section> : ""}
                 </Container>
               );
             }

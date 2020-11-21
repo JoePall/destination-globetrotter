@@ -5,23 +5,23 @@ import Bookmarks from "./components/Bookmarks";
 import People from "./components/People";
 import TripItem from "./TripItem";
 
-function TripDashboard(tripId) {
+function TripDashboard(props) {
   return (
     <Container fluid className="mt-5">
       <Row className="mb-5 mx-auto text-center">
-        <TripItem id={tripId} />
+        <TripItem tripId={props.tripId} />
       </Row>
       <Row className="bg-light my-3 py-3">
         <Col md={12} lg={12} className="m-0 p-0">
-          <Bookmarks id={tripId} />
+          <Bookmarks id={props.tripId} />
         </Col>
       </Row>
       <Row className="bg-warning my-3 py-3">
         <Col md={12} lg={6} className="m-0 p-0 vh-50">
-          <People id={tripId} />
+          <People id={props.tripId} />
         </Col>
         <Col md={12} lg={6} className="m-0 p-0 vh-50">
-          <Messages id={tripId} />
+          <Messages id={props.tripId} />
         </Col>
       </Row>
     </Container>
