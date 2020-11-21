@@ -11,7 +11,7 @@ function People(tripId) {
     <Container fluid className="py-4 m-0">
       <h3 className="mx-auto text-center">People</h3>
       <Get url={"/api/usersbytrip/" + tripId}>
-        {(error, response, makeRequest) => {
+        {(error, response) => {
           if (error) {
             return (
               <Alert className="mx-auto alert alert-danger text-center">
@@ -24,17 +24,15 @@ function People(tripId) {
               </Alert>
             );
           } else if (response !== null) {
+            console.log(response);
             return (
               <Container fluid>
-                {response.data.map((item) => (
-                  <Toast
-                    bg="light"
-                    key={item.id}
-                    className="p-3 my-3 w-100 mx-auto"
-                  >
-                    {item.firstName + " " + item.lastName}
-                  </Toast>
-                ))}
+                <Toast
+                  bg="light"
+                  className="p-3 my-3 w-100 mx-auto"
+                >
+                {response.data.map((item) => <section key={item.id}><span>{item.firstName + " " + item.lastName}</span><hr /></section>)}
+                </Toast>
                 <Toast className="p-3 border border-warning mx-auto">
                   <Invite props={tripId} />
                 </Toast>
