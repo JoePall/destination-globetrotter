@@ -21,18 +21,9 @@ import Alert from "react-bootstrap/Alert";
 
 const Search = () => {
   const history = useHistory();
-  let selectedDestination = undefined;
-  if (
-    history.location &&
-    history.location.state &&
-    history.location.state.location
-  ) {
-    selectedDestination = history.location.state.location;
-    history.location.state.location = undefined;
-  }
-
   const [fromairport, setfromairport] = useState("");
   const [toairport, settoairport] = useState("");
+  const [toAirport, settoAirport] = useState("");
   const [returnto, setreturnto] = useState(false);
   const [dateto, setdateto] = useState("");
   const [searchresults, setsearchresults] = useState(null);
@@ -40,9 +31,21 @@ const Search = () => {
   const [isLoading, setisLoading] = useState(false);
   const [sortby, setsortby] = useState(null);
   const [errorresults, seterrorresults] = useState(null);
+  let selectedDestination = undefined;
 
 
   useEffect(() => {
+  if (
+    history.location &&
+    history.location.state &&
+    history.location.state.location
+  ) {
+    selectedDestination = history.location.state.location;
+    settoAirport(selectedDestination);
+    settoairport(selectedDestination.value);
+    history.location.state.location = undefined;
+  }
+
       const timeoutID = setTimeout(() => {
           if (fromairport && toairport && dateto && returnto && sortby) {
               console.log(fromairport)
@@ -93,8 +96,8 @@ const Search = () => {
         bookmark: { data: result },
         trip: {
           location: result.cityTo,
-          start: moment(result.route[0].local_departure).format("M/D/Y"),
-          end: moment(result.route[result.route.length - 1].local_arrival).format("M/D/Y"),
+          start: moment(result.route[0].local_departure).format("D/M/Y"),
+          end: moment(result.route[result.route.length - 1].local_arrival).format("D/M/Y"),
         },
       })
       .then((res) => {
@@ -193,7 +196,7 @@ const Search = () => {
             <Col className="secondcolumn">
               <Select
                 placeholder="Airport Code - i.e. LAX"
-                defaultValue={selectedDestination ? selectedDestination : ""}
+                value={toAirport}
                 options={options.map((option) => {
                   return {
                     value: option[option.length - 1],
@@ -207,7 +210,10 @@ const Search = () => {
                     search: option[0].split(" ")[0],
                   };
                 })}
-                onChange={(e) => settoairport(e.value)}
+                onChange={(e) => {
+                  settoairport(e.value);
+                  settoAirport(e);
+                }}
                 className="input"
               />
             </Col>

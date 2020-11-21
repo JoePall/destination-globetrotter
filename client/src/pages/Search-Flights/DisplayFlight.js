@@ -18,7 +18,7 @@ function DisplayFlight(props) {
     <Row>
         <Col lg={6} md={12}>
             <Card className="border border-warning m-3 p-3">
-                <h3>Destination Flight</h3>
+                <h3>Departure Flight</h3>
                 <h5>Duration: {departureDuration}</h5>
                 <DepartureFlights props={props} />
             </Card>
