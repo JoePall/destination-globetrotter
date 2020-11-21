@@ -18,7 +18,7 @@ function Messages(tripId) {
   const [message, setMessage] = useState("");
 
   return (
-    <Container fluid>
+    <Container fluid className="m-2">
       <Row>
         <Col xs={12}>
           <h3 className="mx-auto text-center">Messages</h3>
