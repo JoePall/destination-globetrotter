@@ -7,23 +7,11 @@ import {Card, CardActions, CardContent, List, ListItem, Button, Typography, Inpu
 
 
 // Main component, parent to all others, rules them
-function Messages() {
-  let defaultChannel = "Global";
-
-  // Access the params provided in the URL
-  let query = window.location.search.substring(1);
-  let params = query.split("&");
-  for(let i = 0; i < params.length; i++) {
-    var pair = params[i].split('=');
-    // If the user inputs a channel then the default channel is now set
-    // If not, we still navigate to the default channel
-    if(pair[0] === "channel" && pair[1] !== '') {
-      defaultChannel = decodeURI(pair[1]);
-    }
-  }
+function Messages(props) {
+  let defaultChannel = props.tripId;
+  console.log(props.tripId)
 
 const [channel, setChannel] = useState(defaultChannel);
-// const [channelSearch] = useState(defaultChannel);
 const [messages, setMessages] = useState([]);
 const [user] = useState(JSON.parse(sessionStorage.getItem("user")));
 const tempChannel = useInput();
@@ -68,6 +56,7 @@ pubnub.history(
   stringifiedTimeToken: true
   }, function (status, response) {
   let newMessages = [];
+  console.log(response);
   for (let i = 0; i < response.messages.length; i++) {
     newMessages.push ({
       user: response.messages[i].entry.user,
@@ -196,33 +185,12 @@ function goBack() {
 
 // This returns how the page will look
 return(
-  <Card style={{width: '75%', height: '100%'}} >
+  <Card style={{width: '95%', height: '100%'}} >
     <CardContent>
       <div className="top">
         <Typography variant="h4" >
-        <h4 className="title"><strong>Group Messages - {channel}</strong></h4><br></br>
+        <h4 className="title"><strong>Messages</strong></h4><br></br>
         </Typography>
-      
-        <Input
-          style = {{width: '100px'}}
-          className = "channel"
-          id = "channelInput"
-          onKeyDown = {handleKeyDown}
-          placeholder = "Group"
-          onChange = {tempChannel.onChange}
-          value = {tempChannel.value}
-        />
-      </div>
-      <div align="right">
-       <Input 
-          style = {{width: '100px'}}
-          className = "searchChannel"
-          id = "channelSearch"
-          onKeyDown = {handleKeyDownTwo}
-          placeholder = "Find"
-          onChange = {tempChannelSearch.onChange}
-          value = {tempChannelSearch.value}
-        />
       </div>
       <div>
         <Log messages = {messages}/>

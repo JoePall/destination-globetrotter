@@ -31,6 +31,7 @@
 
   #messageInput, #channelInput, #channelSearch {
     border: none;
+    font-size: 15px !important;
   }
 
   .search {

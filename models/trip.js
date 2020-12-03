@@ -1,3 +1,5 @@
+// const { UUIDV4 } = require("sequelize/types");
+
 module.exports = function (sequelize, DataTypes) {
     var trip = sequelize.define('trip', {
       location: {
@@ -18,8 +20,14 @@ module.exports = function (sequelize, DataTypes) {
       userId: {
         type: DataTypes.INTEGER,
         allowNull: false,
+      },
+      id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true
       }
     });
+    
   
     return trip;
   };
