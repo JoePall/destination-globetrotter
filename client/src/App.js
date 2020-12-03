@@ -6,7 +6,6 @@ import Friends from "./pages/Friends";
 import Groups from "./pages/Groups";
 import Trips from "./pages/Trips";
 import Profile from "./pages/Profile";
-import Messages from "./pages/Messages";
 import Login from "./pages/Login-Signup/login";
 import Logout from "./pages/Logout";
 import Signup from "./pages/Login-Signup/signUp";
@@ -27,7 +26,6 @@ function App() {
           <ProtectedRoute exact path="/search-flights" component={Search} />
           <ProtectedRoute exact path="/my-flights" component={Flights} />
           <ProtectedRoute exact path="/invites" component={Friends} />
-          <ProtectedRoute exact path="/messages/:id?" component={Messages} />
           <ProtectedRoute exact path="/trips/:id?" component={Trips} />
           <ProtectedRoute exact path="/profile" component={Profile} />
           <Route exact path="/login" component={Login} />

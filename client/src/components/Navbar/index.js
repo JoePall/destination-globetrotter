@@ -4,13 +4,11 @@ import { Link } from "react-router-dom";
 import "./style.css";
 import Logo from "../../images/logo-small.png";
 import { FaRegTimesCircle, FaUserAlt } from 'react-icons/fa';
-import { FaCommentDots } from 'react-icons/fa';
 import { FaSearchLocation } from 'react-icons/fa';
 import { FaSuitcaseRolling } from 'react-icons/fa';
 import { FaUserFriends } from 'react-icons/fa';
 import { FaPlane } from 'react-icons/fa';
 import { FaHome } from 'react-icons/fa';
-import { FaSignOutAlt } from 'react-icons/fa';
 
 function Navbar() {
   return (
@@ -32,9 +30,6 @@ function Navbar() {
           </a>
           <a className="menu-item" href="/trips">
           <FaSuitcaseRolling />Trips
-          </a>
-          <a className="menu-item" href="/messages">
-          <FaCommentDots />Messages
           </a>
           <a className="menu-item" href="/invites">
           <FaUserFriends />Invites
