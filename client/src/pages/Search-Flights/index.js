@@ -12,11 +12,11 @@ import DatePicker from "react-datepicker";
 import "../../../node_modules/react-datepicker/dist/react-datepicker.css";
 import api from "../../utils/API";
 import Select from "react-select";
+import Loader from "react-loader-spinner";
 import options from "../../utils/airports.json";
 import { useHistory } from "react-router-dom";
 import moment from "moment";
 import Alert from "react-bootstrap/Alert";
-import Loading from "../../components/Loading.js";
 
 
 const Search = () => {
@@ -64,6 +64,18 @@ const Search = () => {
         setisLoading(false)
       };
   }, [fromairport, toairport, dateto, returnto, sortby]);
+
+  const displayloading = () => {
+    return (
+      <Loader
+        className="p-5 loadingclass"
+        type="Bars"
+        color="#00eFFF44"
+        height={200}
+        width={200}
+      />
+    );
+  };
 
   const selectflightfunction = (result, i) => {
     const button = document.getElementById(i);
@@ -242,7 +254,7 @@ const Search = () => {
         </form>
       </div>
 
-      { (isLoading && !searchresults && !errorresults) ? <Loading /> : "" }      
+      { (isLoading && !searchresults && !errorresults) ? displayloading() : "" }      
       { (searchresults && searchresults.length === 0) ? <Alert className="mx-auto col-8 alert alert-danger text-center"> <h2>No Flights Found...</h2> <hr /> <h4> Try a Different Search. </h4> </Alert> : 
         errorresults != null ? <Alert className="mx-auto col-8 alert alert-danger text-center"> <h2>Error...</h2> <hr /> <h4> {errorresults.errors[0]}  </h4> <hr /> <h4>Please fix the issue above and try again...</h4> </Alert>  : searchresults === null ? <div></div> :
         searchresults.map( (result, i) => {

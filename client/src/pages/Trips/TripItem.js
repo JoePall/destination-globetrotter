@@ -5,9 +5,10 @@ import Error from "../Error";
 import Loading from "../../components/Loading";
 
 function TripItem(props) {
+  
   return (
     <Get url={"/api/trip/" + props.tripId}>
-    {(error, response, makeRequest) => {
+    {(error, response) => {
         if (error) {
           return <Error />;
         } else if (response !== null) {
