@@ -42,7 +42,7 @@ function Invite(props) {
                 }}
               />
               <button
-                className="btn btn-outline-warning w-100 p-2 mt-3"
+                className="btn btn-dark w-100 p-2 mt-3"
                 onClick={() => {
                   if (!state.person) return alert("No friend selected");
                   let pending = {
