@@ -1,5 +1,5 @@
 import React from "react";
-import Login from "./Login-Signup/login";
+import Login from "./Login/login";
 import api from "../utils/API";
 import Loading from "../components/Loading";
 import Error from "./Error";
