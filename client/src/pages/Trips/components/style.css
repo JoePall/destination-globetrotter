@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    width: 100%;
+    margin: 40px auto;
+    background-color: #fff;
+    font-family: 'Poppins', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  code {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  #messageBtn {
+      background-color: slategray;
+      color: white !important;
+  }
+
+  #messageInput, #channelInput, #channelSearch {
+    border: none;
+    font-size: 15px !important;
+  }
+
+  .search {
+    margin-top: 10px;
+    margin-right: 85px;
+    color: #2C78B6;
+  }
+
+  .title {
+    color: #2C78B6;
+  }
+
+  Input {
+    color: #2C78B6 !important;
+    font-weight: bold !important;
+  }

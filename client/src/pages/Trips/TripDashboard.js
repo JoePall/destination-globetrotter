@@ -24,6 +24,7 @@ function TripDashboard(props) {
         </Col>
         <Col md={12} lg={6} className="m-0 p-0 vh-50">
           <Messages tripId={props.tripId} />
+          {console.log(props.tripId)}
         </Col>
       </Row>
       <Row>

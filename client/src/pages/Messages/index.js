@@ -6,20 +6,20 @@ import {Card, CardActions, CardContent, List, ListItem, Button, Typography, Inpu
 
 
 // Main component, parent to all others, rules them
-function Messages() {
-  let defaultChannel = "Global";
+function Messages(props) {
+  let defaultChannel = props.messagesChannel;
 
   // Access the params provided in the URL
-  let query = window.location.search.substring(1);
-  let params = query.split("&");
-  for(let i = 0; i < params.length; i++) {
-    var pair = params[i].split('=');
+  // let query = window.location.search.substring(1);
+  // let params = query.split("&");
+  // for(let i = 0; i < params.length; i++) {
+  //   var pair = params[i].split('=');
     // If the user inputs a channel then the default channel is now set
     // If not, we still navigate to the default channel
-    if(pair[0] === "channel" && pair[1] !== '') {
-      defaultChannel = decodeURI(pair[1]);
-    }
-  }
+  //   if(pair[0] === "channel" && pair[1] !== '') {
+  //     defaultChannel = decodeURI(pair[1]);
+  //   }
+  // }
 
 const [channel, setChannel] = useState(defaultChannel);
 // const [channelSearch] = useState(defaultChannel);
