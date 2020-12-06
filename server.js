@@ -89,13 +89,17 @@ const seed = () => {
   });
   let date = Date.now();
   db.trip.create({
+    id: 2,
     location: "Los Angeles",
+    start: moment(date).add(145, "days").format("M/D/Y"),
+    end: moment(date).add(150, "days").format("M/D/Y"),
     userId: 1,
   });
   db.trip.create({
+    id: 1,
     location: "Los Angeles",
-    start: moment(date).add(7, "days").format("M/D/Y"),
-    end: moment(date).add(15, "days").format("M/D/Y"),
+    start: moment(date).add(410, "days").format("M/D/Y"),
+    end: moment(date).add(415, "days").format("M/D/Y"),
     userId: 1,
   });
   db.user_group.create({
@@ -126,5 +130,36 @@ const seed = () => {
     userId: 2,
     tripId: 1,
     text: "That sounds good!",
+  });
+  
+  db.event.create({
+    tripId: 1,
+    userId: 1,
+    title: "Josiah Powell @Knott's Berry Farm",
+    start: moment(date).add(412, "days").format("YYYY-MM-DD") + "T13:30:00",
+    end: moment(date).add(412, "days").format("YYYY-MM-DD") + "T16:30:00",
+  });
+  db.event.create({
+    tripId: 1,
+    userId: 1,
+    title: "Josiah Powell @Huntington Beach (Surf City)",
+    start: moment(date).add(413, "days").format("YYYY-MM-DD"),
+    end: moment(date).add(413, "days").format("YYYY-MM-DD"),
+  });
+  
+  db.event.create({
+    tripId: 2,
+    userId: 2,
+    title: "John Doe @DisneyLand",
+    start: moment(date).add(147, "days").format("YYYY-MM-DD") + "T13:30:00",
+    end: moment(date).add(147, "days").format("YYYY-MM-DD") + "T16:30:00",
+  });
+  
+  db.event.create({
+    tripId: 2,
+    userId: 2,
+    title: "Julie Schaub @DisneyLand",
+    start: moment(date).add(148, "days").format("YYYY-MM-DD") + "T09:30:00",
+    end: moment(date).add(148, "days").format("YYYY-MM-DD") + "T11:30:00",
   });
 };
