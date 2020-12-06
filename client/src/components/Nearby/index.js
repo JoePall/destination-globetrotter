@@ -18,7 +18,7 @@ function Nearby(props) {
             let url =
             "https://www.mapquestapi.com/search/v2/radius?origin=" +
             response.data.location.replace(" ", "+") +
-            "&radius=50&maxMatches=10&ambiguities=ignore&hostedData=mqap.ntpois|group_sic_code=?|799604&outFormat=json&key=409ZVdAZWKG5iUw5tTqeAJwYBQGZJRSQ";
+            "&radius=50&maxMatches=10&ambiguities=ignore&hostedData=mqap.ntpois|group_sic_code=?|799604&outFormat=json&key=";
             console.log(url);
             return (
               <Get url={url}>
