@@ -4,8 +4,6 @@ const db = require("../models");
 module.exports = function (router) {
   //TODO: Finish this...
   router.post("/api/createfromflight", isAuthenticated, (req, res) => {
-    if (!req.user) return res.status(500).send("No user found");
-
     db.bookmark
       .create({ ...req.body.bookmark, userId: req.user.id })
       .then((bookmark) => {
@@ -45,16 +43,47 @@ module.exports = function (router) {
           db.message
             .findAll({ where: { tripId: req.params.id } })
             .then((messages) => {
-              let messageOwnerIds = messages.map((message) => message.dataValues.userId);
-              db.user.findAll({ where: { id: messageOwnerIds } }).then((users) => { 
-                let result = messages.map((message) => {
-                  let item = {};
+              let messageOwnerIds = messages.map(
+                (message) => message.dataValues.userId
+              );
+              db.user
+                .findAll({ where: { id: messageOwnerIds } })
+                .then((users) => {
+                  let result = messages.map((message) => {
+                    let item = {};
 
-                  item.message = message.dataValues;
-                  item.owner = users.find(user => user.dataValues.id === message.dataValues.userId).dataValues;
+                    item.message = message.dataValues;
+                    item.owner = users.find(
+                      (user) => user.dataValues.id === message.dataValues.userId
+                    ).dataValues;
 
-                  return item;
+                    return item;
+                  });
+
+                  res.json(result);
                 });
+            });
+        });
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  });
+
+  router.get("/api/eventsfromtrip/:id", isAuthenticated, (req, res) => {
+    try {
+      db.trip_user
+        .findAll({ where: { userId: req.user.id, tripId: req.params.id } })
+        .then((trip_user) => {
+          console.log(trip_user.dataValues);
+          db.event
+            .findAll({ where: { tripId: req.params.id } })
+            .then((events) => {
+              db.trip.findByPk(req.params.id).then((trip) => {
+                let result = {};
+
+                console.log(events);
+                result.events = events;
+                result.trip = trip;
 
                 res.json(result);
               });
@@ -65,6 +94,7 @@ module.exports = function (router) {
     }
   });
 
+  
   router.get("/api/pendingtrips/:id", isAuthenticated, (req, res) => {
     try {
       db.pending
