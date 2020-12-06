@@ -108,7 +108,7 @@ function setupGetAssociation(modelA, modelB, model) {
   return { operation: "get", path: path, type: "get", params: ["id"] };
 }
 
-// Internal for creating an api object for calling on the front end.
+// Internal Util for creating an API Util object for calling on the front end.
 function addToAPIObject(
   routes,
   model,
@@ -129,21 +129,6 @@ function addToAPIObject(
   return routes;
 }
 
-function addConnectionToAPIObject(
-  routes,
-  model,
-  { operation, path, type, params, object }
-) {
-  let name = model.toLowerCase();
-  if (!routes[name]) routes[name] = [];
-  let result = '(o) => axios.create("' + path + '"';
-  if (params) result += ", " + params.join(", ");
-  if (object) result += ", " + object.join(", ");
-  result += ")";
-  routes[name].push(result);
-
-  return routes;
-}
 
 // init for setting up routes pertaining to the db.
 module.exports = (models) => {
