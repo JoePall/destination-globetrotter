@@ -26,7 +26,12 @@ class Login extends React.Component {
       .login(this.state)
       .then((res) => {
         sessionStorage.setItem("user", JSON.stringify(res.data));
-        location.reload();
+        if (location.pathname === "/login") {
+          window.history.pushState(null, "Welcome", "/");
+        }
+        else {
+          location.reload();
+        }
       })
       .catch(console.log);
   }
