@@ -6,6 +6,7 @@ const passport = require("./config/passport");
 const PORT = process.env.PORT || 8080;
 const db = require("./models");
 const path = require("path");
+const requireHTTPS = require("./config/middleware/requireHTTPS");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -21,6 +22,7 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(requireHTTPS);
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
