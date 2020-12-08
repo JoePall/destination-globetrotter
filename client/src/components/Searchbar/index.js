@@ -22,7 +22,7 @@ const Searchbar = (returnfrom, dateto, fromairport, toairport, callback, errorca
               "method":"GET",
               "url":surl,
               "headers":{
-                  "apikey":apikey
+                  "apikey": process.env.KIWI_API
               }
               })
               .then((response)=>{
