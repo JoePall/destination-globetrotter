@@ -27,7 +27,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-db.sequelize.sync({ force: false }).then((seq) => {
+db.sequelize.sync({ force: true }).then((seq) => {
   // Setting up route controllers for db.
   app.use(require("./controllers")(seq.models));
 
