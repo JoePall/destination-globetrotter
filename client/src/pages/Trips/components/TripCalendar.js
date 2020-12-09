@@ -48,7 +48,6 @@ class TripCalendar extends React.Component {
                       id="eventTitle"
                       label="Title"
                       name="eventTitle"
-                      autoFocus
                       type="text"
                       className="mx-auto"
                       onInput={(e) => {
