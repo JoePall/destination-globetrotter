@@ -1,7 +1,7 @@
 module.exports = function (sequelize, DataTypes) {
   var event = sequelize.define('event', {
     tripId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       allowNull: false,
     },
     userId: {

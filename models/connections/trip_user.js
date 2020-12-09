@@ -1,7 +1,7 @@
 module.exports = function (sequelize, DataTypes) {
   var trip_user = sequelize.define("trip_user", {
     tripId: {
-      type: DataTypes.STRING,
+      type: DataTypes.UUID,
       allowNull: false,
     },
     userId: {
