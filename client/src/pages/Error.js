@@ -6,7 +6,7 @@ function Error() {
     <Alert className="mx-auto col-8 alert alert-danger text-center">
       <h2>Sorry!</h2>
       <hr />
-      <h4>This is embarrassing ... and ... our app isn't working right now.</h4>
+      <h4>This is embarrassing ... and ... our this section isn't working right now.</h4>
     </Alert>
   );
 }

@@ -1,9 +1,9 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
+import Card from "react-bootstrap/Card";
 import Error from "../../pages/Error";
 import { Get } from "react-axios";
 import Loading from "../Loading";
-import { Card } from "react-bootstrap";
 
 function Nearby(props) {
 

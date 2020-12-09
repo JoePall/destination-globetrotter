@@ -126,7 +126,7 @@ const seed = () => {
   });
   db.trip_user.create({
     tripId: "177c261f-1b15-41b1-bdd8-bbb9cb6ad227",
-    userId: 4,
+    userId: 3,
   });
   db.trip_user.create({
     tripId: "177c261f-1b15-41b1-bdd8-bbb9cb6ad227",
