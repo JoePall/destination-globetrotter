@@ -5,7 +5,7 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
     },
     tripId: {
-      type: DataTypes.STRING,
+      type: DataTypes.UUID,
       allowNull: false,
     },
   });

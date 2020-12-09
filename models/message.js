@@ -12,7 +12,7 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
       },
       tripId: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         allowNull: false,
       }
     });

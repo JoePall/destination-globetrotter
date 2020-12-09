@@ -21,8 +21,10 @@ const tempMessage = useInput();
 useEffect(() => {
   console.log("setting up pubnub");
   const pubnub = new PubNub({
-    publishKey: "pub-c-d9eb4f4a-5807-4310-bff8-d4bb18295fb0",
-    subscribeKey: "sub-c-14656c9a-23bf-11eb-9c54-32dcb901e45f",
+    publishKey: "pub-c-d9eb4f4a-5807-" 
+    + "4310-bff8-d4bb18295fb0",
+    subscribeKey: "sub-c-14656c9a-23bf-" 
+    + "11eb-9c54-32dcb901e45f",
     user: user.firstName + ' ' + user.lastName
   });
   

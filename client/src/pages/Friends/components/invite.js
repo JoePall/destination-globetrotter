@@ -27,7 +27,7 @@ function Invite(props) {
         } else if (response !== null) {
           console.log(JSON.stringify(response));
           return (
-            <Container fluid className="text-center">
+            <Container fluid className="rounded border border-warning bg-light p-3 text-center">
               <Select
                 placeholder="Find a friend..."
                 options={response.data.map((item) => {
@@ -42,7 +42,7 @@ function Invite(props) {
                 }}
               />
               <button
-                className="btn btn-outline-warning w-100 p-2 my-3"
+                className="btn btn-dark w-100 p-2 mt-3"
                 onClick={() => {
                   if (!state.person) return alert("No friend selected");
                   let pending = {

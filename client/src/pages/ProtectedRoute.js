@@ -1,8 +1,9 @@
 import React from "react";
-import Login from "./Login-Signup/login";
-import Alert from "react-bootstrap/Alert";
+import Login from "./Login/login";
 import api from "../utils/API";
 import Loading from "../components/Loading";
+import Error from "./Error";
+
 
 class ProtectedRoute extends React.Component {
   constructor(props) {
@@ -29,25 +30,13 @@ class ProtectedRoute extends React.Component {
     const { isAuthenticated, error } = this.state;
     if (error)
       return (
-        <Alert className="mx-auto col-8 alert alert-danger text-center">
-          <h2>Sorry!</h2>
-          <hr />
-          <h4>
-            This is embarrassing ... and ... our app isn't working right now.
-          </h4>
-        </Alert>
+        <Error />
       );
     else if (isAuthenticated === undefined)
       return <Loading />
     else if (isAuthenticated === false) return <Login />;
     else if (isAuthenticated === true) return <Component id={this.state.id} />;
-    else return <Alert className="mx-auto col-8 alert alert-danger text-center">
-    <h2>Sorry!</h2>
-    <hr />
-    <h4>
-      This is embarrassing ... and ... our app isn't working right now.
-    </h4>
-  </Alert>;
+    else return <Error />;
   }
 }
 

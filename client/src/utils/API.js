@@ -55,6 +55,12 @@ const api = {
     getOne: (id) => axios.get("/api/friends/" + id),
     delete: (id) => axios.delete("/api/friends/" + id),
   },
+  events: {
+    get: () => axios.get("/api/event/"),
+    create: (o) => axios.post("/api/event/", o),
+    getOne: (id) => axios.get("/api/event/" + id),
+    delete: (id) => axios.delete("/api/event/" + id),
+  },
   pending: {
     get: () => axios.get("/api/pending/"),
     create: (o) => axios.post("/api/pending/", o),
