@@ -5,19 +5,25 @@ import Error from "../Error";
 import Loading from "../../components/Loading";
 
 function TripItem(props) {
-  
   return (
     <Get url={"/api/trip/" + props.tripId}>
-    {(error, response) => {
+      {(error, response) => {
         if (error) {
           return <Error />;
         } else if (response !== null) {
-          console.log(response);
-          
-          return <Container fluid>
-            <h4>{response.data.location}</h4>
-            <h5>{response.data.start ? response.data.start : ""}{response.data.end ? " - " + response.data.end : ""}</h5>
-          </Container>
+          if (response.data.location) {
+            return (
+              <Container fluid>
+                <h4>{response.data.location}</h4>
+                <h5>
+                  {response.data.start ? response.data.start : ""}
+                  {response.data.end ? " - " + response.data.end : ""}
+                </h5>
+              </Container>
+            );
+          } else {
+            return <></>;
+          }
         }
         return <Loading />;
       }}
