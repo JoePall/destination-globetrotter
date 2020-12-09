@@ -28,6 +28,7 @@ function Nearby(props) {
                   return <Error />;
                 } else if (response !== null) {
                   console.log(response);
+                  if (!response.data.searchResults) return <></>;
                   return <Container fluid>
                     <h3 className="mx-auto text-center">Nearby</h3>
                     {response.data.searchResults.map(item => 
