@@ -4,8 +4,8 @@ const axios = require("axios");
 
 const Searchbar = (returnfrom, dateto, fromairport, toairport, callback, errorcallback, sortby) => {
     
-        let searchurl = "https://tequila-api.kiwi.com/v2/search?&curr=USD&select_airlines=DL,B6,WN,AS,HA,UA,NK,AA,F9&flight_type=round"
-        let apikey = "dRfNfRXhvDHSsgF7Got2L96r1cNGF9gl"
+        let searchurl = "https://tequila-api.kiwi.com/v2/search?&curr=USD&select_airlines=DL,B6,WN,AS,HA,UA,NK,AA,F9&flight_type=round";
+        let apikey = process.env.REACT_APP_KIWI;
         let return_from = "&return_from=" + moment(returnfrom).format("DD/MM/YYYY");
         console.log("return_from = " + return_from);
         let return_to = "&return_to=" + moment(returnfrom).format("DD/MM/YYYY");
