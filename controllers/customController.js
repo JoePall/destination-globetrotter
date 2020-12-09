@@ -74,27 +74,31 @@ module.exports = function (router) {
       db.trip_user
         .findAll({ where: { userId: req.user.id, tripId: req.params.id } })
         .then((trip_user) => {
-          console.log(trip_user.dataValues);
-          db.event
-            .findAll({ where: { tripId: req.params.id } })
-            .then((events) => {
-              db.trip.findByPk(req.params.id).then((trip) => {
-                let result = {};
+          if (trip_user.length > 0) {
+            db.event
+              .findAll({ where: { tripId: req.params.id } })
+              .then((events) => {
+                db.trip.findByPk(req.params.id).then((trip) => {
+                  let result = {};
 
-                console.log(events);
-                result.events = events;
-                result.trip = trip;
+                  console.log(events);
+                  result.events = events;
+                  result.trip = trip;
+                  console.log(result);
 
-                res.json(result);
+                  res.json(result);
+                });
               });
-            });
+          }
+          else {
+            res.status(401).send("Unauthorized access to trip data.");
+          }
         });
     } catch (error) {
       res.status(500).json(error);
     }
   });
 
-  
   router.get("/api/pendingtrips/:id", isAuthenticated, (req, res) => {
     try {
       db.pending

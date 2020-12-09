@@ -5,10 +5,10 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Get } from "react-axios";
 import Calendar from "../../../components/Calendar/Calendar";
-import DatePicker from "react-datepicker";
 import TextField from "@material-ui/core/TextField";
 import api from "../../../utils/API";
 import moment from "moment";
+import Select from "react-select";
 
 class TripCalendar extends React.Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class TripCalendar extends React.Component {
   render() {
     return (
       <Get url={"/api/eventsfromtrip/" + this.props.tripId}>
-        {(error, response) => {
+        {(error, response, isLoading, makeRequest, axios) => {
           if (response !== null) {
             console.log(response);
             console.log(response.data.trip.start);
@@ -32,14 +32,14 @@ class TripCalendar extends React.Component {
             return (
               <Container fluid className="p-2">
                 <Row>
-                  <Calendar
+                  <Calendar 
                     events={response.data.events}
                     start={response.data.trip.start}
                     end={response.data.trip.end}
                   />
                 </Row>
                 <Row>
-                  <Col>
+                  <Col md={12} lg={6} xl={4}>
                     <TextField
                       variant="outlined"
                       margin="normal"
@@ -52,63 +52,79 @@ class TripCalendar extends React.Component {
                       type="text"
                       className="mx-auto"
                       onInput={(e) => {
-                        this.setState({ event: e });
+                        this.setState({ event: e.target.value });
                       }}
                     />
                   </Col>
-                  <Col>
-                    <DatePicker
-                      className="mt-3"
-                      id="selectedStartDate"
-                      name="selectedStartDate"
-                      value={this.state.startDate}
-                      onChange={(e) =>
-                        this.setState({ startDate: moment(e).format("YYYY-MM-DDTHH:mm:ss") })
-                      }
-                      showTimeInput
-                      timeFormat="HH:mm"
-                      timeIntervals={15}
-                      timeCaption="time"
-                      dateFormat="MM/dd/yyyy h:mm aa"
-                      placeholderText="Start Date/Time"
+                  <Col md={12} lg={6} xl={4}>
+                    <TextField
+                      id="startDate"
+                      label="Start Date"
+                      type="date"
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                      onChange={(e) => this.setState({ startDate: e.target.value })}
                     />
                   </Col>
-                  <Col>
-                    <DatePicker
-                      className="mt-3"
-                      id="selectedEndDate"
-                      name="selectedEndDate"
-                      value={this.state.endDate}
-                      onChange={(e) =>
-                        this.setState({ endDate: moment(e).format("YYYY-MM-DDTHH:mm:ss") })
-                      }
-                      showTimeInput
-                      timeFormat="HH:mm"
-                      timeIntervals={15}
-                      timeCaption="time"
-                      dateFormat="MM/dd/yyyy h:mm aa"
-                      placeholderText="End Date/Time"
+                  <Col md={12} lg={6} xl={4}>
+                    <TextField
+                      id="startTime"
+                      label="Start Time"
+                      type="time"
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                      onChange={(e) => this.setState({ startTime: e.target.value })}
                     />
                   </Col>
-                  <Col>
+                  <Col md={12} lg={6} xl={4}>
+                    <TextField
+                      id="endDate"
+                      label="End Date"
+                      type="date"
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                      onChange={(e) => this.setState({ endDate: e.target.value })}
+                    />
+                  </Col>
+                  <Col md={12} lg={6} xl={4}>
+                    <TextField
+                      id="endTime"
+                      label="End Time"
+                      type="time"
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                      onChange={(e) => this.setState({ endTime: e.target.value })}
+                    />
+                  </Col>
+                  <Col md={12} lg={6} xl={4}>
                     <button
-                      className="btn btn-success my-4 w-75 mx-auto btn-lg"
+                      className="btn btn-success btn-lg"
                       onClick={() => {
                         let result = {};
 
                         const user = JSON.parse(sessionStorage.getItem("user"));
                         result.tripId = this.props.tripId;
                         result.userId = user.id;
-                        result.title = this.Event;
-                        result.start = moment(this.startDate);
-                        result.end = moment(this.endDate);
+                        result.title = this.state.event;
+                        result.start =
+                          moment(this.state.startDate).format("YYYY-MM-DDT") + this.state.startTime + ":00";
+                        result.end =
+                          moment(this.state.endDate).format("YYYY-MM-DDT") + this.state.endTime + ":00";
 
                         console.log(result);
 
-                        api.events.create(result);
+                        api.events.create(result).then(res => {
+                          makeRequest({ params: { refresh: true } });
+                        }).catch(error => {
+                          console.log(error);
+                        });
                       }}
                     >
-                      Save
+                      Schedule
                     </button>
                   </Col>
                 </Row>
