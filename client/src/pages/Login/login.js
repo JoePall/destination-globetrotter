@@ -44,16 +44,19 @@ class Login extends React.Component {
     return (
       <div className="wrapper my-5 p-5">
         <div id="formContent" className="container px-3">
-          <div className="row mx-auto my-2">
+          <div className="row mx-auto w-100 my-2 btn-group btn-group-lg" role="group" aria-label="...">
             <a
+              aria-disabled
               href="/login"
-              className="col-5 mx-auto btn btn-outline-dark disabled my-4 btn-lg m-1"
+              type="button"
+              className="btn btn-outline-dark disabled my-2 btn-lg"
             >
               login
             </a>
             <a
               href="/signup"
-              className="col-5 mx-auto btn btn-outline-primary my-4 btn-lg m-1"
+              type="button"
+              className="btn btn-outline-dark my-2 btn-lg"
             >
               signup
             </a>
@@ -98,7 +101,7 @@ class Login extends React.Component {
             <button
               autoFocus
               onClick={this.handleSubmit}
-              className="btn btn-success my-4 w-75 mx-auto btn-lg"
+              className="btn btn-success mt-4 mb-2 w-100 mx-auto btn-lg"
             >
               Login
             </button>

@@ -20,7 +20,7 @@ function Bookmarks(props) {
               {response.data.map(item => {
                 return <Container key={item.data.id} fluid>{DisplayFlight({ result: item.data })}</Container>;
               })}
-              {(response.data.length === 0) ? <section className="mx-auto text-center"><span>Let's go</span><a className="btn btn-outline-warning m-2 p-2" href="/search-flights">BOOKmark some flights</a><span>!</span></section> : ""}
+              {(response.data.length === 0) ? <section className="mx-auto text-center"><span>Let's go</span><a className="btn btn-dark m-2 p-2" href="/search-flights">BOOKmark some flights</a><span>!</span></section> : ""}
             </Container>
           }
           return <Loading />;

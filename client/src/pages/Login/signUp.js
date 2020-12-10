@@ -3,6 +3,8 @@ import "./style.css";
 import Logo from "../../images/logo-small.png";
 import api from "../../utils/API";
 import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
 
 class Signup extends React.Component {
   constructor(props) {
@@ -40,16 +42,19 @@ class Signup extends React.Component {
     return (
       <div className="wrapper my-5 p-5">
         <div id="formContent" className="container px-3">
-          <div className="row mx-auto my-2">
+        <div className="row mx-auto w-100 my-2 btn-group btn-group-lg" role="group" aria-label="...">
             <a
               href="/login"
-              className="col-5 mx-auto btn btn-outline-success my-4 btn-lg m-1"
-            >
+              type="button"
+              className="btn btn-outline-dark my-2 btn-lg"
+              >
               login
             </a>
             <a
+              aria-disabled
               href="/signup"
-              className="col-5 mx-auto btn btn-outline-dark disabled my-4 btn-lg m-1"
+              type="button"
+              className="btn btn-outline-dark disabled my-2 btn-lg"
             >
               signup
             </a>
@@ -122,7 +127,7 @@ class Signup extends React.Component {
           <div className="row mx-auto my-2 fadeIn">
             <button
               onClick={this.handleSubmit}
-              className="btn btn-primary my-4 w-75 mx-auto btn-lg"
+              className="btn btn-primary mt-4 mb-2 w-100 mx-auto btn-lg"
             >
               Signup
             </button>

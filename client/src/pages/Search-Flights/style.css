@@ -121,14 +121,6 @@ fieldset {
   overflow: hidden;
 }
 
-.firstcolumn {
-  width: 175px;
-}
-
-.secondcolumn {
-  margin-left: -125px;
-}
-
 .form-row {
   padding-bottom: 20px;
 }
