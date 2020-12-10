@@ -127,7 +127,7 @@ class Signup extends React.Component {
           <div className="row mx-auto my-2 fadeIn">
             <button
               onClick={this.handleSubmit}
-              className="btn btn-primary my-4 w-100 mx-auto btn-lg"
+              className="btn btn-primary mt-4 mb-2 w-100 mx-auto btn-lg"
             >
               Signup
             </button>

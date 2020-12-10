@@ -101,7 +101,7 @@ class Login extends React.Component {
             <button
               autoFocus
               onClick={this.handleSubmit}
-              className="btn btn-success my-4 w-75 mx-auto btn-lg"
+              className="btn btn-success mt-4 mb-2 w-100 mx-auto btn-lg"
             >
               Login
             </button>
