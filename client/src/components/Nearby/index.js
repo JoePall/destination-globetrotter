@@ -36,8 +36,8 @@ function Nearby(props) {
                     </Row>
                     <Row>
                       {response.data.searchResults.map(item => 
-                      <Col xs={12} md={6} lg={4} xl={3}>
-                        <Card key={item.fields.mqap_id} className="px-4 py-2 bg-light my-3">
+                      <Col key={item.fields.mqap_id} xs={12} md={6} lg={4} xl={3}>
+                        <Card className="px-4 py-2 bg-light my-3">
                           <h4 className="font-weight-light">{item.name}</h4>
                           <h6>{item.fields.address + " " + item.fields.city + ", " + item.fields.state} | {item.fields.group_sic_code_name_ext}</h6>
                         </Card>
