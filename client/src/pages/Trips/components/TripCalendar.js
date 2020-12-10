@@ -126,13 +126,18 @@ class TripCalendar extends React.Component {
                             result.tripId = this.props.tripId;
                             result.userId = user.id;
                             result.title = this.state.event;
-                            let start = moment(this.state.startDate).format("YYYY-MM-DD") +
-                            + (this.state.startTime ? "T" + this.state.startTime + ":00" : '');
-                            result.start = start.slice(0, start.length - 1);
-                            let end = moment(this.state.endDate).format("YYYY-MM-DD") +
-                            + (this.state.endTime ? "T" + this.state.endTime + ":00" : '');
-                            result.end = end.slice(0, end.length - 1);
+                            let start = moment(this.state.startDate).format("YYYY-MM-DD");
+                            if (this.state.startTime) {
+                              start += "T" + this.state.startTime + ":00";
+                            }
+                            result.start = start;
+                            console.log(this.state.startTime);
+                            let end = moment(this.state.endDate).format("YYYY-MM-DD");
+                            if (this.state.endTime) {
+                              end += "T" + this.state.endTime + ":00";
+                            }
 
+                            result.end = end;
                             console.log(result);
 
                             api.events
