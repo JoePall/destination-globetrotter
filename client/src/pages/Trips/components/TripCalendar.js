@@ -8,8 +8,7 @@ import Calendar from "../../../components/Calendar/Calendar";
 import TextField from "@material-ui/core/TextField";
 import api from "../../../utils/API";
 import moment from "moment";
-import Select from "react-select";
-import { Card } from "@material-ui/core";
+import Card from "@material-ui/core/Card";
 
 class TripCalendar extends React.Component {
   constructor(props) {
