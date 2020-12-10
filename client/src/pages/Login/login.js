@@ -3,8 +3,6 @@ import "./style.css";
 import Logo from "../../images/logo-small.png";
 import api from "../../utils/API";
 import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
 
 class Login extends React.Component {
   constructor(props) {
@@ -30,7 +28,8 @@ class Login extends React.Component {
         sessionStorage.setItem("user", JSON.stringify(res.data));
         if (location.pathname === "/login") {
           window.history.pushState(null, "Welcome", "/");
-        } else {
+        }
+        else {
           location.reload();
         }
       })
@@ -38,29 +37,29 @@ class Login extends React.Component {
   }
 
   handleInputChange({ target }) {
-    this.setState({
-      [target.name]: target.type === "checkbox" ? target.checked : target.value,
-    });
+    this.setState({[target.name]: target.type === "checkbox" ? target.checked : target.value});
   }
 
   render() {
     return (
       <div className="wrapper my-5 p-5">
         <div id="formContent" className="container px-3">
-          <div className="row mx-auto my-2">
-            <ButtonGroup
-              size="large"
-              className="mx-auto my-2"
-              color="primary"
-              aria-label="outlined primary button group"
+          <div className="row mx-auto w-100 my-2 btn-group btn-group-lg" role="group" aria-label="...">
+            <a
+              aria-disabled
+              href="/login"
+              type="button"
+              className="btn btn-outline-dark disabled my-2 btn-lg"
             >
-              <Button width={1} disabled href="/">
-                Login
-              </Button>
-              <Button width={1} href="/signup">
-                Signup
-              </Button>
-            </ButtonGroup>
+              login
+            </a>
+            <a
+              href="/signup"
+              type="button"
+              className="btn btn-outline-dark my-2 btn-lg"
+            >
+              signup
+            </a>
           </div>
 
           <div className="row mx-auto my-2">

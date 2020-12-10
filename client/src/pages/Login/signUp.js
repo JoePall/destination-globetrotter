@@ -42,20 +42,22 @@ class Signup extends React.Component {
     return (
       <div className="wrapper my-5 p-5">
         <div id="formContent" className="container px-3">
-          <div className="row mx-auto my-2">
-            <ButtonGroup
-              size="large"
-              className="mx-auto my-2"
-              color="primary"
-              aria-label="outlined primary button group"
+        <div className="row mx-auto w-100 my-2 btn-group btn-group-lg" role="group" aria-label="...">
+            <a
+              href="/login"
+              type="button"
+              className="btn btn-outline-dark my-2 btn-lg"
+              >
+              login
+            </a>
+            <a
+              aria-disabled
+              href="/signup"
+              type="button"
+              className="btn btn-outline-dark disabled my-2 btn-lg"
             >
-              <Button width={1} href="/">
-                Login
-              </Button>
-              <Button width={1} disabled href="/signup">
-                Signup
-              </Button>
-            </ButtonGroup>
+              signup
+            </a>
           </div>
 
           <div className="row mx-auto my-2">
@@ -125,7 +127,7 @@ class Signup extends React.Component {
           <div className="row mx-auto my-2 fadeIn">
             <button
               onClick={this.handleSubmit}
-              className="btn btn-primary my-4 w-75 mx-auto btn-lg"
+              className="btn btn-primary my-4 w-100 mx-auto btn-lg"
             >
               Signup
             </button>
