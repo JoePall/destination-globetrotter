@@ -36,15 +36,15 @@ class TripCalendar extends React.Component {
                   start={response.data.trip.start}
                   end={response.data.trip.end}
                 />
-                <Card className="mx-auto w-100 my-3 p-3">
+                <Card className="mx-auto w-100 border border-warning m-5 p-3">
                   <Container fluid className="p-2">
                     <Row>
                       <h3>Schedule your Itinerary</h3>
                     </Row>
                     <Row>
-                      <Col sm={12} md={6} lg={4} xl={4}>
+                      <Col sm={12} md={6} lg={4}>
                         <TextField
-                          className="d-flex mt-3"
+                          className="d-flex w-100 mt-3"
                           variant="outlined"
                           margin="normal"
                           required
@@ -58,7 +58,7 @@ class TripCalendar extends React.Component {
                           }}
                         />
                       </Col>
-                      <Col sm={12} md={6} lg={4} xl={1}>
+                      <Col sm={12} md={6} lg={4}>
                         <TextField
                           className="d-flex mt-3"
                           id="startDate"
@@ -72,7 +72,7 @@ class TripCalendar extends React.Component {
                           }
                         />
                       </Col>
-                      <Col sm={12} md={6} lg={4} xl={1}>
+                      <Col sm={12} md={6} lg={4}>
                         <TextField
                           className="d-flex mt-3"
                           id="startTime"
@@ -86,7 +86,7 @@ class TripCalendar extends React.Component {
                           }
                         />
                       </Col>
-                      <Col sm={12} md={6} lg={4} xl={1}>
+                      <Col sm={12} md={6} lg={4}>
                         <TextField
                           className="d-flex mt-3"
                           id="endDate"
@@ -100,7 +100,7 @@ class TripCalendar extends React.Component {
                           }
                         />
                       </Col>
-                      <Col sm={12} md={6} lg={4} xl={1}>
+                      <Col sm={12} md={6} lg={4}>
                         <TextField
                           id="endTime"
                           label="End Time"
@@ -114,9 +114,9 @@ class TripCalendar extends React.Component {
                           }
                         />
                       </Col>
-                      <Col sm={12} md={6} lg={4} xl={3}>
+                      <Col sm={12} md={6} lg={4}>
                         <button
-                          className="mt-3 btn btn-success btn-lg"
+                          className="mt-3 btn btn-success w-100 btn-lg"
                           onClick={() => {
                             let result = {};
 
