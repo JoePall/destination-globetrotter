@@ -3,6 +3,8 @@ import "./style.css";
 import Logo from "../../images/logo-small.png";
 import api from "../../utils/API";
 import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
 
 class Login extends React.Component {
   constructor(props) {
@@ -28,8 +30,7 @@ class Login extends React.Component {
         sessionStorage.setItem("user", JSON.stringify(res.data));
         if (location.pathname === "/login") {
           window.history.pushState(null, "Welcome", "/");
-        }
-        else {
+        } else {
           location.reload();
         }
       })
@@ -37,7 +38,9 @@ class Login extends React.Component {
   }
 
   handleInputChange({ target }) {
-    this.setState({[target.name]: target.type === "checkbox" ? target.checked : target.value});
+    this.setState({
+      [target.name]: target.type === "checkbox" ? target.checked : target.value,
+    });
   }
 
   render() {
@@ -45,18 +48,19 @@ class Login extends React.Component {
       <div className="wrapper my-5 p-5">
         <div id="formContent" className="container px-3">
           <div className="row mx-auto my-2">
-            <a
-              href="/login"
-              className="col-5 mx-auto btn btn-outline-dark disabled my-4 btn-lg m-1"
+            <ButtonGroup
+              size="large"
+              className="mx-auto my-2"
+              color="primary"
+              aria-label="outlined primary button group"
             >
-              login
-            </a>
-            <a
-              href="/signup"
-              className="col-5 mx-auto btn btn-outline-primary my-4 btn-lg m-1"
-            >
-              signup
-            </a>
+              <Button width={1} disabled href="/">
+                Login
+              </Button>
+              <Button width={1} href="/signup">
+                Signup
+              </Button>
+            </ButtonGroup>
           </div>
 
           <div className="row mx-auto my-2">
