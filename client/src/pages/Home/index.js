@@ -11,8 +11,8 @@ function Home() {
   let location = "";
 
   return (
-    <Container fluid="lg" className="animate__animated animate__fadeIn">
-      <Card className=" text-center bg-dark mx-auto p-5 m-5">
+    <Container fluid="lg" className="m-5 mx-auto animate__animated animate__fadeIn">
+      <Card className="text-center bg-dark mx-auto p-5 m-5">
         <h1 className="mx-auto drop-shadow-light text-white">
           Welcome to
         </h1>
