@@ -17,7 +17,7 @@ import options from "../../utils/airports.json";
 import { useHistory } from "react-router-dom";
 import moment from "moment";
 import Alert from "react-bootstrap/Alert";
-
+import { Container, Row } from "react-bootstrap";
 
 const Search = () => {
   const history = useHistory();
@@ -33,36 +33,43 @@ const Search = () => {
   const [errorresults, seterrorresults] = useState(null);
   let selectedDestination = undefined;
 
-
   useEffect(() => {
-  if (
-    history.location &&
-    history.location.state &&
-    history.location.state.location
-  ) {
-    selectedDestination = history.location.state.location;
-    settoAirport(selectedDestination);
-    settoairport(selectedDestination.value);
-    history.location.state.location = undefined;
-  }
+    if (
+      history.location &&
+      history.location.state &&
+      history.location.state.location
+    ) {
+      selectedDestination = history.location.state.location;
+      settoAirport(selectedDestination);
+      settoairport(selectedDestination.value);
+      history.location.state.location = undefined;
+    }
 
-      const timeoutID = setTimeout(() => {
-          if (fromairport && toairport && dateto && returnto && sortby) {
-              console.log(fromairport)
-              console.log(toairport)
-              console.log(returnto)
-              console.log(dateto)
-              console.log("sortby = " + sortby);
-              setisLoading(true);
-              setsearchresults(null);
-              seterrorresults(null);
-              Searchbar(returnto, dateto, fromairport, toairport, setsearchresults, seterrorresults, sortby);
-          }
-      }, 750);
-      return () => {
-        clearTimeout(timeoutID);
-        setisLoading(false)
-      };
+    const timeoutID = setTimeout(() => {
+      if (fromairport && toairport && dateto && returnto && sortby) {
+        console.log(fromairport);
+        console.log(toairport);
+        console.log(returnto);
+        console.log(dateto);
+        console.log("sortby = " + sortby);
+        setisLoading(true);
+        setsearchresults(null);
+        seterrorresults(null);
+        Searchbar(
+          returnto,
+          dateto,
+          fromairport,
+          toairport,
+          setsearchresults,
+          seterrorresults,
+          sortby
+        );
+      }
+    }, 750);
+    return () => {
+      clearTimeout(timeoutID);
+      setisLoading(false);
+    };
   }, [fromairport, toairport, dateto, returnto, sortby]);
 
   const displayloading = () => {
@@ -98,7 +105,9 @@ const Search = () => {
         trip: {
           location: result.cityTo,
           start: moment(result.route[0].local_departure).format("D/M/Y"),
-          end: moment(result.route[result.route.length - 1].local_arrival).format("D/M/Y"),
+          end: moment(
+            result.route[result.route.length - 1].local_arrival
+          ).format("D/M/Y"),
         },
       })
       .then((res) => {
@@ -108,63 +117,61 @@ const Search = () => {
   };
 
   return (
-    <div className="ui segment searchbar" id="searchbar">
-      <div className="form animate__animated animate__fadeIn">
+    <div className="mx-auto" id="searchbar">
+      <div className="form mx-auto animate__animated animate__fadeIn">
         <form className="field">
-          <Form.Row>
+          <Form.Row className="my-3">
             <Col md={6} sm={12} className="firstcolumn">
               <label>Sort By</label>
             </Col>
-            <Col className="secondcolumn">
-              <fieldset>
-                <div className="radiobutton container">
-                  <Form.Row>
-                    <Col md={6} sm={12}>
-                      <input
-                        className="radio col-1"
-                        type="radio"
-                        value="price"
-                        name="sortresby"
-                        onChange={(e) => setsortby(e.target.value)}
-                      />
-                      <label htmlFor="price">Price</label>
-                    </Col>
-                    <Col md={6} sm={12}>
-                      <input
-                        className="radio col-1"
-                        type="radio"
-                        value="duration"
-                        name="sortresby"
-                        onChange={(e) => setsortby(e.target.value)}
-                      />
-                      <label htmlFor="duration">Duration</label>
-                    </Col>
-                    <Col md={6} sm={12}>
-                      <input
-                        className="radio col-1"
-                        type="radio"
-                        value="quality"
-                        name="sortresby"
-                        onChange={(e) => setsortby(e.target.value)}
-                      />
-                      <label htmlFor="quality">Quality</label>
-                    </Col>
-                    <Col md={6} sm={12}>
-                      <input
-                        className="radio col-1"
-                        type="radio"
-                        value="date"
-                        name="sortresby"
-                        onChange={(e) => setsortby(e.target.value)}
-                      />
-                      <label htmlFor="date">Date</label>
-                    </Col>
-                  </Form.Row>
-                </div>
-              </fieldset>
+            <Col md={6} sm={12}>
+              <Container fluid className="my-3 px-3 py-2 card bg-light border-warning border">
+                <Row>
+                  <Col md={6} sm={12}>
+                    <input
+                      className="radio m-2"
+                      type="radio"
+                      value="price"
+                      name="sortresby"
+                      onChange={(e) => setsortby(e.target.value)}
+                    />
+                    <label htmlFor="price">Price</label>
+                  </Col>
+                  <Col md={6} sm={12}>
+                    <input
+                      className="radio m-2"
+                      type="radio"
+                      value="duration"
+                      name="sortresby"
+                      onChange={(e) => setsortby(e.target.value)}
+                    />
+                    <label htmlFor="duration">Duration</label>
+                  </Col>
+                  <Col md={6} sm={12}>
+                    <input
+                      className="radio m-2"
+                      type="radio"
+                      value="quality"
+                      name="sortresby"
+                      onChange={(e) => setsortby(e.target.value)}
+                    />
+                    <label htmlFor="quality">Quality</label>
+                  </Col>
+                  <Col md={6} sm={12}>
+                    <input
+                      className="radio m-2"
+                      type="radio"
+                      value="date"
+                      name="sortresby"
+                      onChange={(e) => setsortby(e.target.value)}
+                    />
+                    <label htmlFor="date">Date</label>
+                  </Col>
+                </Row>
+              </Container>
             </Col>
           </Form.Row>
-          <Form.Row>
+          <Form.Row className="my-3">
             <Col md={6} sm={12} className="firstcolumn">
               <label>Departure Airport</label>
             </Col>
@@ -190,7 +197,7 @@ const Search = () => {
               />
             </Col>
           </Form.Row>
-          <Form.Row>
+          <Form.Row className="my-3">
             <Col md={6} sm={12} className="firstcolumn">
               <label>Destination Airport</label>
             </Col>
@@ -219,7 +226,7 @@ const Search = () => {
               />
             </Col>
           </Form.Row>
-          <Form.Row>
+          <Form.Row className="my-3">
             <Col md={6} sm={12} className="firstcolumn">
               <label>Departure Date</label>
             </Col>
@@ -235,7 +242,7 @@ const Search = () => {
               />
             </Col>
           </Form.Row>
-          <Form.Row>
+          <Form.Row className="my-3">
             <Col md={6} sm={12} className="firstcolumn">
               <label>Return Date</label>
             </Col>
@@ -254,10 +261,22 @@ const Search = () => {
         </form>
       </div>
 
-      { (isLoading && !searchresults && !errorresults) ? displayloading() : "" }      
-      { (searchresults && searchresults.length === 0) ? <Alert className="mx-auto col-8 alert alert-danger text-center"> <h2>No Flights Found...</h2> <hr /> <h4> Try a Different Search. </h4> </Alert> : 
-        errorresults != null ? <Alert className="mx-auto col-8 alert alert-danger text-center"> <h2>Error...</h2> <hr /> <h4> {errorresults.errors[0]}  </h4> <hr /> <h4>Please fix the issue above and try again...</h4> </Alert>  : searchresults === null ? <div></div> :
-        searchresults.map( (result, i) => {
+      {isLoading && !searchresults && !errorresults ? displayloading() : ""}
+      {searchresults && searchresults.length === 0 ? (
+        <Alert className="mx-auto col-8 alert alert-danger text-center">
+          {" "}
+          <h2>No Flights Found...</h2> <hr /> <h4> Try a Different Search. </h4>{" "}
+        </Alert>
+      ) : errorresults != null ? (
+        <Alert className="mx-auto col-8 alert alert-danger text-center">
+          {" "}
+          <h2>Error...</h2> <hr /> <h4> {errorresults.errors[0]} </h4> <hr />{" "}
+          <h4>Please fix the issue above and try again...</h4>{" "}
+        </Alert>
+      ) : searchresults === null ? (
+        <div></div>
+      ) : (
+        searchresults.map((result, i) => {
           let departureduration = 0;
           let returnduration = 0;
           let airlinename = ConvertAirline(result.airlines[0]);
@@ -317,7 +336,8 @@ const Search = () => {
               </div>
             );
           }
-        })}
+        })
+      )}
     </div>
   );
 };
