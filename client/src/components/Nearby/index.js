@@ -4,6 +4,7 @@ import Card from "react-bootstrap/Card";
 import Error from "../../pages/Error";
 import { Get } from "react-axios";
 import Loading from "../Loading";
+import { Col, Row } from "react-bootstrap";
 
 function Nearby(props) {
 
@@ -30,12 +31,18 @@ function Nearby(props) {
                   console.log(response);
                   if (!response.data.searchResults) return <></>;
                   return <Container fluid>
+                    <Row>
                     <h3 className="mx-auto text-center">Nearby</h3>
-                    {response.data.searchResults.map(item => 
-                      <Card key={item.fields.mqap_id} className="px-3 py-1 mb-1">
-                        <h4 className="font-weight-light">{item.name}</h4>
-                        <h6>{item.fields.address + " " + item.fields.city + ", " + item.fields.state} | {item.fields.group_sic_code_name_ext}</h6>
-                      </Card>)}
+                    </Row>
+                    <Row>
+                      {response.data.searchResults.map(item => 
+                      <Col xs={12} md={6} lg={4} xl={3}>
+                        <Card key={item.fields.mqap_id} className="px-4 py-2 bg-light my-3">
+                          <h4 className="font-weight-light">{item.name}</h4>
+                          <h6>{item.fields.address + " " + item.fields.city + ", " + item.fields.state} | {item.fields.group_sic_code_name_ext}</h6>
+                        </Card>
+                      </Col>)}
+                    </Row>
                   </Container>;
                 }
                 return <Loading />;
