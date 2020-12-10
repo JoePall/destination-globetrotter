@@ -104,10 +104,10 @@ const Search = () => {
         bookmark: { data: result },
         trip: {
           location: result.cityTo,
-          start: moment(result.route[0].local_departure).format("D/M/Y"),
+          start: moment(result.route[0].local_departure).format("M/D/Y"),
           end: moment(
             result.route[result.route.length - 1].local_arrival
-          ).format("D/M/Y"),
+          ).format("M/D/Y"),
         },
       })
       .then((res) => {
@@ -121,10 +121,10 @@ const Search = () => {
       <div className="form mx-auto animate__animated animate__fadeIn">
         <form className="field">
           <Form.Row className="my-3">
-            <Col md={6} sm={12} className="firstcolumn">
+            <Col md={5} sm={12} className="mt-2">
               <label>Sort By</label>
             </Col>
-            <Col md={6} sm={12}>
+            <Col md={7} sm={12} className="mt-2">
               <Container fluid className="my-3 px-3 py-2 card bg-light border-warning border">
                 <Row>
                   <Col md={6} sm={12}>
@@ -170,12 +170,10 @@ const Search = () => {
                 </Row>
               </Container>
             </Col>
-          </Form.Row>
-          <Form.Row className="my-3">
-            <Col md={6} sm={12} className="firstcolumn">
+            <Col md={5} sm={12} className="mt-2">
               <label>Departure Airport</label>
             </Col>
-            <Col className="secondcolumn">
+            <Col md={7} sm={12} className="mt-2">
               <Select
                 autoFocus
                 placeholder="Airport Code - i.e. MCI"
@@ -196,12 +194,10 @@ const Search = () => {
                 className="input"
               />
             </Col>
-          </Form.Row>
-          <Form.Row className="my-3">
-            <Col md={6} sm={12} className="firstcolumn">
+            <Col md={5} sm={12} xs={12}>
               <label>Destination Airport</label>
             </Col>
-            <Col className="secondcolumn">
+            <Col md={7} sm={12} className="mt-2">
               <Select
                 placeholder="Airport Code - i.e. LAX"
                 value={toAirport}
@@ -225,12 +221,10 @@ const Search = () => {
                 className="input"
               />
             </Col>
-          </Form.Row>
-          <Form.Row className="my-3">
-            <Col md={6} sm={12} className="firstcolumn">
+            <Col md={5} sm={12} className="mt-2">
               <label>Departure Date</label>
             </Col>
-            <Col className="secondcolumn">
+            <Col md={7} sm={12} className="mt-2">
               <DatePicker
                 placeholder="Departure Date"
                 value={dateto}
@@ -241,12 +235,10 @@ const Search = () => {
                 className="input w-100 px-5 py-2 border border-warning m-0"
               />
             </Col>
-          </Form.Row>
-          <Form.Row className="my-3">
-            <Col md={6} sm={12} className="firstcolumn">
+            <Col md={5} sm={12} className="mt-2">
               <label>Return Date</label>
             </Col>
-            <Col className="secondcolumn">
+            <Col md={7} sm={12} className="mt-2">
               <DatePicker
                 placeholder="Return Date"
                 value={returnto}
