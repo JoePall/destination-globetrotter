@@ -40,7 +40,9 @@ class Pending extends React.Component {
                   {pend.owner.firstName +
                     " " +
                     pend.owner.lastName +
-                    " has invited you!"}
+                    " has invited you to a trip to " +
+                    pend.trip.location +
+                    "!"}
                 </span>
                 {/* <span>{pend.trip.location}</span> */}
                 <span>
